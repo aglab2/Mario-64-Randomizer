@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Randomizer\ROMManager.cs" />
     <Compile Include="Shuffler.cs" />
+    <Compile Include="SM64\Object.cs" />
     <Compile Include="SM64\ROM.cs" />
     <Compile Include="SM64\SegmentBuilder.cs" />
     <Compile Include="SM64\Warp.cs" />

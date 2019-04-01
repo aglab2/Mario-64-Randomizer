@@ -98,9 +98,9 @@
             this.chkRandomizeEnemies.AutoSize = true;
             this.chkRandomizeEnemies.Location = new System.Drawing.Point(120, 13);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
-            this.chkRandomizeEnemies.Size = new System.Drawing.Size(66, 17);
+            this.chkRandomizeEnemies.Size = new System.Drawing.Size(62, 17);
             this.chkRandomizeEnemies.TabIndex = 5;
-            this.chkRandomizeEnemies.Text = "Enemies";
+            this.chkRandomizeEnemies.Text = "Objects";
             this.chkRandomizeEnemies.UseVisualStyleBackColor = true;
             // 
             // btnSaveRom

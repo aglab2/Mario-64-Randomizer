@@ -70,6 +70,7 @@ namespace Mario64Randomizer
         {
             if (chkRandomizeMusic.Checked)
             {
+#warning not implemented
                 //rm.randomizeMusic();
                 MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -97,7 +98,12 @@ namespace Mario64Randomizer
                     warp.Write(rm);
 
                 MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }            
+            }
+            if (chkRandomizeEnemies.Enabled)
+            {
+                List<SM64.Object> allObjects = new List<SM64.Object>();
+#warning implement parser for objects
+            }
         }
 
         private void btnSaveRom_Click(object sender, EventArgs e)
