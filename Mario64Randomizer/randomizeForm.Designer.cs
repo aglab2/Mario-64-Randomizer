@@ -35,6 +35,7 @@
             this.btnOpenRom = new System.Windows.Forms.Button();
             this.btnRandomize = new System.Windows.Forms.Button();
             this.chkRandomizeEnemies = new System.Windows.Forms.CheckBox();
+            this.btnSaveRom = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chkRandomizeWarps
@@ -97,16 +98,27 @@
             this.chkRandomizeEnemies.AutoSize = true;
             this.chkRandomizeEnemies.Location = new System.Drawing.Point(120, 13);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
-            this.chkRandomizeEnemies.Size = new System.Drawing.Size(66, 17);
+            this.chkRandomizeEnemies.Size = new System.Drawing.Size(62, 17);
             this.chkRandomizeEnemies.TabIndex = 5;
-            this.chkRandomizeEnemies.Text = "Enemies";
+            this.chkRandomizeEnemies.Text = "Objects";
             this.chkRandomizeEnemies.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveRom
+            // 
+            this.btnSaveRom.Location = new System.Drawing.Point(12, 89);
+            this.btnSaveRom.Name = "btnSaveRom";
+            this.btnSaveRom.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveRom.TabIndex = 6;
+            this.btnSaveRom.Text = "Save Rom";
+            this.btnSaveRom.UseVisualStyleBackColor = true;
+            this.btnSaveRom.Click += new System.EventHandler(this.btnSaveRom_Click);
             // 
             // randomizeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 98);
+            this.ClientSize = new System.Drawing.Size(222, 124);
+            this.Controls.Add(this.btnSaveRom);
             this.Controls.Add(this.chkRandomizeEnemies);
             this.Controls.Add(this.btnRandomize);
             this.Controls.Add(this.btnOpenRom);
@@ -131,5 +143,6 @@
         private System.Windows.Forms.Button btnOpenRom;
         private System.Windows.Forms.Button btnRandomize;
         private System.Windows.Forms.CheckBox chkRandomizeEnemies;
+        private System.Windows.Forms.Button btnSaveRom;
     }
 }
