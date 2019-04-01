@@ -19,7 +19,7 @@ namespace Mario64Randomizer.Parsers
         protected const int size = 0x40;
         protected const byte terminateCmd = 0x2;
 
-        protected delegate void Parser<State>(ROM rom, State s);
+        protected delegate void Parser<T>(ROM rom, T s);
 
         static protected void PerformLevelScriptParse<State>(ROM rom, int offset, Parser<State>[] parser, State state)
         {
@@ -45,7 +45,7 @@ namespace Mario64Randomizer.Parsers
             rom.PopOffset();
         }
 
-        protected static void Cmd00(ROM rom)
+        protected static void Cmd00<T>(ROM rom, T state)
         {
             int segment = rom.Read8(3);
             //if (segment != 0x19)
@@ -61,7 +61,7 @@ namespace Mario64Randomizer.Parsers
             rom.offset = levelscriptAddress - 0x10; // kostul for adding 0x10
         }
 
-        protected static void Cmd06(ROM rom)
+        protected static void Cmd06<T>(ROM rom, T state)
         {
             int segmentedAddress = rom.Read32(4);
             int segment = SegmentedAddressHelper.GetSegment(segmentedAddress);
@@ -74,14 +74,14 @@ namespace Mario64Randomizer.Parsers
             rom.PushOffset(romAddr - 0x8); // -8 to trick the adding after cmd
         }
 
-        protected static void Cmd07(ROM rom)
+        protected static void Cmd07<T>(ROM rom, T state)
         {
             rom.PopOffset();
             rom.AddOffset(8); // diff between 0x07 length and 0x06 length
         }
 
 
-        protected static void Cmd17(ROM rom)
+        protected static void Cmd17<T>(ROM rom, T state)
         {
             int segment = rom.Read8(3);
             int startAddress = rom.Read32(4);

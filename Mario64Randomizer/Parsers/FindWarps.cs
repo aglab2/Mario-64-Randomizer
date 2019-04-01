@@ -7,7 +7,7 @@ namespace Mario64Randomizer.Parsers
 {
     class FindWarpsParser : LevelScript
     {
-        class ParseState
+        protected class ParseState
         {
             public readonly List<Warp> warps;
 
@@ -33,9 +33,13 @@ namespace Mario64Randomizer.Parsers
             {
                 findWarpsParser[i] = Common;
                 string name = "Cmd" + string.Format("{0:X2}", i);
-                MethodInfo info = t.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static);
+                MethodInfo info = t.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
                 if (info == null)
                     continue;
+
+                // LevelScript definitions are generic
+                if (info.IsGenericMethod)
+                    info = info.MakeGenericMethod(typeof(ParseState));
 
                 if (Delegate.CreateDelegate(typeof(Parser<ParseState>), info) is Parser<ParseState> cmd)
                     findWarpsParser[i] = cmd;
@@ -44,13 +48,7 @@ namespace Mario64Randomizer.Parsers
 
         private static void Common(ROM rom, ParseState state) { }
 
-        // TODO: This is disgusting but I do not know if reflections will work...
-        private static void Cmd00(ROM rom, ParseState state) { Cmd00(rom); }
-        private static void Cmd06(ROM rom, ParseState state) { Cmd06(rom);}
-        private static void Cmd07(ROM rom, ParseState state) { Cmd07(rom); }
-        private static void Cmd17(ROM rom, ParseState state) { Cmd17(rom); }
-
-        private static void Cmd26(ROM rom, ParseState state)
+        protected static void Cmd26(ROM rom, ParseState state)
         {
             Warp warp = new Warp(rom, rom.offset);
             state.warps.Add(warp);

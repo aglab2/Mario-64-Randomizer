@@ -84,10 +84,7 @@ namespace Mario64Randomizer
                         List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr);
                         allWarps.AddRange(levelWarps);
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Failed to parse addr {0}, error {1}", addr, ex.Message);
-                    }
+                    catch (Exception) { }
                 }
 
                 IEnumerable<Warp> warps = allWarps.Where(x => x.from.id < 0xF0);
