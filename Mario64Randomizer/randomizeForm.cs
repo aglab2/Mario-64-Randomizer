@@ -75,20 +75,22 @@ namespace Mario64Randomizer
             }
             if (chkRandomizeWarps.Checked)
             {
-                List<Warp> warps = new List<Warp>();
+                List<Warp> allWarps = new List<Warp>();
                 
                 for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
                 {
                     try
                     {
                         List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr);
-                        warps.AddRange(levelWarps);
+                        allWarps.AddRange(levelWarps);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("Failed to parse addr {0}, error {1}", addr, ex.Message);
                     }
                 }
+
+                IEnumerable<Warp> warps = allWarps.Where(x => x.from.id < 0xF0);
 
                 IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
                 Shuffle(warpsTo, seed);
