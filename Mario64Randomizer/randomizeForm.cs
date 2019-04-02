@@ -70,8 +70,25 @@ namespace Mario64Randomizer
         {
             if (chkRandomizeMusic.Checked)
             {
-#warning not implemented
-                //rm.randomizeMusic();
+                List<Song> allSongs = new List<Song>();
+
+                for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+                {
+                    try
+                    {
+                        //List<Song> levelSongs = FindSongsParser.FindSongs(rm, add);
+                        //allSongs.AddRange(levelSongs);
+                    }
+                    catch (Exception) { }
+                }
+                
+                                
+                Shuffle(allSongs, seed);
+
+                //IEnumerable<Warp> shuffledSongs = songs.Zip(warpsTo, (warp, to) => new Warp(warp.from, to, warp.addr));
+                foreach (Song song in allSongs)
+                    song.Write(rm);
+
                 MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             if (chkRandomizeWarps.Checked)
@@ -108,17 +125,17 @@ namespace Mario64Randomizer
 
         private void btnSaveRom_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            openFileDialog.Filter = "ROM Files (*.z64)|*.z64";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.RestoreDirectory = true;
+            saveFileDialog.Filter = "ROM Files (*.z64)|*.z64";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    File.WriteAllBytes(openFileDialog.FileName, rm.rom);
+                    File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
                     MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)

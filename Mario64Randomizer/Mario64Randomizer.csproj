@@ -72,6 +72,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parsers\FindSongs.cs" />
     <Compile Include="Parsers\FindWarps.cs" />
     <Compile Include="Parsers\LevelScript.cs" />
     <Compile Include="Program.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="SM64\Object.cs" />
     <Compile Include="SM64\ROM.cs" />
     <Compile Include="SM64\SegmentBuilder.cs" />
+    <Compile Include="SM64\Song.cs" />
     <Compile Include="SM64\Warp.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
