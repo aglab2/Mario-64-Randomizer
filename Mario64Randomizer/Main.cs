@@ -21,6 +21,15 @@ namespace Mario64Randomizer
         public int seed = 0;
         ROM rm;
 
+        //
+        private Color colorMarioOveralls;
+        private Color colorMarioGloves;
+        private Color colorMarioShoes;
+        private Color colorMarioCap;
+        private Color colorMarioFace;
+        private Color colorMarioHair;
+        //
+
         private List<string> first = new List<string>()
         {
             "BOB1: Big Bob-omb on the Summit", "BOB2: Footrace with Koopa the Quick", "BOB3: Shoot to the Island in the Sky", "BOB4: Find the 8 Red Coins", "BOB5: Mario Wings to the Sky", "BOB6: Behind Chain Chomp's Gate", "BOB7: 100 Coin Star",
@@ -305,11 +314,11 @@ namespace Mario64Randomizer
 
                 MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            if (chkRandomizeEnemies.Enabled)
+            if (chkRandomizeMarioClothes.Checked)
             {
-                List<SM64.Object> allObjects = new List<SM64.Object>();
-#warning implement parser for objects
+                
             }
+            
         }
 
         private void btnSaveRom_Click(object sender, EventArgs e)
@@ -332,6 +341,66 @@ namespace Mario64Randomizer
                     MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+            }
+        }
+
+        private void btnColorOveralls_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioOveralls = cdClothes.Color;
+                pColorOveralls.BackColor = cdClothes.Color;
+            }
+        }
+
+        private void btnColorCapArms_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioCap = cdClothes.Color;
+                pColorArms.BackColor = cdClothes.Color;
+            }
+        }
+
+        private void btnColorGloves_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioGloves = cdClothes.Color;
+                pColorGloves.BackColor = cdClothes.Color;
+            }
+        }
+
+        private void btnColorShoes_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioShoes = cdClothes.Color;
+                pColorShoes.BackColor = cdClothes.Color;
+            }
+        }
+
+        private void btnColorFace_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioFace = cdClothes.Color;
+                pColorFace.BackColor = cdClothes.Color;
+            }
+        }
+
+        private void btnColorHair_Click(object sender, EventArgs e)
+        {
+            DialogResult result = cdClothes.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorMarioHair = cdClothes.Color;
+                pColorHair.BackColor = cdClothes.Color;
             }
         }
     }

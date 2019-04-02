@@ -45,12 +45,12 @@
             this.chkMips = new System.Windows.Forms.CheckBox();
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabSequence = new System.Windows.Forms.TabPage();
+            this.tabSound = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabWarps = new System.Windows.Forms.TabPage();
             this.btnSaveRom = new System.Windows.Forms.Button();
             this.btnRandomize = new System.Windows.Forms.Button();
             this.btnOpenRom = new System.Windows.Forms.Button();
@@ -58,18 +58,34 @@
             this.chkRandomizeMarioClothes = new System.Windows.Forms.CheckBox();
             this.chkRandomizeMusic = new System.Windows.Forms.CheckBox();
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.tabClothes = new System.Windows.Forms.TabPage();
+            this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnColorRestore = new System.Windows.Forms.Button();
+            this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
+            this.tabMisc = new System.Windows.Forms.TabPage();
+            this.btnColorOveralls = new System.Windows.Forms.Button();
+            this.btnColorCapArms = new System.Windows.Forms.Button();
+            this.btnColorGloves = new System.Windows.Forms.Button();
+            this.btnColorShoes = new System.Windows.Forms.Button();
+            this.btnColorFace = new System.Windows.Forms.Button();
+            this.btnColorHair = new System.Windows.Forms.Button();
+            this.pColorOveralls = new System.Windows.Forms.Panel();
+            this.pColorArms = new System.Windows.Forms.Panel();
+            this.pColorGloves = new System.Windows.Forms.Panel();
+            this.pColorShoes = new System.Windows.Forms.Panel();
+            this.pColorFace = new System.Windows.Forms.Panel();
+            this.pColorHair = new System.Windows.Forms.Panel();
+            this.chkRandomizeText = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabSequence.SuspendLayout();
+            this.tabSound.SuspendLayout();
+            this.tabWarps.SuspendLayout();
+            this.tabClothes.SuspendLayout();
+            this.tabMisc.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNewSeed
@@ -104,7 +120,7 @@
             this.chkFirst.Checked = true;
             this.chkFirst.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFirst.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkFirst.Location = new System.Drawing.Point(6, 25);
+            this.chkFirst.Location = new System.Drawing.Point(6, 36);
             this.chkFirst.Name = "chkFirst";
             this.chkFirst.Size = new System.Drawing.Size(63, 17);
             this.chkFirst.TabIndex = 8;
@@ -117,7 +133,7 @@
             this.chkDownstairs.Checked = true;
             this.chkDownstairs.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDownstairs.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkDownstairs.Location = new System.Drawing.Point(6, 47);
+            this.chkDownstairs.Location = new System.Drawing.Point(6, 58);
             this.chkDownstairs.Name = "chkDownstairs";
             this.chkDownstairs.Size = new System.Drawing.Size(78, 17);
             this.chkDownstairs.TabIndex = 9;
@@ -130,7 +146,7 @@
             this.chkUpstairs.Checked = true;
             this.chkUpstairs.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUpstairs.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkUpstairs.Location = new System.Drawing.Point(86, 25);
+            this.chkUpstairs.Location = new System.Drawing.Point(86, 36);
             this.chkUpstairs.Name = "chkUpstairs";
             this.chkUpstairs.Size = new System.Drawing.Size(64, 17);
             this.chkUpstairs.TabIndex = 10;
@@ -143,7 +159,7 @@
             this.chkBowserStars.Checked = true;
             this.chkBowserStars.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBowserStars.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkBowserStars.Location = new System.Drawing.Point(164, 25);
+            this.chkBowserStars.Location = new System.Drawing.Point(164, 36);
             this.chkBowserStars.Name = "chkBowserStars";
             this.chkBowserStars.Size = new System.Drawing.Size(88, 17);
             this.chkBowserStars.TabIndex = 11;
@@ -156,7 +172,7 @@
             this.chkTop.Checked = true;
             this.chkTop.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTop.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkTop.Location = new System.Drawing.Point(86, 47);
+            this.chkTop.Location = new System.Drawing.Point(86, 58);
             this.chkTop.Name = "chkTop";
             this.chkTop.Size = new System.Drawing.Size(45, 17);
             this.chkTop.TabIndex = 12;
@@ -169,7 +185,7 @@
             this.chkSecretStars.Checked = true;
             this.chkSecretStars.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSecretStars.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSecretStars.Location = new System.Drawing.Point(164, 47);
+            this.chkSecretStars.Location = new System.Drawing.Point(164, 58);
             this.chkSecretStars.Name = "chkSecretStars";
             this.chkSecretStars.Size = new System.Drawing.Size(84, 17);
             this.chkSecretStars.TabIndex = 13;
@@ -180,7 +196,7 @@
             // 
             this.chkToads.AutoSize = true;
             this.chkToads.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkToads.Location = new System.Drawing.Point(164, 70);
+            this.chkToads.Location = new System.Drawing.Point(164, 81);
             this.chkToads.Name = "chkToads";
             this.chkToads.Size = new System.Drawing.Size(56, 17);
             this.chkToads.TabIndex = 14;
@@ -205,7 +221,7 @@
             // 
             this.nudStarAmount.BackColor = System.Drawing.SystemColors.InfoText;
             this.nudStarAmount.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.nudStarAmount.Location = new System.Drawing.Point(86, 0);
+            this.nudStarAmount.Location = new System.Drawing.Point(86, 11);
             this.nudStarAmount.Maximum = new decimal(new int[] {
             120,
             0,
@@ -228,11 +244,11 @@
             this.lvStars.BackColor = System.Drawing.SystemColors.InfoText;
             this.lvStars.ForeColor = System.Drawing.SystemColors.Info;
             this.lvStars.LabelWrap = false;
-            this.lvStars.Location = new System.Drawing.Point(6, 93);
+            this.lvStars.Location = new System.Drawing.Point(6, 104);
             this.lvStars.MinimumSize = new System.Drawing.Size(250, 150);
             this.lvStars.MultiSelect = false;
             this.lvStars.Name = "lvStars";
-            this.lvStars.Size = new System.Drawing.Size(324, 761);
+            this.lvStars.Size = new System.Drawing.Size(324, 380);
             this.lvStars.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvStars.TabIndex = 28;
             this.lvStars.TileSize = new System.Drawing.Size(220, 30);
@@ -246,7 +262,7 @@
             this.chk100CS.Checked = true;
             this.chk100CS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk100CS.ForeColor = System.Drawing.SystemColors.Control;
-            this.chk100CS.Location = new System.Drawing.Point(86, 70);
+            this.chk100CS.Location = new System.Drawing.Point(86, 81);
             this.chk100CS.Name = "chk100CS";
             this.chk100CS.Size = new System.Drawing.Size(73, 17);
             this.chk100CS.TabIndex = 29;
@@ -257,7 +273,7 @@
             // 
             this.chkMips.AutoSize = true;
             this.chkMips.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkMips.Location = new System.Drawing.Point(6, 70);
+            this.chkMips.Location = new System.Drawing.Point(6, 81);
             this.chkMips.Name = "chkMips";
             this.chkMips.Size = new System.Drawing.Size(48, 17);
             this.chkMips.TabIndex = 30;
@@ -268,7 +284,7 @@
             // 
             this.lblNumberOfStars.AutoSize = true;
             this.lblNumberOfStars.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblNumberOfStars.Location = new System.Drawing.Point(3, 2);
+            this.lblNumberOfStars.Location = new System.Drawing.Point(3, 13);
             this.lblNumberOfStars.Name = "lblNumberOfStars";
             this.lblNumberOfStars.Size = new System.Drawing.Size(83, 13);
             this.lblNumberOfStars.TabIndex = 31;
@@ -279,52 +295,53 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabSequence);
+            this.tabControl1.Controls.Add(this.tabWarps);
+            this.tabControl1.Controls.Add(this.tabSound);
+            this.tabControl1.Controls.Add(this.tabClothes);
+            this.tabControl1.Controls.Add(this.tabMisc);
             this.tabControl1.Location = new System.Drawing.Point(23, 112);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(344, 511);
             this.tabControl1.TabIndex = 33;
             // 
-            // tabPage1
+            // tabSequence
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Black;
-            this.tabPage1.Controls.Add(this.chkMips);
-            this.tabPage1.Controls.Add(this.chkFirst);
-            this.tabPage1.Controls.Add(this.lblNumberOfStars);
-            this.tabPage1.Controls.Add(this.chkDownstairs);
-            this.tabPage1.Controls.Add(this.chkUpstairs);
-            this.tabPage1.Controls.Add(this.chk100CS);
-            this.tabPage1.Controls.Add(this.chkBowserStars);
-            this.tabPage1.Controls.Add(this.lvStars);
-            this.tabPage1.Controls.Add(this.chkTop);
-            this.tabPage1.Controls.Add(this.nudStarAmount);
-            this.tabPage1.Controls.Add(this.chkSecretStars);
-            this.tabPage1.Controls.Add(this.chkToads);
-            this.tabPage1.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(336, 485);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Sequence";
+            this.tabSequence.BackColor = System.Drawing.Color.Black;
+            this.tabSequence.Controls.Add(this.chkMips);
+            this.tabSequence.Controls.Add(this.chkFirst);
+            this.tabSequence.Controls.Add(this.lblNumberOfStars);
+            this.tabSequence.Controls.Add(this.chkDownstairs);
+            this.tabSequence.Controls.Add(this.chkUpstairs);
+            this.tabSequence.Controls.Add(this.chk100CS);
+            this.tabSequence.Controls.Add(this.chkBowserStars);
+            this.tabSequence.Controls.Add(this.lvStars);
+            this.tabSequence.Controls.Add(this.chkTop);
+            this.tabSequence.Controls.Add(this.nudStarAmount);
+            this.tabSequence.Controls.Add(this.chkSecretStars);
+            this.tabSequence.Controls.Add(this.chkToads);
+            this.tabSequence.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabSequence.Location = new System.Drawing.Point(4, 22);
+            this.tabSequence.Name = "tabSequence";
+            this.tabSequence.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSequence.Size = new System.Drawing.Size(336, 485);
+            this.tabSequence.TabIndex = 0;
+            this.tabSequence.Text = "Sequence";
             // 
-            // tabPage2
+            // tabSound
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Black;
-            this.tabPage2.Controls.Add(this.checkBox3);
-            this.tabPage2.Controls.Add(this.checkBox2);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 485);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Sound";
+            this.tabSound.BackColor = System.Drawing.Color.Black;
+            this.tabSound.Controls.Add(this.checkBox3);
+            this.tabSound.Controls.Add(this.checkBox2);
+            this.tabSound.Controls.Add(this.checkBox1);
+            this.tabSound.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabSound.Location = new System.Drawing.Point(4, 22);
+            this.tabSound.Name = "tabSound";
+            this.tabSound.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSound.Size = new System.Drawing.Size(336, 485);
+            this.tabSound.TabIndex = 1;
+            this.tabSound.Text = "Sound";
             // 
             // checkBox3
             // 
@@ -350,6 +367,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(7, 19);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(54, 17);
@@ -357,17 +376,17 @@
             this.checkBox1.Text = "Music";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tabWarps
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Black;
-            this.tabPage3.Controls.Add(this.checkBox5);
-            this.tabPage3.Controls.Add(this.checkBox4);
-            this.tabPage3.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(336, 485);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Warps";
+            this.tabWarps.BackColor = System.Drawing.Color.Black;
+            this.tabWarps.Controls.Add(this.checkBox5);
+            this.tabWarps.Controls.Add(this.checkBox4);
+            this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabWarps.Location = new System.Drawing.Point(4, 22);
+            this.tabWarps.Name = "tabWarps";
+            this.tabWarps.Size = new System.Drawing.Size(336, 485);
+            this.tabWarps.TabIndex = 2;
+            this.tabWarps.Text = "Warps";
             // 
             // btnSaveRom
             // 
@@ -403,7 +422,7 @@
             // 
             this.chkRandomizeEnemies.AutoSize = true;
             this.chkRandomizeEnemies.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeEnemies.Location = new System.Drawing.Point(130, 65);
+            this.chkRandomizeEnemies.Location = new System.Drawing.Point(104, 66);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
             this.chkRandomizeEnemies.Size = new System.Drawing.Size(66, 17);
             this.chkRandomizeEnemies.TabIndex = 40;
@@ -415,7 +434,7 @@
             this.chkRandomizeMarioClothes.AutoSize = true;
             this.chkRandomizeMarioClothes.Enabled = false;
             this.chkRandomizeMarioClothes.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(130, 88);
+            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(104, 89);
             this.chkRandomizeMarioClothes.Name = "chkRandomizeMarioClothes";
             this.chkRandomizeMarioClothes.Size = new System.Drawing.Size(97, 17);
             this.chkRandomizeMarioClothes.TabIndex = 39;
@@ -448,16 +467,28 @@
             this.chkRandomizeWarps.Text = "Warps";
             this.chkRandomizeWarps.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // tabClothes
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Black;
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(336, 485);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Mario\'s Clothes";
+            this.tabClothes.BackColor = System.Drawing.Color.Black;
+            this.tabClothes.Controls.Add(this.pColorHair);
+            this.tabClothes.Controls.Add(this.pColorFace);
+            this.tabClothes.Controls.Add(this.pColorShoes);
+            this.tabClothes.Controls.Add(this.pColorGloves);
+            this.tabClothes.Controls.Add(this.pColorArms);
+            this.tabClothes.Controls.Add(this.pColorOveralls);
+            this.tabClothes.Controls.Add(this.btnColorHair);
+            this.tabClothes.Controls.Add(this.btnColorFace);
+            this.tabClothes.Controls.Add(this.btnColorShoes);
+            this.tabClothes.Controls.Add(this.btnColorGloves);
+            this.tabClothes.Controls.Add(this.btnColorCapArms);
+            this.tabClothes.Controls.Add(this.btnColorOveralls);
+            this.tabClothes.Controls.Add(this.btnColorRestore);
+            this.tabClothes.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabClothes.Location = new System.Drawing.Point(4, 22);
+            this.tabClothes.Name = "tabClothes";
+            this.tabClothes.Size = new System.Drawing.Size(336, 485);
+            this.tabClothes.TabIndex = 3;
+            this.tabClothes.Text = "Mario\'s Clothes";
             // 
             // checkBox4
             // 
@@ -479,15 +510,163 @@
             this.checkBox5.Text = "No Logic";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnColorRestore
             // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(14, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Restore";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnColorRestore.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnColorRestore.Location = new System.Drawing.Point(46, 65);
+            this.btnColorRestore.Name = "btnColorRestore";
+            this.btnColorRestore.Size = new System.Drawing.Size(75, 23);
+            this.btnColorRestore.TabIndex = 0;
+            this.btnColorRestore.Text = "Restore";
+            this.btnColorRestore.UseVisualStyleBackColor = true;
+            // 
+            // chkRandomizeTextures
+            // 
+            this.chkRandomizeTextures.AutoSize = true;
+            this.chkRandomizeTextures.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkRandomizeTextures.Location = new System.Drawing.Point(185, 66);
+            this.chkRandomizeTextures.Name = "chkRandomizeTextures";
+            this.chkRandomizeTextures.Size = new System.Drawing.Size(67, 17);
+            this.chkRandomizeTextures.TabIndex = 41;
+            this.chkRandomizeTextures.Text = "Textures";
+            this.chkRandomizeTextures.UseVisualStyleBackColor = true;
+            // 
+            // tabMisc
+            // 
+            this.tabMisc.BackColor = System.Drawing.Color.Black;
+            this.tabMisc.Controls.Add(this.chkRandomizeText);
+            this.tabMisc.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabMisc.Location = new System.Drawing.Point(4, 22);
+            this.tabMisc.Name = "tabMisc";
+            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMisc.Size = new System.Drawing.Size(336, 485);
+            this.tabMisc.TabIndex = 4;
+            this.tabMisc.Text = "Misc";
+            // 
+            // btnColorOveralls
+            // 
+            this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorOveralls.Location = new System.Drawing.Point(46, 122);
+            this.btnColorOveralls.Name = "btnColorOveralls";
+            this.btnColorOveralls.Size = new System.Drawing.Size(75, 23);
+            this.btnColorOveralls.TabIndex = 1;
+            this.btnColorOveralls.Text = "Overalls";
+            this.btnColorOveralls.UseVisualStyleBackColor = true;
+            this.btnColorOveralls.Click += new System.EventHandler(this.btnColorOveralls_Click);
+            // 
+            // btnColorCapArms
+            // 
+            this.btnColorCapArms.ForeColor = System.Drawing.Color.Black;
+            this.btnColorCapArms.Location = new System.Drawing.Point(46, 168);
+            this.btnColorCapArms.Name = "btnColorCapArms";
+            this.btnColorCapArms.Size = new System.Drawing.Size(75, 23);
+            this.btnColorCapArms.TabIndex = 2;
+            this.btnColorCapArms.Text = "Cap Arms Shirt";
+            this.btnColorCapArms.UseVisualStyleBackColor = true;
+            this.btnColorCapArms.Click += new System.EventHandler(this.btnColorCapArms_Click);
+            // 
+            // btnColorGloves
+            // 
+            this.btnColorGloves.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorGloves.Location = new System.Drawing.Point(46, 219);
+            this.btnColorGloves.Name = "btnColorGloves";
+            this.btnColorGloves.Size = new System.Drawing.Size(75, 23);
+            this.btnColorGloves.TabIndex = 3;
+            this.btnColorGloves.Text = "Gloves";
+            this.btnColorGloves.UseVisualStyleBackColor = true;
+            this.btnColorGloves.Click += new System.EventHandler(this.btnColorGloves_Click);
+            // 
+            // btnColorShoes
+            // 
+            this.btnColorShoes.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorShoes.Location = new System.Drawing.Point(46, 271);
+            this.btnColorShoes.Name = "btnColorShoes";
+            this.btnColorShoes.Size = new System.Drawing.Size(75, 23);
+            this.btnColorShoes.TabIndex = 4;
+            this.btnColorShoes.Text = "Shoes";
+            this.btnColorShoes.UseVisualStyleBackColor = true;
+            this.btnColorShoes.Click += new System.EventHandler(this.btnColorShoes_Click);
+            // 
+            // btnColorFace
+            // 
+            this.btnColorFace.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorFace.Location = new System.Drawing.Point(46, 326);
+            this.btnColorFace.Name = "btnColorFace";
+            this.btnColorFace.Size = new System.Drawing.Size(75, 23);
+            this.btnColorFace.TabIndex = 5;
+            this.btnColorFace.Text = "Face";
+            this.btnColorFace.UseVisualStyleBackColor = true;
+            this.btnColorFace.Click += new System.EventHandler(this.btnColorFace_Click);
+            // 
+            // btnColorHair
+            // 
+            this.btnColorHair.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorHair.Location = new System.Drawing.Point(46, 381);
+            this.btnColorHair.Name = "btnColorHair";
+            this.btnColorHair.Size = new System.Drawing.Size(75, 23);
+            this.btnColorHair.TabIndex = 6;
+            this.btnColorHair.Text = "Hair";
+            this.btnColorHair.UseVisualStyleBackColor = true;
+            this.btnColorHair.Click += new System.EventHandler(this.btnColorHair_Click);
+            // 
+            // pColorOveralls
+            // 
+            this.pColorOveralls.BackColor = System.Drawing.Color.White;
+            this.pColorOveralls.Location = new System.Drawing.Point(169, 122);
+            this.pColorOveralls.Name = "pColorOveralls";
+            this.pColorOveralls.Size = new System.Drawing.Size(109, 23);
+            this.pColorOveralls.TabIndex = 13;
+            // 
+            // pColorArms
+            // 
+            this.pColorArms.BackColor = System.Drawing.Color.White;
+            this.pColorArms.Location = new System.Drawing.Point(169, 168);
+            this.pColorArms.Name = "pColorArms";
+            this.pColorArms.Size = new System.Drawing.Size(109, 23);
+            this.pColorArms.TabIndex = 14;
+            // 
+            // pColorGloves
+            // 
+            this.pColorGloves.BackColor = System.Drawing.Color.White;
+            this.pColorGloves.Location = new System.Drawing.Point(169, 219);
+            this.pColorGloves.Name = "pColorGloves";
+            this.pColorGloves.Size = new System.Drawing.Size(109, 23);
+            this.pColorGloves.TabIndex = 14;
+            // 
+            // pColorShoes
+            // 
+            this.pColorShoes.BackColor = System.Drawing.Color.White;
+            this.pColorShoes.Location = new System.Drawing.Point(169, 271);
+            this.pColorShoes.Name = "pColorShoes";
+            this.pColorShoes.Size = new System.Drawing.Size(109, 23);
+            this.pColorShoes.TabIndex = 14;
+            // 
+            // pColorFace
+            // 
+            this.pColorFace.BackColor = System.Drawing.Color.White;
+            this.pColorFace.Location = new System.Drawing.Point(169, 326);
+            this.pColorFace.Name = "pColorFace";
+            this.pColorFace.Size = new System.Drawing.Size(109, 23);
+            this.pColorFace.TabIndex = 14;
+            // 
+            // pColorHair
+            // 
+            this.pColorHair.BackColor = System.Drawing.Color.White;
+            this.pColorHair.Location = new System.Drawing.Point(169, 381);
+            this.pColorHair.Name = "pColorHair";
+            this.pColorHair.Size = new System.Drawing.Size(109, 23);
+            this.pColorHair.TabIndex = 14;
+            // 
+            // chkRandomizeText
+            // 
+            this.chkRandomizeText.AutoSize = true;
+            this.chkRandomizeText.Enabled = false;
+            this.chkRandomizeText.Location = new System.Drawing.Point(18, 19);
+            this.chkRandomizeText.Name = "chkRandomizeText";
+            this.chkRandomizeText.Size = new System.Drawing.Size(103, 17);
+            this.chkRandomizeText.TabIndex = 0;
+            this.chkRandomizeText.Text = "Randomize Text";
+            this.chkRandomizeText.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -495,6 +674,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(404, 644);
+            this.Controls.Add(this.chkRandomizeTextures);
             this.Controls.Add(this.chkRandomizeEnemies);
             this.Controls.Add(this.chkRandomizeMarioClothes);
             this.Controls.Add(this.chkRandomizeMusic);
@@ -516,13 +696,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
+            this.tabSequence.ResumeLayout(false);
+            this.tabSequence.PerformLayout();
+            this.tabSound.ResumeLayout(false);
+            this.tabSound.PerformLayout();
+            this.tabWarps.ResumeLayout(false);
+            this.tabWarps.PerformLayout();
+            this.tabClothes.ResumeLayout(false);
+            this.tabMisc.ResumeLayout(false);
+            this.tabMisc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,12 +728,12 @@
         private System.Windows.Forms.CheckBox chkMips;
         private System.Windows.Forms.Label lblNumberOfStars;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabSequence;
+        private System.Windows.Forms.TabPage tabSound;
         private System.Windows.Forms.Button btnSaveRom;
         private System.Windows.Forms.Button btnRandomize;
         private System.Windows.Forms.Button btnOpenRom;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabWarps;
         private System.Windows.Forms.CheckBox chkRandomizeEnemies;
         private System.Windows.Forms.CheckBox chkRandomizeMarioClothes;
         private System.Windows.Forms.CheckBox chkRandomizeMusic;
@@ -559,11 +741,26 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.TabPage tabClothes;
+        private System.Windows.Forms.ColorDialog cdClothes;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnColorRestore;
+        private System.Windows.Forms.CheckBox chkRandomizeTextures;
+        private System.Windows.Forms.TabPage tabMisc;
+        private System.Windows.Forms.Button btnColorHair;
+        private System.Windows.Forms.Button btnColorFace;
+        private System.Windows.Forms.Button btnColorShoes;
+        private System.Windows.Forms.Button btnColorGloves;
+        private System.Windows.Forms.Button btnColorCapArms;
+        private System.Windows.Forms.Button btnColorOveralls;
+        private System.Windows.Forms.Panel pColorOveralls;
+        private System.Windows.Forms.Panel pColorHair;
+        private System.Windows.Forms.Panel pColorFace;
+        private System.Windows.Forms.Panel pColorShoes;
+        private System.Windows.Forms.Panel pColorGloves;
+        private System.Windows.Forms.Panel pColorArms;
+        private System.Windows.Forms.CheckBox chkRandomizeText;
     }
 }
 
