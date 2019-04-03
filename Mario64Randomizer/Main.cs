@@ -262,162 +262,179 @@ namespace Mario64Randomizer
 
         private void btnRandomize_Click(object sender, EventArgs e)
         {
-            if (chkRandomizeMusic.Checked)
+            if(rm != null)
             {
-                List<Song> allSongs = new List<Song>();
-
-                for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+                if (chkRandomizeMusic.Checked)
                 {
-                    try
+                    List<Song> allSongs = new List<Song>();
+
+                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
                     {
-                        List<Song> levelSongs = FindSongsParser.FindSongs(rm, addr);
-                        allSongs.AddRange(levelSongs);
+                        try
+                        {
+                            List<Song> levelSongs = FindSongsParser.FindSongs(rm, addr);
+                            allSongs.AddRange(levelSongs);
+                        }
+                        catch (Exception) { }
                     }
-                    catch (Exception) { }
-                }
 
-                IEnumerable<Song> songList = allSongs;
+                    IEnumerable<Song> songList = allSongs;
 
-                IList<byte> seqList = songList.Select(x => x.seqNumber).ToList();
+                    IList<byte> seqList = songList.Select(x => x.seqNumber).ToList();
 
-                Shuffle(seqList, seed);                               
+                    Shuffle(seqList, seed);
 
-                IEnumerable<Song> shuffledSongs = songList.Zip(seqList, (song, seqNumber) => new Song(seqNumber, song.addr, song.musicOffset));
+                    IEnumerable<Song> shuffledSongs = songList.Zip(seqList, (song, seqNumber) => new Song(seqNumber, song.addr, song.musicOffset));
 
-                foreach (Song song in shuffledSongs)
-                {                    
-                    song.Write(rm);
-                }
-
-                MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            if (chkRandomizeWarps.Checked)
-            {
-                int bowserWarpId;
-                List<Warp> allWarps = new List<Warp>();
-
-                for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
-                {
-                    try
+                    foreach (Song song in shuffledSongs)
                     {
-                        List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr);
-                        allWarps.AddRange(levelWarps);
+                        song.Write(rm);
                     }
-                    catch (Exception) { }
+
+                    MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
-
-                               
-
-                IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0)  & (x.to.course != 0x09) & (x.to.course != 0x00) & (x.from.id != 0xA));
-
-                if (!chkRandomizeBowser.Checked)
+                if (chkRandomizeWarps.Checked)
                 {
-                    if (txtBowserWarpId.Text != string.Empty)
+                    int bowserWarpId;
+                    List<Warp> allWarps = new List<Warp>();
+
+                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
                     {
-                        bowserWarpId = Convert.ToInt32(txtBowserWarpId.Text);
+                        try
+                        {
+                            List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr);
+                            allWarps.AddRange(levelWarps);
+                        }
+                        catch (Exception) { }
+                    }
+
+
+
+                    IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.course != 0x09) & (x.to.course != 0x00) & (x.from.id != 0xA));
+
+                    if (!chkRandomizeBowser.Checked)
+                    {
+                        if (txtBowserWarpId.Text != string.Empty)
+                        {
+                            bowserWarpId = Convert.ToInt32(txtBowserWarpId.Text);
+                        }
+                        else
+                        {
+                            bowserWarpId = 0x22;
+                        }
+                        warps = allWarps.Where(x => x.to.course != bowserWarpId);
+                    }
+
+                    IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
+                    Shuffle(warpsTo, seed);
+
+                    IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.from, to, warp.addr));
+                    foreach (Warp warp in shuffledWarps)
+                        warp.Write(rm);
+
+                    MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    if (chkWarpFile.Checked)
+                    {
+                        string path = System.AppContext.BaseDirectory + romName + " - " + seed.ToString() + ".txt";
+
+                        using (StreamWriter sw = File.CreateText(path))
+                        {
+                            foreach (Warp warp in shuffledWarps)
+                                sw.WriteLine("*Warp Address: " + warp.addr.ToString() + "*  [ From Id: " + warp.from.id.ToString() + " -> To Id: " + warp.to.id.ToString() + " - Course: " + warp.to.course.ToString() + ", Area: " + warp.to.area.ToString() + " ]");
+                        }
+                    }
+                }
+                if (chkRandomizeEnemies.Checked)
+                {
+                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+                    {
+                        try
+                        {
+                            List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
+
+                            IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
+                            IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
+
+                            IEnumerable<SM64.Object> nonGroundedObjects = allObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
+                            IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
+
+                            Shuffle(groundedList, seed);
+                            Shuffle(nonGroundedList, seed);
+
+                            IEnumerable<SM64.Object> shuffledGroundedObjects = groundedObjects.Zip(groundedList,
+                                (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+                            IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
+                                (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+
+                            foreach (SM64.Object obj in shuffledGroundedObjects)
+                                obj.Write(rm);
+                            foreach (SM64.Object obj in shuffledNonGroundedObjects)
+                                obj.Write(rm);
+                        }
+                        catch (Exception) { }
+                    }
+
+                    MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                if (chkRandomizeMarioClothes.Checked)
+                {
+                    Random colorRandom = new Random(seed);
+                    if (colorMarioOveralls != Color.Empty)
+                    {
+                        colorMarioOveralls = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
                     }
                     else
                     {
-                        bowserWarpId = 0x22;
-                    }                        
-                    warps = allWarps.Where(x => x.to.course != bowserWarpId);
-                }
-                
-                IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
-                Shuffle(warpsTo, seed);
-
-                IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.from, to, warp.addr));
-                foreach (Warp warp in shuffledWarps)
-                    warp.Write(rm);
-
-                MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            if (chkRandomizeEnemies.Checked)
-            {
-                for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
-                {
-                    try
-                    {
-                        List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
-                        
-                        IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
-                        IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
-
-                        IEnumerable<SM64.Object> nonGroundedObjects = allObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
-                        IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
-
-                        Shuffle(groundedList, seed);
-                        Shuffle(nonGroundedList, seed);
-
-                        IEnumerable<SM64.Object> shuffledGroundedObjects    = groundedObjects.Zip(      groundedList, 
-                            (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
-                        IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
-                            (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
-
-                        foreach (SM64.Object obj in shuffledGroundedObjects)
-                            obj.Write(rm);
-                        foreach (SM64.Object obj in shuffledNonGroundedObjects)
-                            obj.Write(rm);
+                        colorMarioOveralls = pColorOveralls.BackColor;
                     }
-                    catch (Exception) { }
-                }
 
-                MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    if (colorMarioCap != Color.Empty)
+                    {
+                        colorMarioCap = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                    }
+                    else
+                    {
+                        colorMarioCap = pColorArms.BackColor;
+                    }
+
+                    if (colorMarioFace != Color.Empty)
+                    {
+                        colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                    }
+                    else
+                    {
+                        colorMarioFace = pColorFace.BackColor;
+                    }
+
+                    if (colorMarioGloves != Color.Empty)
+                    {
+                        colorMarioGloves = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                    }
+                    else
+                    {
+                        colorMarioGloves = pColorGloves.BackColor;
+                    }
+
+                    if (colorMarioShoes != Color.Empty)
+                    {
+                        colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                    }
+                    else
+                    {
+                        colorMarioShoes = pColorShoes.BackColor;
+                    }
+
+                    Console.WriteLine("Overalls: " + colorMarioOveralls.R.ToString("X2") + " " + colorMarioOveralls.B.ToString("X2") + "/n" + colorMarioOveralls.G.ToString("X2") + " 00");
+                    Console.WriteLine("Cap: " + colorMarioCap.R.ToString("X2") + " " + colorMarioCap.B.ToString("X2") + "/n" + colorMarioCap.G.ToString("X2") + " 00");
+                    Console.WriteLine("Shoes: " + colorMarioShoes.R.ToString("X2") + " " + colorMarioShoes.B.ToString("X2") + "/n" + colorMarioShoes.G.ToString("X2") + " 00");
+                    MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
             }
-            if (chkRandomizeMarioClothes.Checked)
+            else
             {
-                Random colorRandom = new Random(seed);
-                if(colorMarioOveralls != Color.Empty)
-                {
-                    colorMarioOveralls = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                }
-                else
-                {
-                    colorMarioOveralls = pColorOveralls.BackColor;
-                }
-
-                if (colorMarioCap != Color.Empty)
-                {
-                    colorMarioCap = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                }
-                else
-                {
-                    colorMarioCap = pColorArms.BackColor;
-                }
-
-                if (colorMarioFace != Color.Empty)
-                {
-                    colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                }
-                else
-                {
-                    colorMarioFace = pColorFace.BackColor;
-                }
-
-                if (colorMarioGloves != Color.Empty)
-                {
-                    colorMarioGloves = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                }
-                else
-                {
-                    colorMarioGloves = pColorGloves.BackColor;
-                }
-
-                if (colorMarioShoes != Color.Empty)
-                {
-                    colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                }
-                else
-                {
-                    colorMarioShoes = pColorShoes.BackColor;
-                }
-
-                Console.WriteLine("Overalls: " + colorMarioOveralls.R.ToString("X2") + " " + colorMarioOveralls.B.ToString("X2") + "/n" + colorMarioOveralls.G.ToString("X2") + " 00");
-                Console.WriteLine("Cap: " + colorMarioCap.R.ToString("X2") + " " + colorMarioCap.B.ToString("X2") + "/n" + colorMarioCap.G.ToString("X2") + " 00");
-                Console.WriteLine("Shoes: " + colorMarioShoes.R.ToString("X2") + " " + colorMarioShoes.B.ToString("X2") + "/n" + colorMarioShoes.G.ToString("X2") + " 00");
-                MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("Open a ROM File First!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void btnSaveRom_Click(object sender, EventArgs e)

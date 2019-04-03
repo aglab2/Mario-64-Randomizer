@@ -73,9 +73,9 @@
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
             this.txtBowserWarpId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBowserWarpId = new System.Windows.Forms.Label();
             this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkWarpFile = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
@@ -343,9 +343,9 @@
             // 
             this.tabWarps.BackColor = System.Drawing.Color.Black;
             this.tabWarps.Controls.Add(this.checkBox1);
-            this.tabWarps.Controls.Add(this.checkBox2);
+            this.tabWarps.Controls.Add(this.chkWarpFile);
             this.tabWarps.Controls.Add(this.chkRandomizeBowser);
-            this.tabWarps.Controls.Add(this.label1);
+            this.tabWarps.Controls.Add(this.lblBowserWarpId);
             this.tabWarps.Controls.Add(this.txtBowserWarpId);
             this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
             this.tabWarps.Location = new System.Drawing.Point(4, 22);
@@ -514,6 +514,7 @@
             this.chkRandomizeText.TabIndex = 0;
             this.chkRandomizeText.Text = "Text";
             this.chkRandomizeText.UseVisualStyleBackColor = true;
+            this.chkRandomizeText.Visible = false;
             // 
             // btnSaveRom
             // 
@@ -610,19 +611,19 @@
             // 
             // txtBowserWarpId
             // 
-            this.txtBowserWarpId.Location = new System.Drawing.Point(143, 120);
+            this.txtBowserWarpId.Location = new System.Drawing.Point(154, 120);
             this.txtBowserWarpId.Name = "txtBowserWarpId";
             this.txtBowserWarpId.Size = new System.Drawing.Size(162, 20);
             this.txtBowserWarpId.TabIndex = 0;
             // 
-            // label1
+            // lblBowserWarpId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Bowser Warp Id";
+            this.lblBowserWarpId.AutoSize = true;
+            this.lblBowserWarpId.Location = new System.Drawing.Point(33, 123);
+            this.lblBowserWarpId.Name = "lblBowserWarpId";
+            this.lblBowserWarpId.Size = new System.Drawing.Size(83, 13);
+            this.lblBowserWarpId.TabIndex = 1;
+            this.lblBowserWarpId.Text = "Bowser Warp Id";
             // 
             // chkRandomizeBowser
             // 
@@ -634,15 +635,15 @@
             this.chkRandomizeBowser.Text = "Randomize Bowser Warp";
             this.chkRandomizeBowser.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkWarpFile
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(36, 61);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(106, 17);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Output Warp File";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkWarpFile.AutoSize = true;
+            this.chkWarpFile.Location = new System.Drawing.Point(36, 61);
+            this.chkWarpFile.Name = "chkWarpFile";
+            this.chkWarpFile.Size = new System.Drawing.Size(106, 17);
+            this.chkWarpFile.TabIndex = 3;
+            this.chkWarpFile.Text = "Output Warp File";
+            this.chkWarpFile.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -741,9 +742,9 @@
         private System.Windows.Forms.CheckBox chkRandomizeText;
         private System.Windows.Forms.TabPage tabWarps;
         private System.Windows.Forms.Button btnRefreshList;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkWarpFile;
         private System.Windows.Forms.CheckBox chkRandomizeBowser;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBowserWarpId;
         private System.Windows.Forms.TextBox txtBowserWarpId;
         private System.Windows.Forms.CheckBox checkBox1;
     }
