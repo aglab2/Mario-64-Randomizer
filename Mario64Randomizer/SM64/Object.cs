@@ -15,6 +15,7 @@ namespace Mario64Randomizer.SM64
         public readonly short Ry;
         public readonly short Rz;
 
+
         public ObjectPosition(ROM rom)
         {
             X = rom.Read16(4);
@@ -47,7 +48,7 @@ namespace Mario64Randomizer.SM64
         public readonly ObjectPosition pos;
         public readonly int addr;
 
-        Object(ROM rom, int addr)
+        public Object(ROM rom, int addr)
         {
             rom.PushOffset(addr);
 
@@ -61,8 +62,23 @@ namespace Mario64Randomizer.SM64
             rom.PopOffset();
         }
 
+        public Object(Int32 behaviour, int addr, ROM rom)
+        {            
+            this.behaviour = behaviour;
+            this.addr = addr;
+            rom.PushOffset(addr);
+            this.pos = new ObjectPosition(rom);
+            this.act = rom.Read8(2);
+            this.model = rom.Read8(3);
+            this.bparams = rom.Read32(16);
+
+            rom.PopOffset();
+        }
+
         public void Write(ROM rom)
         {
+            Console.WriteLine("Writing: " + this.behaviour.ToString("X") + " into: " + this.addr.ToString() + ", bParams: " + this.bparams.ToString());
+
             rom.PushOffset(addr);
 
             pos.Write(rom);

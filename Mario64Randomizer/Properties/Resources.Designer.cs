@@ -71,6 +71,65 @@ namespace Mario64Randomizer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1300091C	
+        ///13000B58	
+        ///13000B8C
+        ///13000BC8	
+        ///13001108	
+        ///13001298
+        ///130012B4
+        ///130014E0
+        ///13001650
+        ///13001920
+        ///13001958	
+        ///13001F3C.
+        /// </summary>
+        internal static string groundedBehaviours {
+            get {
+                return ResourceManager.GetString("groundedBehaviours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13000528
+        ///13005440
+        ///13005468
+        ///13000888
+        ///130009A4
+        ///130008EC
+        ///13000964
+        ///13000984
+        ///13001548
+        ///1300179C
+        ///13004698
+        ///130046DC
+        ///1300472C
+        ///13004770
+        ///13004580
+        ///13004F90
+        ///130051E0
+        ///1300521C
+        ///1300525C
+        ///13005354
+        ///13002338
+        ///13002710
+        ///13002768
+        ///13002790
+        ///130027E4
+        ///13002804
+        ///13003354
+        ///13003388
+        ///130033BC
+        ///130033EC
+        ///1300090C.
+        /// </summary>
+        internal static string notGrounded {
+            get {
+                return ResourceManager.GetString("notGrounded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap star {

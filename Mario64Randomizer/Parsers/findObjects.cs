@@ -5,33 +5,33 @@ using System.Reflection;
 
 namespace Mario64Randomizer.Parsers
 {
-    class FindSongsParser : LevelScript
-    {
+    class FindObjectsParser : LevelScript
+    {    
         protected class ParseState
         {
-            public readonly List<Song> songs;
+            public readonly List<SM64.Object> objects;
 
             public ParseState()
             {
-                songs = new List<Song>();
+                objects = new List<SM64.Object>();
             }
         }
 
-        public static List<Song> FindSongs(ROM rom, int offset)
+        public static List<SM64.Object> FindObjects(ROM rom, int offset)
         {
             ParseState state = new ParseState();
-            PerformLevelScriptParse<ParseState>(rom, offset, findSongsParser, state);
-            return state.songs;
+            PerformLevelScriptParse<ParseState>(rom, offset, findObjectsParser, state);
+            return state.objects;
         }
 
-        static readonly Parser<ParseState>[] findSongsParser = new Parser<ParseState>[LevelScript.size];
+        static readonly Parser<ParseState>[] findObjectsParser = new Parser<ParseState>[LevelScript.size];
 
-        static FindSongsParser()
+        static FindObjectsParser()
         {
-            Type t = typeof(FindSongsParser);
+            Type t = typeof(FindObjectsParser);
             for (int i = 0; i < size; i++)
             {
-                findSongsParser[i] = Common;
+                findObjectsParser[i] = Common;
                 string name = "Cmd" + string.Format("{0:X2}", i);
                 MethodInfo info = t.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
                 if (info == null)
@@ -42,22 +42,16 @@ namespace Mario64Randomizer.Parsers
                     info = info.MakeGenericMethod(typeof(ParseState));
 
                 if (Delegate.CreateDelegate(typeof(Parser<ParseState>), info) is Parser<ParseState> cmd)
-                    findSongsParser[i] = cmd;
+                    findObjectsParser[i] = cmd;
             }
         }
 
         private static void Common(ROM rom, ParseState state) { }
 
-        protected static void Cmd36(ROM rom, ParseState state) //static
+        protected static void Cmd24(ROM rom, ParseState state) //static
         {
-            Song song = new Song(rom, rom.offset, 0x05);
-            state.songs.Add(song);
-        }
-
-        protected static void Cmd37(ROM rom, ParseState state) //static
-        {
-            Song song = new Song(rom, rom.offset, 0x03);
-            state.songs.Add(song);
-        }
+            SM64.Object curObject = new SM64.Object(rom, rom.offset);
+            state.objects.Add(curObject);
+        }        
     }
 }

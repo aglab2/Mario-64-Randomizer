@@ -46,11 +46,29 @@
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSequence = new System.Windows.Forms.TabPage();
+            this.tabWarps = new System.Windows.Forms.TabPage();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.tabSound = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.tabWarps = new System.Windows.Forms.TabPage();
+            this.tabClothes = new System.Windows.Forms.TabPage();
+            this.pColorHair = new System.Windows.Forms.Panel();
+            this.pColorFace = new System.Windows.Forms.Panel();
+            this.pColorShoes = new System.Windows.Forms.Panel();
+            this.pColorGloves = new System.Windows.Forms.Panel();
+            this.pColorArms = new System.Windows.Forms.Panel();
+            this.pColorOveralls = new System.Windows.Forms.Panel();
+            this.btnColorHair = new System.Windows.Forms.Button();
+            this.btnColorFace = new System.Windows.Forms.Button();
+            this.btnColorShoes = new System.Windows.Forms.Button();
+            this.btnColorGloves = new System.Windows.Forms.Button();
+            this.btnColorCapArms = new System.Windows.Forms.Button();
+            this.btnColorOveralls = new System.Windows.Forms.Button();
+            this.btnColorRestore = new System.Windows.Forms.Button();
+            this.tabMisc = new System.Windows.Forms.TabPage();
+            this.chkRandomizeText = new System.Windows.Forms.CheckBox();
             this.btnSaveRom = new System.Windows.Forms.Button();
             this.btnRandomize = new System.Windows.Forms.Button();
             this.btnOpenRom = new System.Windows.Forms.Button();
@@ -58,32 +76,14 @@
             this.chkRandomizeMarioClothes = new System.Windows.Forms.CheckBox();
             this.chkRandomizeMusic = new System.Windows.Forms.CheckBox();
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
-            this.tabClothes = new System.Windows.Forms.TabPage();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.btnColorRestore = new System.Windows.Forms.Button();
             this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
-            this.tabMisc = new System.Windows.Forms.TabPage();
-            this.btnColorOveralls = new System.Windows.Forms.Button();
-            this.btnColorCapArms = new System.Windows.Forms.Button();
-            this.btnColorGloves = new System.Windows.Forms.Button();
-            this.btnColorShoes = new System.Windows.Forms.Button();
-            this.btnColorFace = new System.Windows.Forms.Button();
-            this.btnColorHair = new System.Windows.Forms.Button();
-            this.pColorOveralls = new System.Windows.Forms.Panel();
-            this.pColorArms = new System.Windows.Forms.Panel();
-            this.pColorGloves = new System.Windows.Forms.Panel();
-            this.pColorShoes = new System.Windows.Forms.Panel();
-            this.pColorFace = new System.Windows.Forms.Panel();
-            this.pColorHair = new System.Windows.Forms.Panel();
-            this.chkRandomizeText = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabSequence.SuspendLayout();
-            this.tabSound.SuspendLayout();
             this.tabWarps.SuspendLayout();
+            this.tabSound.SuspendLayout();
             this.tabClothes.SuspendLayout();
             this.tabMisc.SuspendLayout();
             this.SuspendLayout();
@@ -327,7 +327,39 @@
             this.tabSequence.Padding = new System.Windows.Forms.Padding(3);
             this.tabSequence.Size = new System.Drawing.Size(336, 485);
             this.tabSequence.TabIndex = 0;
-            this.tabSequence.Text = "Sequence";
+            this.tabSequence.Text = "Sequence (Vanilla)";
+            // 
+            // tabWarps
+            // 
+            this.tabWarps.BackColor = System.Drawing.Color.Black;
+            this.tabWarps.Controls.Add(this.checkBox5);
+            this.tabWarps.Controls.Add(this.checkBox4);
+            this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabWarps.Location = new System.Drawing.Point(4, 22);
+            this.tabWarps.Name = "tabWarps";
+            this.tabWarps.Size = new System.Drawing.Size(336, 485);
+            this.tabWarps.TabIndex = 2;
+            this.tabWarps.Text = "Warps";
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(13, 44);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(69, 17);
+            this.checkBox5.TabIndex = 1;
+            this.checkBox5.Text = "No Logic";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(13, 20);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(91, 17);
+            this.checkBox4.TabIndex = 0;
+            this.checkBox4.Text = "Just Paintings";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // tabSound
             // 
@@ -376,17 +408,176 @@
             this.checkBox1.Text = "Music";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // tabWarps
+            // tabClothes
             // 
-            this.tabWarps.BackColor = System.Drawing.Color.Black;
-            this.tabWarps.Controls.Add(this.checkBox5);
-            this.tabWarps.Controls.Add(this.checkBox4);
-            this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabWarps.Location = new System.Drawing.Point(4, 22);
-            this.tabWarps.Name = "tabWarps";
-            this.tabWarps.Size = new System.Drawing.Size(336, 485);
-            this.tabWarps.TabIndex = 2;
-            this.tabWarps.Text = "Warps";
+            this.tabClothes.BackColor = System.Drawing.Color.Black;
+            this.tabClothes.Controls.Add(this.pColorHair);
+            this.tabClothes.Controls.Add(this.pColorFace);
+            this.tabClothes.Controls.Add(this.pColorShoes);
+            this.tabClothes.Controls.Add(this.pColorGloves);
+            this.tabClothes.Controls.Add(this.pColorArms);
+            this.tabClothes.Controls.Add(this.pColorOveralls);
+            this.tabClothes.Controls.Add(this.btnColorHair);
+            this.tabClothes.Controls.Add(this.btnColorFace);
+            this.tabClothes.Controls.Add(this.btnColorShoes);
+            this.tabClothes.Controls.Add(this.btnColorGloves);
+            this.tabClothes.Controls.Add(this.btnColorCapArms);
+            this.tabClothes.Controls.Add(this.btnColorOveralls);
+            this.tabClothes.Controls.Add(this.btnColorRestore);
+            this.tabClothes.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabClothes.Location = new System.Drawing.Point(4, 22);
+            this.tabClothes.Name = "tabClothes";
+            this.tabClothes.Size = new System.Drawing.Size(336, 485);
+            this.tabClothes.TabIndex = 3;
+            this.tabClothes.Text = "Mario\'s Clothes";
+            // 
+            // pColorHair
+            // 
+            this.pColorHair.BackColor = System.Drawing.Color.White;
+            this.pColorHair.Location = new System.Drawing.Point(169, 381);
+            this.pColorHair.Name = "pColorHair";
+            this.pColorHair.Size = new System.Drawing.Size(109, 23);
+            this.pColorHair.TabIndex = 14;
+            // 
+            // pColorFace
+            // 
+            this.pColorFace.BackColor = System.Drawing.Color.White;
+            this.pColorFace.Location = new System.Drawing.Point(169, 326);
+            this.pColorFace.Name = "pColorFace";
+            this.pColorFace.Size = new System.Drawing.Size(109, 23);
+            this.pColorFace.TabIndex = 14;
+            // 
+            // pColorShoes
+            // 
+            this.pColorShoes.BackColor = System.Drawing.Color.White;
+            this.pColorShoes.Location = new System.Drawing.Point(169, 271);
+            this.pColorShoes.Name = "pColorShoes";
+            this.pColorShoes.Size = new System.Drawing.Size(109, 23);
+            this.pColorShoes.TabIndex = 14;
+            // 
+            // pColorGloves
+            // 
+            this.pColorGloves.BackColor = System.Drawing.Color.White;
+            this.pColorGloves.Location = new System.Drawing.Point(169, 219);
+            this.pColorGloves.Name = "pColorGloves";
+            this.pColorGloves.Size = new System.Drawing.Size(109, 23);
+            this.pColorGloves.TabIndex = 14;
+            // 
+            // pColorArms
+            // 
+            this.pColorArms.BackColor = System.Drawing.Color.White;
+            this.pColorArms.Location = new System.Drawing.Point(169, 168);
+            this.pColorArms.Name = "pColorArms";
+            this.pColorArms.Size = new System.Drawing.Size(109, 23);
+            this.pColorArms.TabIndex = 14;
+            // 
+            // pColorOveralls
+            // 
+            this.pColorOveralls.BackColor = System.Drawing.Color.White;
+            this.pColorOveralls.Location = new System.Drawing.Point(169, 122);
+            this.pColorOveralls.Name = "pColorOveralls";
+            this.pColorOveralls.Size = new System.Drawing.Size(109, 23);
+            this.pColorOveralls.TabIndex = 13;
+            // 
+            // btnColorHair
+            // 
+            this.btnColorHair.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorHair.Location = new System.Drawing.Point(46, 381);
+            this.btnColorHair.Name = "btnColorHair";
+            this.btnColorHair.Size = new System.Drawing.Size(75, 23);
+            this.btnColorHair.TabIndex = 6;
+            this.btnColorHair.Text = "Hair";
+            this.btnColorHair.UseVisualStyleBackColor = true;
+            this.btnColorHair.Click += new System.EventHandler(this.btnColorHair_Click);
+            // 
+            // btnColorFace
+            // 
+            this.btnColorFace.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorFace.Location = new System.Drawing.Point(46, 326);
+            this.btnColorFace.Name = "btnColorFace";
+            this.btnColorFace.Size = new System.Drawing.Size(75, 23);
+            this.btnColorFace.TabIndex = 5;
+            this.btnColorFace.Text = "Face";
+            this.btnColorFace.UseVisualStyleBackColor = true;
+            this.btnColorFace.Click += new System.EventHandler(this.btnColorFace_Click);
+            // 
+            // btnColorShoes
+            // 
+            this.btnColorShoes.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorShoes.Location = new System.Drawing.Point(46, 271);
+            this.btnColorShoes.Name = "btnColorShoes";
+            this.btnColorShoes.Size = new System.Drawing.Size(75, 23);
+            this.btnColorShoes.TabIndex = 4;
+            this.btnColorShoes.Text = "Shoes";
+            this.btnColorShoes.UseVisualStyleBackColor = true;
+            this.btnColorShoes.Click += new System.EventHandler(this.btnColorShoes_Click);
+            // 
+            // btnColorGloves
+            // 
+            this.btnColorGloves.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorGloves.Location = new System.Drawing.Point(46, 219);
+            this.btnColorGloves.Name = "btnColorGloves";
+            this.btnColorGloves.Size = new System.Drawing.Size(75, 23);
+            this.btnColorGloves.TabIndex = 3;
+            this.btnColorGloves.Text = "Gloves";
+            this.btnColorGloves.UseVisualStyleBackColor = true;
+            this.btnColorGloves.Click += new System.EventHandler(this.btnColorGloves_Click);
+            // 
+            // btnColorCapArms
+            // 
+            this.btnColorCapArms.ForeColor = System.Drawing.Color.Black;
+            this.btnColorCapArms.Location = new System.Drawing.Point(46, 168);
+            this.btnColorCapArms.Name = "btnColorCapArms";
+            this.btnColorCapArms.Size = new System.Drawing.Size(75, 23);
+            this.btnColorCapArms.TabIndex = 2;
+            this.btnColorCapArms.Text = "Cap Arms Shirt";
+            this.btnColorCapArms.UseVisualStyleBackColor = true;
+            this.btnColorCapArms.Click += new System.EventHandler(this.btnColorCapArms_Click);
+            // 
+            // btnColorOveralls
+            // 
+            this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorOveralls.Location = new System.Drawing.Point(46, 122);
+            this.btnColorOveralls.Name = "btnColorOveralls";
+            this.btnColorOveralls.Size = new System.Drawing.Size(75, 23);
+            this.btnColorOveralls.TabIndex = 1;
+            this.btnColorOveralls.Text = "Overalls";
+            this.btnColorOveralls.UseVisualStyleBackColor = true;
+            this.btnColorOveralls.Click += new System.EventHandler(this.btnColorOveralls_Click);
+            // 
+            // btnColorRestore
+            // 
+            this.btnColorRestore.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnColorRestore.Location = new System.Drawing.Point(46, 65);
+            this.btnColorRestore.Name = "btnColorRestore";
+            this.btnColorRestore.Size = new System.Drawing.Size(75, 23);
+            this.btnColorRestore.TabIndex = 0;
+            this.btnColorRestore.Text = "Restore";
+            this.btnColorRestore.UseVisualStyleBackColor = true;
+            this.btnColorRestore.Click += new System.EventHandler(this.btnColorRestore_Click);
+            // 
+            // tabMisc
+            // 
+            this.tabMisc.BackColor = System.Drawing.Color.Black;
+            this.tabMisc.Controls.Add(this.chkRandomizeText);
+            this.tabMisc.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabMisc.Location = new System.Drawing.Point(4, 22);
+            this.tabMisc.Name = "tabMisc";
+            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMisc.Size = new System.Drawing.Size(336, 485);
+            this.tabMisc.TabIndex = 4;
+            this.tabMisc.Text = "Misc";
+            // 
+            // chkRandomizeText
+            // 
+            this.chkRandomizeText.AutoSize = true;
+            this.chkRandomizeText.Enabled = false;
+            this.chkRandomizeText.Location = new System.Drawing.Point(18, 19);
+            this.chkRandomizeText.Name = "chkRandomizeText";
+            this.chkRandomizeText.Size = new System.Drawing.Size(103, 17);
+            this.chkRandomizeText.TabIndex = 0;
+            this.chkRandomizeText.Text = "Randomize Text";
+            this.chkRandomizeText.UseVisualStyleBackColor = true;
             // 
             // btnSaveRom
             // 
@@ -421,6 +612,8 @@
             // chkRandomizeEnemies
             // 
             this.chkRandomizeEnemies.AutoSize = true;
+            this.chkRandomizeEnemies.Checked = true;
+            this.chkRandomizeEnemies.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeEnemies.ForeColor = System.Drawing.SystemColors.Control;
             this.chkRandomizeEnemies.Location = new System.Drawing.Point(104, 66);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
@@ -432,7 +625,6 @@
             // chkRandomizeMarioClothes
             // 
             this.chkRandomizeMarioClothes.AutoSize = true;
-            this.chkRandomizeMarioClothes.Enabled = false;
             this.chkRandomizeMarioClothes.ForeColor = System.Drawing.SystemColors.Control;
             this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(104, 89);
             this.chkRandomizeMarioClothes.Name = "chkRandomizeMarioClothes";
@@ -467,62 +659,10 @@
             this.chkRandomizeWarps.Text = "Warps";
             this.chkRandomizeWarps.UseVisualStyleBackColor = true;
             // 
-            // tabClothes
-            // 
-            this.tabClothes.BackColor = System.Drawing.Color.Black;
-            this.tabClothes.Controls.Add(this.pColorHair);
-            this.tabClothes.Controls.Add(this.pColorFace);
-            this.tabClothes.Controls.Add(this.pColorShoes);
-            this.tabClothes.Controls.Add(this.pColorGloves);
-            this.tabClothes.Controls.Add(this.pColorArms);
-            this.tabClothes.Controls.Add(this.pColorOveralls);
-            this.tabClothes.Controls.Add(this.btnColorHair);
-            this.tabClothes.Controls.Add(this.btnColorFace);
-            this.tabClothes.Controls.Add(this.btnColorShoes);
-            this.tabClothes.Controls.Add(this.btnColorGloves);
-            this.tabClothes.Controls.Add(this.btnColorCapArms);
-            this.tabClothes.Controls.Add(this.btnColorOveralls);
-            this.tabClothes.Controls.Add(this.btnColorRestore);
-            this.tabClothes.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabClothes.Location = new System.Drawing.Point(4, 22);
-            this.tabClothes.Name = "tabClothes";
-            this.tabClothes.Size = new System.Drawing.Size(336, 485);
-            this.tabClothes.TabIndex = 3;
-            this.tabClothes.Text = "Mario\'s Clothes";
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(13, 20);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(91, 17);
-            this.checkBox4.TabIndex = 0;
-            this.checkBox4.Text = "Just Paintings";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(13, 44);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
-            this.checkBox5.TabIndex = 1;
-            this.checkBox5.Text = "No Logic";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // btnColorRestore
-            // 
-            this.btnColorRestore.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnColorRestore.Location = new System.Drawing.Point(46, 65);
-            this.btnColorRestore.Name = "btnColorRestore";
-            this.btnColorRestore.Size = new System.Drawing.Size(75, 23);
-            this.btnColorRestore.TabIndex = 0;
-            this.btnColorRestore.Text = "Restore";
-            this.btnColorRestore.UseVisualStyleBackColor = true;
-            // 
             // chkRandomizeTextures
             // 
             this.chkRandomizeTextures.AutoSize = true;
+            this.chkRandomizeTextures.Enabled = false;
             this.chkRandomizeTextures.ForeColor = System.Drawing.SystemColors.Control;
             this.chkRandomizeTextures.Location = new System.Drawing.Point(185, 66);
             this.chkRandomizeTextures.Name = "chkRandomizeTextures";
@@ -530,143 +670,7 @@
             this.chkRandomizeTextures.TabIndex = 41;
             this.chkRandomizeTextures.Text = "Textures";
             this.chkRandomizeTextures.UseVisualStyleBackColor = true;
-            // 
-            // tabMisc
-            // 
-            this.tabMisc.BackColor = System.Drawing.Color.Black;
-            this.tabMisc.Controls.Add(this.chkRandomizeText);
-            this.tabMisc.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabMisc.Location = new System.Drawing.Point(4, 22);
-            this.tabMisc.Name = "tabMisc";
-            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMisc.Size = new System.Drawing.Size(336, 485);
-            this.tabMisc.TabIndex = 4;
-            this.tabMisc.Text = "Misc";
-            // 
-            // btnColorOveralls
-            // 
-            this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnColorOveralls.Location = new System.Drawing.Point(46, 122);
-            this.btnColorOveralls.Name = "btnColorOveralls";
-            this.btnColorOveralls.Size = new System.Drawing.Size(75, 23);
-            this.btnColorOveralls.TabIndex = 1;
-            this.btnColorOveralls.Text = "Overalls";
-            this.btnColorOveralls.UseVisualStyleBackColor = true;
-            this.btnColorOveralls.Click += new System.EventHandler(this.btnColorOveralls_Click);
-            // 
-            // btnColorCapArms
-            // 
-            this.btnColorCapArms.ForeColor = System.Drawing.Color.Black;
-            this.btnColorCapArms.Location = new System.Drawing.Point(46, 168);
-            this.btnColorCapArms.Name = "btnColorCapArms";
-            this.btnColorCapArms.Size = new System.Drawing.Size(75, 23);
-            this.btnColorCapArms.TabIndex = 2;
-            this.btnColorCapArms.Text = "Cap Arms Shirt";
-            this.btnColorCapArms.UseVisualStyleBackColor = true;
-            this.btnColorCapArms.Click += new System.EventHandler(this.btnColorCapArms_Click);
-            // 
-            // btnColorGloves
-            // 
-            this.btnColorGloves.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnColorGloves.Location = new System.Drawing.Point(46, 219);
-            this.btnColorGloves.Name = "btnColorGloves";
-            this.btnColorGloves.Size = new System.Drawing.Size(75, 23);
-            this.btnColorGloves.TabIndex = 3;
-            this.btnColorGloves.Text = "Gloves";
-            this.btnColorGloves.UseVisualStyleBackColor = true;
-            this.btnColorGloves.Click += new System.EventHandler(this.btnColorGloves_Click);
-            // 
-            // btnColorShoes
-            // 
-            this.btnColorShoes.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnColorShoes.Location = new System.Drawing.Point(46, 271);
-            this.btnColorShoes.Name = "btnColorShoes";
-            this.btnColorShoes.Size = new System.Drawing.Size(75, 23);
-            this.btnColorShoes.TabIndex = 4;
-            this.btnColorShoes.Text = "Shoes";
-            this.btnColorShoes.UseVisualStyleBackColor = true;
-            this.btnColorShoes.Click += new System.EventHandler(this.btnColorShoes_Click);
-            // 
-            // btnColorFace
-            // 
-            this.btnColorFace.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnColorFace.Location = new System.Drawing.Point(46, 326);
-            this.btnColorFace.Name = "btnColorFace";
-            this.btnColorFace.Size = new System.Drawing.Size(75, 23);
-            this.btnColorFace.TabIndex = 5;
-            this.btnColorFace.Text = "Face";
-            this.btnColorFace.UseVisualStyleBackColor = true;
-            this.btnColorFace.Click += new System.EventHandler(this.btnColorFace_Click);
-            // 
-            // btnColorHair
-            // 
-            this.btnColorHair.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnColorHair.Location = new System.Drawing.Point(46, 381);
-            this.btnColorHair.Name = "btnColorHair";
-            this.btnColorHair.Size = new System.Drawing.Size(75, 23);
-            this.btnColorHair.TabIndex = 6;
-            this.btnColorHair.Text = "Hair";
-            this.btnColorHair.UseVisualStyleBackColor = true;
-            this.btnColorHair.Click += new System.EventHandler(this.btnColorHair_Click);
-            // 
-            // pColorOveralls
-            // 
-            this.pColorOveralls.BackColor = System.Drawing.Color.White;
-            this.pColorOveralls.Location = new System.Drawing.Point(169, 122);
-            this.pColorOveralls.Name = "pColorOveralls";
-            this.pColorOveralls.Size = new System.Drawing.Size(109, 23);
-            this.pColorOveralls.TabIndex = 13;
-            // 
-            // pColorArms
-            // 
-            this.pColorArms.BackColor = System.Drawing.Color.White;
-            this.pColorArms.Location = new System.Drawing.Point(169, 168);
-            this.pColorArms.Name = "pColorArms";
-            this.pColorArms.Size = new System.Drawing.Size(109, 23);
-            this.pColorArms.TabIndex = 14;
-            // 
-            // pColorGloves
-            // 
-            this.pColorGloves.BackColor = System.Drawing.Color.White;
-            this.pColorGloves.Location = new System.Drawing.Point(169, 219);
-            this.pColorGloves.Name = "pColorGloves";
-            this.pColorGloves.Size = new System.Drawing.Size(109, 23);
-            this.pColorGloves.TabIndex = 14;
-            // 
-            // pColorShoes
-            // 
-            this.pColorShoes.BackColor = System.Drawing.Color.White;
-            this.pColorShoes.Location = new System.Drawing.Point(169, 271);
-            this.pColorShoes.Name = "pColorShoes";
-            this.pColorShoes.Size = new System.Drawing.Size(109, 23);
-            this.pColorShoes.TabIndex = 14;
-            // 
-            // pColorFace
-            // 
-            this.pColorFace.BackColor = System.Drawing.Color.White;
-            this.pColorFace.Location = new System.Drawing.Point(169, 326);
-            this.pColorFace.Name = "pColorFace";
-            this.pColorFace.Size = new System.Drawing.Size(109, 23);
-            this.pColorFace.TabIndex = 14;
-            // 
-            // pColorHair
-            // 
-            this.pColorHair.BackColor = System.Drawing.Color.White;
-            this.pColorHair.Location = new System.Drawing.Point(169, 381);
-            this.pColorHair.Name = "pColorHair";
-            this.pColorHair.Size = new System.Drawing.Size(109, 23);
-            this.pColorHair.TabIndex = 14;
-            // 
-            // chkRandomizeText
-            // 
-            this.chkRandomizeText.AutoSize = true;
-            this.chkRandomizeText.Enabled = false;
-            this.chkRandomizeText.Location = new System.Drawing.Point(18, 19);
-            this.chkRandomizeText.Name = "chkRandomizeText";
-            this.chkRandomizeText.Size = new System.Drawing.Size(103, 17);
-            this.chkRandomizeText.TabIndex = 0;
-            this.chkRandomizeText.Text = "Randomize Text";
-            this.chkRandomizeText.UseVisualStyleBackColor = true;
+            this.chkRandomizeTextures.Visible = false;
             // 
             // Main
             // 
@@ -698,10 +702,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabSequence.ResumeLayout(false);
             this.tabSequence.PerformLayout();
-            this.tabSound.ResumeLayout(false);
-            this.tabSound.PerformLayout();
             this.tabWarps.ResumeLayout(false);
             this.tabWarps.PerformLayout();
+            this.tabSound.ResumeLayout(false);
+            this.tabSound.PerformLayout();
             this.tabClothes.ResumeLayout(false);
             this.tabMisc.ResumeLayout(false);
             this.tabMisc.PerformLayout();

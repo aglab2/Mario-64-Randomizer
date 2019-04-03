@@ -72,11 +72,17 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parsers\findObjects.cs" />
     <Compile Include="Parsers\FindSongs.cs" />
     <Compile Include="Parsers\FindWarps.cs" />
     <Compile Include="Parsers\LevelScript.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="randomizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,11 +111,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -122,6 +123,12 @@
   <ItemGroup>
     <None Include="Resources\blueStar.png" />
     <None Include="Resources\star.png" />
+    <Content Include="Resources\groundedBehaviours.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\notGrounded.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="star.ico" />
   </ItemGroup>
   <ItemGroup />

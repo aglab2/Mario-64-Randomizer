@@ -20,6 +20,7 @@ namespace Mario64Randomizer
         private Random s = new Random();
         public int seed = 0;
         ROM rm;
+        private string romName;
 
         //
         private Color colorMarioOveralls;
@@ -29,6 +30,9 @@ namespace Mario64Randomizer
         private Color colorMarioFace;
         private Color colorMarioHair;
         //
+        
+        public List<string> groundedBehaviours;
+        public List<string> nonGroundedBehaviours;
 
         private List<string> first = new List<string>()
         {
@@ -73,7 +77,11 @@ namespace Mario64Randomizer
 
         private void Main_Load(object sender, System.EventArgs e)
         {
+            
             this.btnNewSeed.PerformClick();
+
+            groundedBehaviours = new List<string>(File.ReadAllLines("resources/groundedBehaviours.txt"));
+            nonGroundedBehaviours = new List<string>(File.ReadAllLines("resources/notGrounded.txt"));
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -242,12 +250,13 @@ namespace Mario64Randomizer
             openFileDialog.Filter = "ROM Files (*.z64)|*.z64";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
-
+            
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     rm = new ROM(File.ReadAllBytes(openFileDialog.FileName));
+                    romName = Path.GetFileName(openFileDialog.FileName);
                     MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
@@ -314,11 +323,104 @@ namespace Mario64Randomizer
 
                 MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+            if (chkRandomizeEnemies.Checked)
+            {
+                List<SM64.Object> allObjects = new List<SM64.Object>();
+
+                for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+                {
+                    try
+                    {
+                        List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr);
+                        allObjects.AddRange(levelObjects);
+                    }
+                    catch (Exception) { }
+                }
+
+                IEnumerable<SM64.Object> behList = allObjects;
+                Console.WriteLine(behList.Count().ToString());
+
+                IEnumerable<SM64.Object> groundedObjects = behList.Where(x => groundedBehaviours.Contains(x.behaviour.ToString("X")));
+
+                IList<int> groundedList = groundedObjects.Select(x => x.behaviour).ToList();
+
+                IEnumerable<SM64.Object> nonGroundedObjects = behList.Where(x => nonGroundedBehaviours.Contains(x.behaviour.ToString("X")));
+                IList<int> nonGroundedList = nonGroundedObjects.Select(x => x.behaviour).ToList();
+
+                Console.WriteLine(groundedBehaviours.Count().ToString());
+                Console.WriteLine(groundedObjects.Count().ToString());
+                Console.WriteLine(groundedList.Count().ToString());
+                Console.WriteLine(nonGroundedList.Count().ToString());
+
+                Shuffle(groundedList, seed);
+                Shuffle(nonGroundedList, seed);
+
+                IEnumerable<SM64.Object> shuffledObjects = behList.Zip(groundedList, (curObject, behaviour) => new SM64.Object(behaviour, curObject.addr, rm));
+
+                Console.WriteLine(shuffledObjects.Count().ToString());
+                //shuffledObjects = behList.Zip(nonGroundedList, (curObject, behaviour) => new SM64.Object(behaviour, curObject.addr));
+
+                foreach (SM64.Object curObject in shuffledObjects)
+                {
+                    curObject.Write(rm);
+                }
+
+                MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             if (chkRandomizeMarioClothes.Checked)
             {
-                
+                Random colorRandom = new Random(seed);
+                if(colorMarioOveralls != Color.Empty)
+                {
+                    colorMarioOveralls = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                }
+                else
+                {
+                    colorMarioOveralls = pColorOveralls.BackColor;
+                }
+
+                if (colorMarioCap != Color.Empty)
+                {
+                    colorMarioCap = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                }
+                else
+                {
+                    colorMarioCap = pColorArms.BackColor;
+                }
+
+                if (colorMarioFace != Color.Empty)
+                {
+                    colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                }
+                else
+                {
+                    colorMarioFace = pColorFace.BackColor;
+                }
+
+                if (colorMarioGloves != Color.Empty)
+                {
+                    colorMarioGloves = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                }
+                else
+                {
+                    colorMarioGloves = pColorGloves.BackColor;
+                }
+
+                if (colorMarioShoes != Color.Empty)
+                {
+                    colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                }
+                else
+                {
+                    colorMarioShoes = pColorShoes.BackColor;
+                }
+
+                Console.WriteLine("Overalls: " + colorMarioOveralls.R.ToString("X2") + " " + colorMarioOveralls.B.ToString("X2") + "/n" + colorMarioOveralls.G.ToString("X2") + " 00");
+                Console.WriteLine("Cap: " + colorMarioCap.R.ToString("X2") + " " + colorMarioCap.B.ToString("X2") + "/n" + colorMarioCap.G.ToString("X2") + " 00");
+                Console.WriteLine("Shoes: " + colorMarioShoes.R.ToString("X2") + " " + colorMarioShoes.B.ToString("X2") + "/n" + colorMarioShoes.G.ToString("X2") + " 00");
+                MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            
+
         }
 
         private void btnSaveRom_Click(object sender, EventArgs e)
@@ -328,6 +430,7 @@ namespace Mario64Randomizer
             saveFileDialog.Filter = "ROM Files (*.z64)|*.z64";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = romName + " - " + seed.ToString();
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -402,6 +505,27 @@ namespace Mario64Randomizer
                 colorMarioHair = cdClothes.Color;
                 pColorHair.BackColor = cdClothes.Color;
             }
+        }
+
+        private void btnColorRestore_Click(object sender, EventArgs e)
+        {
+            colorMarioCap = Color.Empty;
+            pColorArms.BackColor = Color.White;
+
+            colorMarioFace = Color.Empty;
+            pColorFace.BackColor = Color.White;
+
+            colorMarioGloves = Color.Empty;
+            pColorGloves.BackColor = Color.White;
+
+            colorMarioHair = Color.Empty;
+            pColorHair.BackColor = Color.White;
+
+            colorMarioOveralls = Color.Empty;
+            pColorOveralls.BackColor = Color.White;
+
+            colorMarioShoes = Color.Empty;
+            pColorShoes.BackColor = Color.White;
         }
     }
 }
