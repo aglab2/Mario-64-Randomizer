@@ -325,18 +325,18 @@ namespace Mario64Randomizer
                         List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
                         
                         IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
-                        IList<int> groundedList = groundedObjects.Select(x => x.behaviour).ToList();
+                        IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
 
                         IEnumerable<SM64.Object> nonGroundedObjects = allObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
-                        IList<int> nonGroundedList = nonGroundedObjects.Select(x => x.behaviour).ToList();
+                        IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
 
                         Shuffle(groundedList, seed);
                         Shuffle(nonGroundedList, seed);
 
                         IEnumerable<SM64.Object> shuffledGroundedObjects    = groundedObjects.Zip(      groundedList, 
-                            (obj, behaviour) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, obj.position, obj.rotation, obj.addr));
+                            (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
                         IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
-                            (obj, behaviour) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, obj.position, obj.rotation, obj.addr));
+                            (obj, pos) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
 
                         foreach (SM64.Object obj in shuffledGroundedObjects)
                             obj.Write(rm);
