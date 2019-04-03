@@ -20,7 +20,7 @@ namespace Mario64Randomizer.Parsers
         public static List<SM64.Object> FindObjects(ROM rom, int offset)
         {
             ParseState state = new ParseState();
-            PerformLevelScriptParse<ParseState>(rom, offset, findObjectsParser, state);
+            PerformLevelScriptParse(rom, offset, findObjectsParser, state);
             return state.objects;
         }
 
