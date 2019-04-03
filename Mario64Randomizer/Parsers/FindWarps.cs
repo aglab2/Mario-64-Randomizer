@@ -66,11 +66,5 @@ namespace Mario64Randomizer.Parsers
             Warp warp = new Warp(0xFF, rom, rom.offset);
             state.warps.Add(warp);
         }
-
-        protected static void Cmd27(ROM rom, ParseState state)
-        {
-            Warp warp = new Warp(rom, rom.offset);
-            state.warps.Add(warp);
-        }
     }
 }
