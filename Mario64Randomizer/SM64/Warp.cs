@@ -44,12 +44,14 @@ namespace Mario64Randomizer.SM64
 
     public class Warp
     {
+        public readonly byte area;
         public readonly WarpFrom from;
         public readonly WarpTo to;
         public readonly int addr;
 
-        public Warp(ROM rom, int addr)
+        public Warp(byte area, ROM rom, int addr)
         {
+            this.area = area;
             rom.PushOffset(addr);
             this.from = new WarpFrom(rom);
             this.to   = new WarpTo  (rom);
@@ -57,8 +59,9 @@ namespace Mario64Randomizer.SM64
             this.addr = addr;
         }
 
-        public Warp(WarpFrom from, WarpTo to, int addr)
+        public Warp(byte area, WarpFrom from, WarpTo to, int addr)
         {
+            this.area = area;
             this.from = from;
             this.to   = to;
             this.addr = addr;
