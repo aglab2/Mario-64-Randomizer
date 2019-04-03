@@ -249,7 +249,7 @@ namespace Mario64Randomizer
                 try
                 {
                     rm = new ROM(File.ReadAllBytes(openFileDialog.FileName));
-                    romName = Path.GetFileName(openFileDialog.FileName);
+                    romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                     MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
@@ -305,7 +305,7 @@ namespace Mario64Randomizer
                     catch (Exception) { }
                 }
 
-                IEnumerable<Warp> warps = allWarps.Where(x => x.from.id < 0xF0);
+                IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.course != 0x22) & (x.to.course != 0x09) & (x.from.id != 0xA));
 
                 IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
                 Shuffle(warpsTo, seed);

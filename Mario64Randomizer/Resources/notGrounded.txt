@@ -52,7 +52,6 @@
 130033BC : Butterfly Behav
 130033EC : Owl Behavior
 1300362C : Small Bully Behavior
-13003694 : Bully Behavior
 130036C8 : Small ice bully
 130037EC : Bowser Bomb Behavior
 130039D4 : Moneybag Behav

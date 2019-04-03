@@ -46,9 +46,6 @@
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSequence = new System.Windows.Forms.TabPage();
-            this.tabWarps = new System.Windows.Forms.TabPage();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.tabSound = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -82,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabSequence.SuspendLayout();
-            this.tabWarps.SuspendLayout();
             this.tabSound.SuspendLayout();
             this.tabClothes.SuspendLayout();
             this.tabMisc.SuspendLayout();
@@ -296,7 +292,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabSequence);
-            this.tabControl1.Controls.Add(this.tabWarps);
             this.tabControl1.Controls.Add(this.tabSound);
             this.tabControl1.Controls.Add(this.tabClothes);
             this.tabControl1.Controls.Add(this.tabMisc);
@@ -328,38 +323,6 @@
             this.tabSequence.Size = new System.Drawing.Size(336, 485);
             this.tabSequence.TabIndex = 0;
             this.tabSequence.Text = "Sequence (Vanilla)";
-            // 
-            // tabWarps
-            // 
-            this.tabWarps.BackColor = System.Drawing.Color.Black;
-            this.tabWarps.Controls.Add(this.checkBox5);
-            this.tabWarps.Controls.Add(this.checkBox4);
-            this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabWarps.Location = new System.Drawing.Point(4, 22);
-            this.tabWarps.Name = "tabWarps";
-            this.tabWarps.Size = new System.Drawing.Size(336, 485);
-            this.tabWarps.TabIndex = 2;
-            this.tabWarps.Text = "Warps";
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(13, 44);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(69, 17);
-            this.checkBox5.TabIndex = 1;
-            this.checkBox5.Text = "No Logic";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(13, 20);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(91, 17);
-            this.checkBox4.TabIndex = 0;
-            this.checkBox4.Text = "Just Paintings";
-            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // tabSound
             // 
@@ -695,15 +658,13 @@
             this.MaximumSize = new System.Drawing.Size(420, 1080);
             this.MinimumSize = new System.Drawing.Size(420, 350);
             this.Name = "Main";
-            this.Text = "Super Mario 64 Randomizer v0.6";
+            this.Text = "Super Mario 64 Randomizer v0.75";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabSequence.ResumeLayout(false);
             this.tabSequence.PerformLayout();
-            this.tabWarps.ResumeLayout(false);
-            this.tabWarps.PerformLayout();
             this.tabSound.ResumeLayout(false);
             this.tabSound.PerformLayout();
             this.tabClothes.ResumeLayout(false);
@@ -737,7 +698,6 @@
         private System.Windows.Forms.Button btnSaveRom;
         private System.Windows.Forms.Button btnRandomize;
         private System.Windows.Forms.Button btnOpenRom;
-        private System.Windows.Forms.TabPage tabWarps;
         private System.Windows.Forms.CheckBox chkRandomizeEnemies;
         private System.Windows.Forms.CheckBox chkRandomizeMarioClothes;
         private System.Windows.Forms.CheckBox chkRandomizeMusic;
@@ -747,8 +707,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabClothes;
         private System.Windows.Forms.ColorDialog cdClothes;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Button btnColorRestore;
         private System.Windows.Forms.CheckBox chkRandomizeTextures;
         private System.Windows.Forms.TabPage tabMisc;
