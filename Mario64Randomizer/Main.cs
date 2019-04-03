@@ -80,8 +80,8 @@ namespace Mario64Randomizer
             
             this.btnNewSeed.PerformClick();
             
-            groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Trim(), 16)).ToList();
-            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Trim(), 16)).ToList();
+            groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
