@@ -72,7 +72,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Parsers\findObjects.cs" />
+    <Compile Include="Parsers\FindObjects.cs" />
     <Compile Include="Parsers\FindSongs.cs" />
     <Compile Include="Parsers\FindWarps.cs" />
     <Compile Include="Parsers\LevelScript.cs" />
@@ -83,13 +83,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="randomizeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="randomizeForm.Designer.cs">
-      <DependentUpon>randomizeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Randomizer\ROMManager.cs" />
     <Compile Include="Shuffler.cs" />
     <Compile Include="SM64\Object.cs" />
     <Compile Include="SM64\ROM.cs" />
@@ -103,9 +96,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="randomizeForm.resx">
-      <DependentUpon>randomizeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

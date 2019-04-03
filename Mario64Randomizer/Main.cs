@@ -31,8 +31,8 @@ namespace Mario64Randomizer
         private Color colorMarioHair;
         //
         
-        public List<string> groundedBehaviours;
-        public List<string> nonGroundedBehaviours;
+        public List<int> groundedBehaviours;
+        public List<int> nonGroundedBehaviours;
 
         private List<string> first = new List<string>()
         {
@@ -79,9 +79,9 @@ namespace Mario64Randomizer
         {
             
             this.btnNewSeed.PerformClick();
-
-            groundedBehaviours = new List<string>(File.ReadAllLines("resources/groundedBehaviours.txt"));
-            nonGroundedBehaviours = new List<string>(File.ReadAllLines("resources/notGrounded.txt"));
+            
+            groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Trim(), 16)).ToList();
+            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Trim(), 16)).ToList();
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -236,13 +236,6 @@ namespace Mario64Randomizer
             }
         }
 
-        private void btnPatch_Click(object sender, EventArgs e)
-        {
-            randomizeForm rf = new randomizeForm(seed);
-            rf.ShowDialog();
-        }
-              
-
         private void btnOpenRom_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -325,44 +318,32 @@ namespace Mario64Randomizer
             }
             if (chkRandomizeEnemies.Checked)
             {
-                List<SM64.Object> allObjects = new List<SM64.Object>();
-
                 for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
                 {
                     try
                     {
-                        List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr);
-                        allObjects.AddRange(levelObjects);
+                        List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
+                        
+                        IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
+                        IList<int> groundedList = groundedObjects.Select(x => x.behaviour).ToList();
+
+                        IEnumerable<SM64.Object> nonGroundedObjects = allObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
+                        IList<int> nonGroundedList = nonGroundedObjects.Select(x => x.behaviour).ToList();
+
+                        Shuffle(groundedList, seed);
+                        Shuffle(nonGroundedList, seed);
+
+                        IEnumerable<SM64.Object> shuffledGroundedObjects    = groundedObjects.Zip(      groundedList, 
+                            (obj, behaviour) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, obj.position, obj.rotation, obj.addr));
+                        IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
+                            (obj, behaviour) => new SM64.Object(obj.act, obj.model, obj.bparams, obj.behaviour, obj.position, obj.rotation, obj.addr));
+
+                        foreach (SM64.Object obj in shuffledGroundedObjects)
+                            obj.Write(rm);
+                        foreach (SM64.Object obj in shuffledNonGroundedObjects)
+                            obj.Write(rm);
                     }
                     catch (Exception) { }
-                }
-
-                IEnumerable<SM64.Object> behList = allObjects;
-                Console.WriteLine(behList.Count().ToString());
-
-                IEnumerable<SM64.Object> groundedObjects = behList.Where(x => groundedBehaviours.Contains(x.behaviour.ToString("X")));
-
-                IList<int> groundedList = groundedObjects.Select(x => x.behaviour).ToList();
-
-                IEnumerable<SM64.Object> nonGroundedObjects = behList.Where(x => nonGroundedBehaviours.Contains(x.behaviour.ToString("X")));
-                IList<int> nonGroundedList = nonGroundedObjects.Select(x => x.behaviour).ToList();
-
-                Console.WriteLine(groundedBehaviours.Count().ToString());
-                Console.WriteLine(groundedObjects.Count().ToString());
-                Console.WriteLine(groundedList.Count().ToString());
-                Console.WriteLine(nonGroundedList.Count().ToString());
-
-                Shuffle(groundedList, seed);
-                Shuffle(nonGroundedList, seed);
-
-                IEnumerable<SM64.Object> shuffledObjects = behList.Zip(groundedList, (curObject, behaviour) => new SM64.Object(behaviour, curObject.addr, rm));
-
-                Console.WriteLine(shuffledObjects.Count().ToString());
-                //shuffledObjects = behList.Zip(nonGroundedList, (curObject, behaviour) => new SM64.Object(behaviour, curObject.addr));
-
-                foreach (SM64.Object curObject in shuffledObjects)
-                {
-                    curObject.Write(rm);
                 }
 
                 MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

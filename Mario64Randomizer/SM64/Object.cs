@@ -11,9 +11,6 @@ namespace Mario64Randomizer.SM64
         public readonly short X;
         public readonly short Y;
         public readonly short Z;
-        public readonly short Rx;
-        public readonly short Ry;
-        public readonly short Rz;
 
 
         public ObjectPosition(ROM rom)
@@ -21,10 +18,6 @@ namespace Mario64Randomizer.SM64
             X = rom.Read16(4);
             Y = rom.Read16(6);
             Z = rom.Read16(8);
-
-            Rx = rom.Read16(10);
-            Ry = rom.Read16(12);
-            Rz = rom.Read16(14);
         }
     
         public void Write(ROM rom)
@@ -32,12 +25,32 @@ namespace Mario64Randomizer.SM64
             rom.Write16(X, 4);
             rom.Write16(Y, 6);
             rom.Write16(Z, 8);
+        }
+    }
 
+    public class ObjectRotation
+    {
+        public readonly short Rx;
+        public readonly short Ry;
+        public readonly short Rz;
+
+
+        public ObjectRotation(ROM rom)
+        {
+            Rx = rom.Read16(10);
+            Ry = rom.Read16(12);
+            Rz = rom.Read16(14);
+        }
+
+        public void Write(ROM rom)
+        {
             rom.Write16(Rx, 10);
             rom.Write16(Ry, 12);
             rom.Write16(Rz, 14);
         }
     }
+
+
 
     public class Object
     {
@@ -45,14 +58,16 @@ namespace Mario64Randomizer.SM64
         public readonly byte model;
         public readonly int bparams;
         public readonly int behaviour;
-        public readonly ObjectPosition pos;
+        public readonly ObjectPosition position;
+        public readonly ObjectRotation rotation;
         public readonly int addr;
 
         public Object(ROM rom, int addr)
         {
             rom.PushOffset(addr);
 
-            pos       = new ObjectPosition(rom);
+            position  = new ObjectPosition(rom);
+            rotation  = new ObjectRotation(rom);
             act       = rom.Read8(2);
             model     = rom.Read8(3);
             bparams   = rom.Read32(16);
@@ -62,31 +77,27 @@ namespace Mario64Randomizer.SM64
             rom.PopOffset();
         }
 
-        public Object(Int32 behaviour, int addr, ROM rom)
+        public Object(byte act, byte model, int bparams, int behaviour, ObjectPosition position, ObjectRotation rotation, int addr)
         {            
             this.behaviour = behaviour;
             this.addr = addr;
-            rom.PushOffset(addr);
-            this.pos = new ObjectPosition(rom);
-            this.act = rom.Read8(2);
-            this.model = rom.Read8(3);
-            this.bparams = rom.Read32(16);
-
-            rom.PopOffset();
+            this.position = position;
+            this.rotation = rotation;
+            this.act = act;
+            this.model = model;
+            this.bparams = bparams;
         }
 
         public void Write(ROM rom)
         {
-            Console.WriteLine("Writing: " + this.behaviour.ToString("X") + " into: " + this.addr.ToString() + ", bParams: " + this.bparams.ToString());
-
             rom.PushOffset(addr);
 
-            pos.Write(rom);
-
-            rom.Write8(2, act);
-            rom.Write8(3, model);
-            rom.Write32(16, bparams);
-            rom.Write32(20, behaviour);
+            position.Write(rom);
+            rotation.Write(rom);
+            rom.Write8(act, 2);
+            rom.Write8(model, 3);
+            rom.Write32(bparams, 16);
+            rom.Write32(behaviour, 20);
 
             rom.PopOffset();
         }
