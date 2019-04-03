@@ -293,6 +293,7 @@ namespace Mario64Randomizer
             }
             if (chkRandomizeWarps.Checked)
             {
+                int bowserWarpId;
                 List<Warp> allWarps = new List<Warp>();
 
                 for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
@@ -305,8 +306,23 @@ namespace Mario64Randomizer
                     catch (Exception) { }
                 }
 
-                IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.course != 0x22) & (x.to.course != 0x09) & (x.from.id != 0xA));
+                               
 
+                IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0)  & (x.to.course != 0x09) & (x.to.course != 0x00) & (x.from.id != 0xA));
+
+                if (!chkRandomizeBowser.Checked)
+                {
+                    if (txtBowserWarpId.Text != string.Empty)
+                    {
+                        bowserWarpId = Convert.ToInt32(txtBowserWarpId.Text);
+                    }
+                    else
+                    {
+                        bowserWarpId = 0x22;
+                    }                        
+                    warps = allWarps.Where(x => x.to.course != bowserWarpId);
+                }
+                
                 IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
                 Shuffle(warpsTo, seed);
 
@@ -507,6 +523,21 @@ namespace Mario64Randomizer
 
             colorMarioShoes = Color.Empty;
             pColorShoes.BackColor = Color.White;
+        }
+
+        private void btnRefreshList_Click(object sender, EventArgs e)
+        {
+            combineLists();
+            if (nudStarAmount.Value <= randomList.Count)
+            {
+                Shuffle(randomList, seed);
+                randomList = randomList.GetRange(0, Convert.ToInt32(nudStarAmount.Value));
+                refreshCheckList();
+            }
+            else
+            {
+                MessageBox.Show("Error: The Number of Stars amount is higher than the Selected Star Set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
