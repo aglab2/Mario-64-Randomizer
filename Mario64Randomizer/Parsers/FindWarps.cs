@@ -10,10 +10,12 @@ namespace Mario64Randomizer.Parsers
         protected class ParseState
         {
             public readonly List<Warp> warps;
+            public byte areaId;
 
             public ParseState()
             {
                 warps = new List<Warp>();
+                areaId = 0xFF;
             }
         }
 
@@ -48,15 +50,20 @@ namespace Mario64Randomizer.Parsers
 
         private static void Common(ROM rom, ParseState state) { }
 
+        protected static void Cmd1F(ROM rom, ParseState state)
+        {
+            state.areaId = rom.Read8(2);
+        }
+
         protected static void Cmd26(ROM rom, ParseState state)
         {
-            Warp warp = new Warp(rom, rom.offset);
+            Warp warp = new Warp(state.areaId, rom, rom.offset);
             state.warps.Add(warp);
         }
 
         protected static void Cmd27(ROM rom, ParseState state)
         {
-            Warp warp = new Warp(rom, rom.offset);
+            Warp warp = new Warp(0xFF, rom, rom.offset);
             state.warps.Add(warp);
         }
     }

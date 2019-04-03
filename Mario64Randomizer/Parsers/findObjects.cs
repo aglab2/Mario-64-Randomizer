@@ -10,10 +10,12 @@ namespace Mario64Randomizer.Parsers
         protected class ParseState
         {
             public readonly List<SM64.Object> objects;
+            public byte areaId;
 
             public ParseState()
             {
                 objects = new List<SM64.Object>();
+                areaId = 0;
             }
         }
 
@@ -48,10 +50,15 @@ namespace Mario64Randomizer.Parsers
 
         private static void Common(ROM rom, ParseState state) { }
 
-        protected static void Cmd24(ROM rom, ParseState state) //static
+        protected static void Cmd1F(ROM rom, ParseState state)
         {
-            SM64.Object curObject = new SM64.Object(rom, rom.offset);
+            state.areaId = rom.Read8(2);
+        }
+
+        protected static void Cmd24(ROM rom, ParseState state)
+        {
+            SM64.Object curObject = new SM64.Object(state.areaId, rom, rom.offset);
             state.objects.Add(curObject);
-        }        
+        }
     }
 }
