@@ -84,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Shuffler.cs" />
+    <Compile Include="SM64\LevelInfo.cs" />
     <Compile Include="SM64\Object.cs" />
     <Compile Include="SM64\ROM.cs" />
     <Compile Include="SM64\SegmentBuilder.cs" />
