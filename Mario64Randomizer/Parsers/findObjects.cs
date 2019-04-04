@@ -11,17 +11,20 @@ namespace Mario64Randomizer.Parsers
         {
             public readonly List<SM64.Object> objects;
             public byte areaId;
+            public readonly int level;
 
-            public ParseState()
+            public ParseState(int level)
             {
+                this.level = level;
+
                 objects = new List<SM64.Object>();
                 areaId = 0;
             }
         }
 
-        public static List<SM64.Object> FindObjects(ROM rom, int offset)
+        public static List<SM64.Object> FindObjects(ROM rom, int offset, int level)
         {
-            ParseState state = new ParseState();
+            ParseState state = new ParseState(level);
             PerformLevelScriptParse(rom, offset, findObjectsParser, state);
             return state.objects;
         }
@@ -57,7 +60,7 @@ namespace Mario64Randomizer.Parsers
 
         protected static void Cmd24(ROM rom, ParseState state)
         {
-            SM64.Object curObject = new SM64.Object(state.areaId, rom, rom.offset);
+            SM64.Object curObject = new SM64.Object(state.areaId, state.level, rom, rom.offset);
             state.objects.Add(curObject);
         }
     }

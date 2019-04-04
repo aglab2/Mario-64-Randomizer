@@ -11,17 +11,19 @@ namespace Mario64Randomizer.Parsers
         {
             public readonly List<Warp> warps;
             public byte areaId;
+            public readonly int level;
 
-            public ParseState()
+            public ParseState(int level)
             {
+                this.level = level;
                 warps = new List<Warp>();
                 areaId = 0xFF;
             }
         }
 
-        public static List<Warp> FindWarps(ROM rom, int offset)
+        public static List<Warp> FindWarps(ROM rom, int offset, int level)
         {
-            ParseState state = new ParseState();
+            ParseState state = new ParseState(level);
             PerformLevelScriptParse<ParseState>(rom, offset, findWarpsParser, state);
             return state.warps;
         }
@@ -57,13 +59,13 @@ namespace Mario64Randomizer.Parsers
 
         protected static void Cmd26(ROM rom, ParseState state)
         {
-            Warp warp = new Warp(state.areaId, rom, rom.offset);
+            Warp warp = new Warp(state.areaId, state.level, rom, rom.offset);
             state.warps.Add(warp);
         }
 
         protected static void Cmd27(ROM rom, ParseState state)
         {
-            Warp warp = new Warp(0xFF, rom, rom.offset);
+            Warp warp = new Warp(0xFF, state.level, rom, rom.offset);
             state.warps.Add(warp);
         }
     }

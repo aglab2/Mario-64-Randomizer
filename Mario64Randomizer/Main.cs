@@ -299,13 +299,16 @@ namespace Mario64Randomizer
                 {
                     List<Warp> allWarps = new List<Warp>();
 
-                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+#warning there are still warps to not existance places
+                    foreach (LevelOffsetsDescription lod in LevelInfo.Description)
                     {
-                        List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr);
+                        int addr = lod.LevelScriptEntryPoint;
+
+                        List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr, lod.Level);
                         IEnumerable<Warp> whiteListedWarps = levelWarps.Where(x => x.area == 0xFF);
                         allWarps.AddRange(whiteListedWarps);
 
-                        List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr);
+                        List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
                         List<SM64.Object> warpingObjects = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
 
                         // Check if warp object exists
@@ -323,12 +326,21 @@ namespace Mario64Randomizer
                         allWarps.AddRange(levelWarps);
                     }
 
-                    IEnumerable<Warp> warps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.course != 0x0));
+                    IEnumerable<Warp> warps = null;
+                    {
+                        // Drop all success/failure/invalid warps
+                        List<Warp> noDeathSuccessWarps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.id < 0xF0) & (x.to.course != 0x0)).ToList();
+
+                        // Drop warps that does not have defined exit
+#warning add check for bowser course
+                        warps = noDeathSuccessWarps.Where(x => noDeathSuccessWarps.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
+                    }
+
+                    // Drop all warps that have 
                     IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
                     Shuffle(warpsTo, seed);
 
-
-                    IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.area, warp.from, to, warp.addr));
+                    IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.area, warp.course, warp.from, to, warp.addr));
 
                     foreach (Warp warp in shuffledWarps)
                         warp.Write(rm);
@@ -348,11 +360,12 @@ namespace Mario64Randomizer
                 }
                 if (chkRandomizeEnemies.Checked)
                 {
-                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+                    foreach (LevelOffsetsDescription lod in LevelInfo.Description)
                     {
+                        int addr = lod.LevelScriptEntryPoint;
                         try
                         {
-                            List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
+                            List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
 
                             IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
                             IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
@@ -364,9 +377,9 @@ namespace Mario64Randomizer
                             Shuffle(nonGroundedList, seed);
 
                             IEnumerable<SM64.Object> shuffledGroundedObjects = groundedObjects.Zip(groundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+                                (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
                             IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+                                (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
 
                             foreach (SM64.Object obj in shuffledGroundedObjects)
                                 obj.Write(rm);
@@ -430,39 +443,6 @@ namespace Mario64Randomizer
                     Console.WriteLine("Cap: " + colorMarioCap.R.ToString("X2") + " " + colorMarioCap.B.ToString("X2") + "/n" + colorMarioCap.G.ToString("X2") + " 00");
                     Console.WriteLine("Shoes: " + colorMarioShoes.R.ToString("X2") + " " + colorMarioShoes.B.ToString("X2") + "/n" + colorMarioShoes.G.ToString("X2") + " 00");
                     MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                if (!chkRandomizeBowser.Checked)
-                {
-                    for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
-                    {
-                        List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr);
-
-                        for (int area = 0; area < 8; area++)
-                        {
-                            List<SM64.Object> areaObjects = allObjects.Where(x => x.area == area).ToList();
-                            if (areaObjects.Count == 0)
-                                continue;
-
-                            IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
-                            IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
-
-                            IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
-                            IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
-
-                            Shuffle(groundedList, seed);
-                            Shuffle(nonGroundedList, seed);
-
-                            IEnumerable<SM64.Object> shuffledGroundedObjects = groundedObjects.Zip(groundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
-                            IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
-
-                            foreach (SM64.Object obj in shuffledGroundedObjects)
-                                obj.Write(rm);
-                            foreach (SM64.Object obj in shuffledNonGroundedObjects)
-                                obj.Write(rm);
-                        }
-                    }
                 }
             }
             else

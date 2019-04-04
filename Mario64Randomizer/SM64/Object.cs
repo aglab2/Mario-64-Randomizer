@@ -62,15 +62,18 @@ namespace Mario64Randomizer.SM64
         public readonly ObjectPosition position;
         public readonly ObjectRotation rotation;
         public readonly int addr;
+        public readonly int level;
 
         public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
         public byte BParam2 { get { return (byte)((bparams & 0x00FF0000) >> 16); } }
 
-        public Object(byte area, ROM rom, int addr)
+        public Object(byte area, int level, ROM rom, int addr)
         {
+            this.area = area;
+            this.level = level;
+
             rom.PushOffset(addr);
 
-            this.area = area;
             position  = new ObjectPosition(rom);
             rotation  = new ObjectRotation(rom);
             act       = rom.Read8(2);
@@ -82,9 +85,10 @@ namespace Mario64Randomizer.SM64
             rom.PopOffset();
         }
 
-        public Object(byte area, byte act, byte model, int bparams, int behaviour, ObjectPosition position, ObjectRotation rotation, int addr)
+        public Object(byte area, int level, byte act, byte model, int bparams, int behaviour, ObjectPosition position, ObjectRotation rotation, int addr)
         {
             this.area = area;
+            this.level = level;
             this.behaviour = behaviour;
             this.addr = addr;
             this.position = position;
