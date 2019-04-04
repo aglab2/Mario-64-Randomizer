@@ -84,6 +84,8 @@ namespace Mario64Randomizer
             groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             warpingBehaviours = File.ReadAllLines("resources/warpBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+
+            lBehaviours.DataSource = File.ReadAllLines("resources/notGrounded.txt");
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -326,6 +328,22 @@ namespace Mario64Randomizer
                         allWarps.AddRange(levelWarps);
                     }
 
+                    /*if (!chkRandomizeBowser.Checked)
+                    {
+                        int bowserWarpId;
+
+                        if (nudBowserWarpId.Value != 0)
+                        {
+                            bowserWarpId = Convert.ToByte(nudBowserWarpId.Value);
+                            warps = warps.Where(x => x.to.course != bowserWarpId);
+                        }
+                        else
+                        {
+                            bowserWarpId = 0x22;
+                            warps = warps.Where(x => x.to.course != bowserWarpId);
+                        }                        
+                    }*/
+
                     IEnumerable<Warp> warps = null;
                     {
                         // Drop all success/failure/invalid warps
@@ -453,26 +471,34 @@ namespace Mario64Randomizer
 
         private void btnSaveRom_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "ROM Files (*.z64)|*.z64";
-            saveFileDialog.FilterIndex = 1;
-            saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = romName + " - " + seed.ToString();
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if(rm != null)
             {
-                try
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                saveFileDialog.Filter = "ROM Files (*.z64)|*.z64";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = romName + " - " + seed.ToString();
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
-                    MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    try
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
+                        MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Open a ROM File First!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+    
         }
 
         private void btnColorOveralls_Click(object sender, EventArgs e)
@@ -569,6 +595,24 @@ namespace Mario64Randomizer
             {
                 MessageBox.Show("Error: The Number of Stars amount is higher than the Selected Star Set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnRestoreBehaviours_Click(object sender, EventArgs e)
+        {
+            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            lBehaviours.DataSource = File.ReadAllLines("resources/notGrounded.txt");
+        }
+
+        private void btnRemoveBehaviour_Click(object sender, EventArgs e)
+        {
+            lBehaviours.Items.Remove(lBehaviours.SelectedIndex);
+            nonGroundedBehaviours.Remove(lBehaviours.SelectedIndex);
+        }
+
+        private void btnAddBehaviour_Click(object sender, EventArgs e)
+        {
+            lBehaviours.Items.Add(nudNewBehaviour.Value);
+            //nonGroundedBehaviours.Add(nudNewBehaviour.Value);
         }
     }
 }
