@@ -417,54 +417,86 @@ namespace Mario64Randomizer
                 if (chkRandomizeMarioClothes.Checked)
                 {
                     Random colorRandom = new Random(seed);
-                    if (colorMarioOveralls != Color.Empty)
+
+                    if (pColorOveralls.BackColor != Color.White)
                     {
-                        colorMarioOveralls = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                    }
-                    else
-                    {
+
                         colorMarioOveralls = pColorOveralls.BackColor;
                     }
+                    else
+                    {
+                        colorMarioOveralls = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                        pColorOveralls.BackColor = colorMarioOveralls;
+                    }
 
-                    if (colorMarioCap != Color.Empty)
+                    if (pColorCap.BackColor != Color.White)
+                    {
+                        colorMarioCap = pColorCap.BackColor;
+                    }
+                    else
                     {
                         colorMarioCap = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                    }
-                    else
-                    {
-                        colorMarioCap = pColorArms.BackColor;
+                        pColorCap.BackColor = colorMarioCap;
                     }
 
-                    if (colorMarioFace != Color.Empty)
-                    {
-                        colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                    }
-                    else
+                    if (pColorFace.BackColor != Color.White)
                     {
                         colorMarioFace = pColorFace.BackColor;
                     }
-
-                    if (colorMarioGloves != Color.Empty)
-                    {
-                        colorMarioGloves = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                    }
                     else
+                    {
+                        colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                        pColorFace.BackColor = colorMarioFace;
+                    }
+
+                    if (pColorGloves.BackColor != Color.White)
                     {
                         colorMarioGloves = pColorGloves.BackColor;
                     }
-
-                    if (colorMarioShoes != Color.Empty)
-                    {
-                        colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                    }
                     else
+                    {
+                        colorMarioGloves = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                        pColorGloves.BackColor = colorMarioGloves;
+                    }
+
+                    if (pColorShoes.BackColor != Color.White)
                     {
                         colorMarioShoes = pColorShoes.BackColor;
                     }
+                    else
+                    {
+                        colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                        pColorShoes.BackColor = colorMarioShoes;
+                    }
 
-                    Console.WriteLine("Overalls: " + colorMarioOveralls.R.ToString("X2") + " " + colorMarioOveralls.B.ToString("X2") + "/n" + colorMarioOveralls.G.ToString("X2") + " 00");
-                    Console.WriteLine("Cap: " + colorMarioCap.R.ToString("X2") + " " + colorMarioCap.B.ToString("X2") + "/n" + colorMarioCap.G.ToString("X2") + " 00");
-                    Console.WriteLine("Shoes: " + colorMarioShoes.R.ToString("X2") + " " + colorMarioShoes.B.ToString("X2") + "/n" + colorMarioShoes.G.ToString("X2") + " 00");
+                    if (pColorHair.BackColor != Color.White)
+                    {
+                        colorMarioHair = pColorHair.BackColor;
+                    }
+                    else
+                    {
+                        colorMarioHair = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                        pColorHair.BackColor = colorMarioHair;
+                    }
+
+                    SM64.MarioColor overallObject = new SM64.MarioColor(rm, 0x7EC20, colorMarioOveralls);
+                    overallObject.Write(rm);
+
+                    SM64.MarioColor capObject = new SM64.MarioColor(rm, 0x07EC40, colorMarioCap);
+                    capObject.Write(rm);
+
+                    SM64.MarioColor shoesObject = new SM64.MarioColor(rm, 0x07EC70, colorMarioShoes);
+                    shoesObject.Write(rm);
+
+                    SM64.MarioColor glovesObject = new SM64.MarioColor(rm, 0x07EC50, colorMarioGloves);
+                    glovesObject.Write(rm);
+
+                    SM64.MarioColor faceObject = new SM64.MarioColor(rm, 0x07EC98, colorMarioFace);
+                    faceObject.Write(rm);
+
+                    SM64.MarioColor hairObject = new SM64.MarioColor(rm, 0x07EC80, colorMarioHair);
+                    hairObject.Write(rm);
+
                     MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
@@ -522,7 +554,7 @@ namespace Mario64Randomizer
             if (result == DialogResult.OK)
             {
                 colorMarioCap = cdClothes.Color;
-                pColorArms.BackColor = cdClothes.Color;
+                pColorCap.BackColor = cdClothes.Color;
             }
         }
 
@@ -569,7 +601,7 @@ namespace Mario64Randomizer
         private void btnColorRestore_Click(object sender, EventArgs e)
         {
             colorMarioCap = Color.Empty;
-            pColorArms.BackColor = Color.White;
+            pColorCap.BackColor = Color.White;
 
             colorMarioFace = Color.Empty;
             pColorFace.BackColor = Color.White;

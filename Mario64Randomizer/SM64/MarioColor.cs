@@ -28,7 +28,16 @@ namespace Mario64Randomizer.SM64
 #warning why is it scrambled like this?
             color = Color.FromArgb(0x00, rom.Read8(0), rom.Read8(2), rom.Read8(1));
             rom.PopOffset();
-        }        
+        }
+
+        public MarioColor(ROM rom, int ramAddr, Color color)
+        {
+            int bank4ROMStart = rom.Read32(bank4ROMStartPtr);
+            this.addr = ramAddr - bank4RAMStart + bank4ROMStart;
+            rom.PushOffset(addr);
+            this.color = Color.FromArgb(0, color.R, color.B, color.G); ;
+            rom.PopOffset();
+        }
 
         public void Write(ROM rom)
         {
