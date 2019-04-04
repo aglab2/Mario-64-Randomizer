@@ -324,8 +324,6 @@ namespace Mario64Randomizer
                             List<Warp> presentedWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
                             allWarps.AddRange(presentedWarps);
                         }
-
-                        allWarps.AddRange(levelWarps);
                     }
 
                     /*if (!chkRandomizeBowser.Checked)
@@ -383,26 +381,33 @@ namespace Mario64Randomizer
                         int addr = lod.LevelScriptEntryPoint;
                         try
                         {
-                            List<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
+                            IEnumerable<SM64.Object> allObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level).Where(x => x.act != 0);
 
-                            IEnumerable<SM64.Object> groundedObjects = allObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
-                            IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
+                            for (int area = 0; area < 8; area++)
+                            {
+                                List<SM64.Object> areaObjects = allObjects.Where(x => x.area == area).ToList();
+                                if (areaObjects.Count == 0)
+                                    continue;
 
-                            IEnumerable<SM64.Object> nonGroundedObjects = allObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
-                            IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
+                                IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
+                                IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
 
-                            Shuffle(groundedList, seed);
-                            Shuffle(nonGroundedList, seed);
+                                IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
+                                IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
 
-                            IEnumerable<SM64.Object> shuffledGroundedObjects = groundedObjects.Zip(groundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
-                            IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
-                                (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+                                Shuffle(groundedList, seed);
+                                Shuffle(nonGroundedList, seed);
 
-                            foreach (SM64.Object obj in shuffledGroundedObjects)
-                                obj.Write(rm);
-                            foreach (SM64.Object obj in shuffledNonGroundedObjects)
-                                obj.Write(rm);
+                                IEnumerable<SM64.Object> shuffledGroundedObjects = groundedObjects.Zip(groundedList,
+                                    (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+                                IEnumerable<SM64.Object> shuffledNonGroundedObjects = nonGroundedObjects.Zip(nonGroundedList,
+                                    (obj, pos) => new SM64.Object(obj.area, obj.level, obj.act, obj.model, obj.bparams, obj.behaviour, pos, obj.rotation, obj.addr));
+
+                                foreach (SM64.Object obj in shuffledGroundedObjects)
+                                    obj.Write(rm);
+                                foreach (SM64.Object obj in shuffledNonGroundedObjects)
+                                    obj.Write(rm);
+                            }
                         }
                         catch (Exception) { }
                     }
