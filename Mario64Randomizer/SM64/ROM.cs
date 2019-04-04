@@ -91,7 +91,6 @@ namespace Mario64Randomizer.SM64
             Array.Copy(convertedData, 0, rom, offset + extraOffset, 8);
         }
 
-
         public byte PRead8(int offset)
         {
             return rom[offset];
