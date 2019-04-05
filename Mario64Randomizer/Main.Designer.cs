@@ -53,7 +53,6 @@
             this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
             this.lblBowserWarpId = new System.Windows.Forms.Label();
             this.tabEnemies = new System.Windows.Forms.TabPage();
-            this.nudNewBehaviour = new System.Windows.Forms.NumericUpDown();
             this.btnRestoreBehaviours = new System.Windows.Forms.Button();
             this.btnAddBehaviour = new System.Windows.Forms.Button();
             this.btnRemoveBehaviour = new System.Windows.Forms.Button();
@@ -85,13 +84,15 @@
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.btnSaveBehaviours = new System.Windows.Forms.Button();
+            this.btnLoadBehaviours = new System.Windows.Forms.Button();
+            this.txtNewBehaviour = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabWarps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBowserWarpId)).BeginInit();
             this.tabEnemies.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNewBehaviour)).BeginInit();
             this.tabClothes.SuspendLayout();
             this.tabSequence.SuspendLayout();
             this.SuspendLayout();
@@ -410,7 +411,9 @@
             // tabEnemies
             // 
             this.tabEnemies.BackColor = System.Drawing.Color.Black;
-            this.tabEnemies.Controls.Add(this.nudNewBehaviour);
+            this.tabEnemies.Controls.Add(this.txtNewBehaviour);
+            this.tabEnemies.Controls.Add(this.btnLoadBehaviours);
+            this.tabEnemies.Controls.Add(this.btnSaveBehaviours);
             this.tabEnemies.Controls.Add(this.btnRestoreBehaviours);
             this.tabEnemies.Controls.Add(this.btnAddBehaviour);
             this.tabEnemies.Controls.Add(this.btnRemoveBehaviour);
@@ -422,22 +425,6 @@
             this.tabEnemies.TabIndex = 6;
             this.tabEnemies.Text = "Enemies";
             // 
-            // nudNewBehaviour
-            // 
-            this.nudNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.nudNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNewBehaviour.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.nudNewBehaviour.Hexadecimal = true;
-            this.nudNewBehaviour.Location = new System.Drawing.Point(98, 16);
-            this.nudNewBehaviour.Maximum = new decimal(new int[] {
-            298954296,
-            2,
-            0,
-            0});
-            this.nudNewBehaviour.Name = "nudNewBehaviour";
-            this.nudNewBehaviour.Size = new System.Drawing.Size(167, 24);
-            this.nudNewBehaviour.TabIndex = 5;
-            // 
             // btnRestoreBehaviours
             // 
             this.btnRestoreBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -446,7 +433,7 @@
             this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
             this.btnRestoreBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreBehaviours.Location = new System.Drawing.Point(283, 15);
+            this.btnRestoreBehaviours.Location = new System.Drawing.Point(189, 16);
             this.btnRestoreBehaviours.Name = "btnRestoreBehaviours";
             this.btnRestoreBehaviours.Size = new System.Drawing.Size(24, 24);
             this.btnRestoreBehaviours.TabIndex = 4;
@@ -848,6 +835,42 @@
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Visible = false;
             // 
+            // btnSaveBehaviours
+            // 
+            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveBehaviours.Location = new System.Drawing.Point(216, 17);
+            this.btnSaveBehaviours.Name = "btnSaveBehaviours";
+            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 23);
+            this.btnSaveBehaviours.TabIndex = 6;
+            this.btnSaveBehaviours.Text = "Save Behaviours";
+            this.btnSaveBehaviours.UseVisualStyleBackColor = false;
+            this.btnSaveBehaviours.Click += new System.EventHandler(this.btnSaveBehaviours_Click);
+            // 
+            // btnLoadBehaviours
+            // 
+            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadBehaviours.Location = new System.Drawing.Point(259, 18);
+            this.btnLoadBehaviours.Name = "btnLoadBehaviours";
+            this.btnLoadBehaviours.Size = new System.Drawing.Size(48, 23);
+            this.btnLoadBehaviours.TabIndex = 7;
+            this.btnLoadBehaviours.Text = "Load Behaviours";
+            this.btnLoadBehaviours.UseVisualStyleBackColor = false;
+            this.btnLoadBehaviours.Click += new System.EventHandler(this.btnLoadBehaviours_Click);
+            // 
+            // txtNewBehaviour
+            // 
+            this.txtNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.txtNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
+            this.txtNewBehaviour.Location = new System.Drawing.Point(98, 16);
+            this.txtNewBehaviour.Name = "txtNewBehaviour";
+            this.txtNewBehaviour.Size = new System.Drawing.Size(86, 24);
+            this.txtNewBehaviour.TabIndex = 8;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -882,7 +905,7 @@
             this.tabWarps.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBowserWarpId)).EndInit();
             this.tabEnemies.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudNewBehaviour)).EndInit();
+            this.tabEnemies.PerformLayout();
             this.tabClothes.ResumeLayout(false);
             this.tabSequence.ResumeLayout(false);
             this.tabSequence.PerformLayout();
@@ -946,9 +969,11 @@
         private System.Windows.Forms.Button btnAddBehaviour;
         private System.Windows.Forms.Button btnRemoveBehaviour;
         private System.Windows.Forms.ListBox lBehaviours;
-        private System.Windows.Forms.NumericUpDown nudNewBehaviour;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.ListBox lbWarpWhitelist;
+        private System.Windows.Forms.Button btnLoadBehaviours;
+        private System.Windows.Forms.Button btnSaveBehaviours;
+        private System.Windows.Forms.TextBox txtNewBehaviour;
     }
 }
 

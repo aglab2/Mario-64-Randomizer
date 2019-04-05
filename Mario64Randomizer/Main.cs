@@ -35,6 +35,7 @@ namespace Mario64Randomizer
         public List<int> groundedBehaviours;
         public List<int> nonGroundedBehaviours;
         public List<int> warpingBehaviours;
+        public List<string> behavioursWithNames;
 
         private List<string> first = new List<string>()
         {
@@ -87,7 +88,9 @@ namespace Mario64Randomizer
             nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             warpingBehaviours = File.ReadAllLines("resources/warpBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
 
-            lBehaviours.DataSource = File.ReadAllLines("resources/notGrounded.txt");
+            behavioursWithNames = File.ReadAllLines("resources/notGrounded.txt").ToList();
+
+            lBehaviours.DataSource = behavioursWithNames;            
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -362,6 +365,7 @@ namespace Mario64Randomizer
 
                     foreach (Warp warp in shuffledWarps)
                         warp.Write(rm);
+                    
 
                     MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
@@ -643,15 +647,71 @@ namespace Mario64Randomizer
         }
 
         private void btnRemoveBehaviour_Click(object sender, EventArgs e)
-        {
-            lBehaviours.Items.Remove(lBehaviours.SelectedIndex);
-            nonGroundedBehaviours.Remove(lBehaviours.SelectedIndex);
+        {  
+            if(lBehaviours.Items.Count > 0)
+            {
+                behavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
+                lBehaviours.DataSource = null;
+                lBehaviours.DataSource = behavioursWithNames;
+                lBehaviours.SelectedIndex = 0;
+            }            
         }
 
         private void btnAddBehaviour_Click(object sender, EventArgs e)
+        {            
+            behavioursWithNames.Add(txtNewBehaviour.Text);
+            lBehaviours.DataSource = null;
+            lBehaviours.DataSource = behavioursWithNames;
+            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+        }
+
+        private void btnSaveBehaviours_Click(object sender, EventArgs e)
         {
-            lBehaviours.Items.Add(nudNewBehaviour.Value);
-            //nonGroundedBehaviours.Add(nudNewBehaviour.Value);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.WriteAllLines(saveFileDialog.FileName, behavioursWithNames);
+                    MessageBox.Show("Behaviours saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }          
+        }
+
+        private void btnLoadBehaviours_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    behavioursWithNames = File.ReadAllLines(openFileDialog.FileName).ToList();
+                    lBehaviours.DataSource = null;
+                    lBehaviours.DataSource = behavioursWithNames;
+                    nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+                    MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
 
         /*private List<int> readFile(string resourceName)
@@ -667,6 +727,6 @@ namespace Mario64Randomizer
             return listFile;
         }*/
 
-        
+
     }
 }
