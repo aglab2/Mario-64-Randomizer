@@ -35,6 +35,7 @@ namespace Mario64Randomizer
         public List<int> groundedBehaviours;
         public List<int> nonGroundedBehaviours;
         public List<int> warpingBehaviours;
+        public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
 
         private List<string> first = new List<string>()
@@ -84,7 +85,8 @@ namespace Mario64Randomizer
             behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
             groundedBehaviours = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
             nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-            warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
+            warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             lBehaviours.DataSource = behavioursWithNames;
         }
 
@@ -300,6 +302,7 @@ namespace Mario64Randomizer
                 if (chkRandomizeWarps.Checked)
                 {
                     List<Warp> allWarps = new List<Warp>();
+                    List<Warp> targetWarps = new List<Warp>();
 
                     foreach (LevelOffsetsDescription lod in LevelInfo.Description)
                     {
@@ -312,7 +315,8 @@ namespace Mario64Randomizer
                             allWarps.AddRange(whiteListedWarps);
 
                             List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
-                            List<SM64.Object> warpingObjects = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
+                            List<SM64.Object> warpingObjects    = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
+                            List<SM64.Object> targetWarpObjects = levelObjects.Where(x => targetWarpBehaviours.Contains(x.behaviour)).ToList();
 
                             // Check if warp object exists
                             for (int area = 0; area < 7; area++)
@@ -321,9 +325,17 @@ namespace Mario64Randomizer
                                 if (areaWarps.Count == 0)
                                     continue;
 
-                                List<SM64.Object> areaObjects = warpingObjects.Where(x => x.area == area).ToList();
-                                List<Warp> presentedWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
-                                allWarps.AddRange(presentedWarps);
+                                {
+                                    List<SM64.Object> areaObjects = warpingObjects.Where(x => x.area == area).ToList();
+                                    List<Warp> warpingWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
+                                    allWarps.AddRange(warpingWarps);
+                                }
+
+                                {
+                                    List<SM64.Object> areaObjects = targetWarpObjects.Where(x => x.area == area).ToList();
+                                    List<Warp> warpingWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
+                                    targetWarps.AddRange(warpingWarps);
+                                }
                             }
                         }
                         catch (Exception) { }
@@ -349,10 +361,10 @@ namespace Mario64Randomizer
                     {
                         // Drop all success/failure/invalid warps
                         List<Warp> noDeathSuccessWarps = allWarps.Where(x => (x.from.id < 0xF0) & (x.to.id < 0xF0) & (x.to.course != 0x0)).ToList();
+                        List<Warp> validTargets = targetWarps.Where(x => x.from.id != 0xF0).ToList();
 
-                        // Drop warps that does not have defined exit
-#warning add check for bowser course
-                        warps = noDeathSuccessWarps.Where(x => noDeathSuccessWarps.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
+                        // Drop warps that does not have target
+                        warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
                     }
 
                     // Drop all warps that have 

@@ -129,6 +129,7 @@
     <None Include="Resources\refresh.bmp" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\help.png" />
+    <EmbeddedResource Include="Resources\targetWarps.txt" />
     <Content Include="Resources\warpBehaviours.txt" />
     <Content Include="star.ico" />
   </ItemGroup>
