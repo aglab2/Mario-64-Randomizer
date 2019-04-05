@@ -85,7 +85,7 @@ namespace Mario64Randomizer
             groundedBehaviours = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
             nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
-            lBehaviours.DataSource = behavioursWithNames;            
+            lBehaviours.DataSource = behavioursWithNames;
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -443,15 +443,32 @@ namespace Mario64Randomizer
                         pColorCap.BackColor = colorMarioCap;
                     }
 
-                    if (pColorFace.BackColor != Color.White)
+                    if(chkRandomizeHair.Checked)
                     {
-                        colorMarioFace = pColorFace.BackColor;
-                    }
-                    else
+                        if (pColorHair.BackColor != Color.White)
+                        {
+                            colorMarioHair = pColorHair.BackColor;
+                        }
+                        else
+                        {
+                            colorMarioHair = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                            pColorHair.BackColor = colorMarioHair;
+                        }
+                    }                    
+
+                    if(chkRandomizeSkin.Checked)
                     {
-                        colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                        pColorFace.BackColor = colorMarioFace;
+                        if (pColorFace.BackColor != Color.White)
+                        {
+                            colorMarioFace = pColorFace.BackColor;
+                        }
+                        else
+                        {
+                            colorMarioFace = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
+                            pColorFace.BackColor = colorMarioFace;
+                        }
                     }
+                    
 
                     if (pColorGloves.BackColor != Color.White)
                     {
@@ -471,17 +488,7 @@ namespace Mario64Randomizer
                     {
                         colorMarioShoes = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
                         pColorShoes.BackColor = colorMarioShoes;
-                    }
-
-                    if (pColorHair.BackColor != Color.White)
-                    {
-                        colorMarioHair = pColorHair.BackColor;
-                    }
-                    else
-                    {
-                        colorMarioHair = Color.FromArgb(colorRandom.Next(256), colorRandom.Next(256), colorRandom.Next(256));
-                        pColorHair.BackColor = colorMarioHair;
-                    }
+                    }                                       
 
                     SM64.MarioColor overallObject = new SM64.MarioColor(rm, 0x7EC20, colorMarioOveralls);
                     overallObject.Write(rm);
@@ -495,12 +502,17 @@ namespace Mario64Randomizer
                     SM64.MarioColor glovesObject = new SM64.MarioColor(rm, 0x07EC50, colorMarioGloves);
                     glovesObject.Write(rm);
 
-                    SM64.MarioColor faceObject = new SM64.MarioColor(rm, 0x07EC98, colorMarioFace);
-                    faceObject.Write(rm);
-
-                    SM64.MarioColor hairObject = new SM64.MarioColor(rm, 0x07EC80, colorMarioHair);
-                    hairObject.Write(rm);
-
+                    if(chkRandomizeSkin.Checked)
+                    {
+                        SM64.MarioColor faceObject = new SM64.MarioColor(rm, 0x07EC98, colorMarioFace);
+                        faceObject.Write(rm);
+                    }
+                    if(chkRandomizeHair.Checked)
+                    {
+                        SM64.MarioColor hairObject = new SM64.MarioColor(rm, 0x07EC80, colorMarioHair);
+                        hairObject.Write(rm);
+                    }
+                                        
                     MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
@@ -711,6 +723,33 @@ namespace Mario64Randomizer
                     return;
                 }
             }
-        }        
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            btnHelp.BackColor = Color.Black;
+            AboutDialog a = new AboutDialog();
+            a.ShowDialog();
+        }
+
+        private void btnHelp_Hover(object sender, EventArgs e)
+        {
+            btnHelp.BackColor = Color.Black;
+        }
+
+        private void btnHelp_Enter(object sender, EventArgs e)
+        {
+            btnHelp.BackColor = Color.Black;
+        }
+
+        private void btnHelp_Down(object sender, EventArgs e)
+        {
+            btnHelp.BackColor = Color.Black;
+        }
+
+        private void btnHelp_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnHelp.BackColor = Color.Black;
+        }
     }
 }

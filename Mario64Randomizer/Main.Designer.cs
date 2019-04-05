@@ -61,6 +61,8 @@
             this.btnRemoveBehaviour = new System.Windows.Forms.Button();
             this.lBehaviours = new System.Windows.Forms.ListBox();
             this.tabClothes = new System.Windows.Forms.TabPage();
+            this.chkRandomizeHair = new System.Windows.Forms.CheckBox();
+            this.chkRandomizeSkin = new System.Windows.Forms.CheckBox();
             this.pColorHair = new System.Windows.Forms.Panel();
             this.pColorFace = new System.Windows.Forms.Panel();
             this.pColorShoes = new System.Windows.Forms.Panel();
@@ -102,11 +104,12 @@
             this.btnNewSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.btnNewSeed.FlatAppearance.BorderSize = 0;
             this.btnNewSeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewSeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewSeed.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnNewSeed.Location = new System.Drawing.Point(23, 10);
+            this.btnNewSeed.Location = new System.Drawing.Point(30, 16);
             this.btnNewSeed.Name = "btnNewSeed";
             this.btnNewSeed.Size = new System.Drawing.Size(100, 25);
-            this.btnNewSeed.TabIndex = 0;
+            this.btnNewSeed.TabIndex = 1;
             this.btnNewSeed.Text = "New Seed";
             this.btnNewSeed.UseVisualStyleBackColor = false;
             this.btnNewSeed.Click += new System.EventHandler(this.btnNewSeed_Click);
@@ -116,11 +119,12 @@
             this.btnEnterSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.btnEnterSeed.FlatAppearance.BorderSize = 0;
             this.btnEnterSeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnterSeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnterSeed.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnterSeed.Location = new System.Drawing.Point(267, 8);
+            this.btnEnterSeed.Location = new System.Drawing.Point(274, 16);
             this.btnEnterSeed.Name = "btnEnterSeed";
             this.btnEnterSeed.Size = new System.Drawing.Size(100, 25);
-            this.btnEnterSeed.TabIndex = 1;
+            this.btnEnterSeed.TabIndex = 2;
             this.btnEnterSeed.Text = "Enter Seed";
             this.btnEnterSeed.UseVisualStyleBackColor = false;
             this.btnEnterSeed.Click += new System.EventHandler(this.btnEnterSeed_Click);
@@ -217,17 +221,17 @@
             // nudSeed
             // 
             this.nudSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.nudSeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSeed.ForeColor = System.Drawing.SystemColors.Menu;
-            this.nudSeed.Location = new System.Drawing.Point(145, 10);
+            this.nudSeed.Location = new System.Drawing.Point(152, 16);
             this.nudSeed.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
             this.nudSeed.Name = "nudSeed";
-            this.nudSeed.Size = new System.Drawing.Size(100, 24);
-            this.nudSeed.TabIndex = 24;
+            this.nudSeed.Size = new System.Drawing.Size(100, 22);
+            this.nudSeed.TabIndex = 1;
             // 
             // nudStarAmount
             // 
@@ -311,7 +315,7 @@
             this.tabControl1.Controls.Add(this.tabEnemies);
             this.tabControl1.Controls.Add(this.tabClothes);
             this.tabControl1.Controls.Add(this.tabSequence);
-            this.tabControl1.Location = new System.Drawing.Point(23, 112);
+            this.tabControl1.Location = new System.Drawing.Point(30, 118);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(344, 348);
@@ -344,9 +348,9 @@
             this.lbWarpWhitelist.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.lbWarpWhitelist.FormattingEnabled = true;
             this.lbWarpWhitelist.ItemHeight = 20;
-            this.lbWarpWhitelist.Location = new System.Drawing.Point(43, 89);
+            this.lbWarpWhitelist.Location = new System.Drawing.Point(48, 109);
             this.lbWarpWhitelist.Name = "lbWarpWhitelist";
-            this.lbWarpWhitelist.Size = new System.Drawing.Size(239, 224);
+            this.lbWarpWhitelist.Size = new System.Drawing.Size(239, 204);
             this.lbWarpWhitelist.TabIndex = 6;
             // 
             // nudBowserWarpId
@@ -354,7 +358,7 @@
             this.nudBowserWarpId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.nudBowserWarpId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudBowserWarpId.ForeColor = System.Drawing.SystemColors.Menu;
-            this.nudBowserWarpId.Location = new System.Drawing.Point(195, 56);
+            this.nudBowserWarpId.Location = new System.Drawing.Point(200, 56);
             this.nudBowserWarpId.Maximum = new decimal(new int[] {
             255,
             0,
@@ -370,7 +374,7 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(195, 15);
+            this.checkBox1.Location = new System.Drawing.Point(200, 15);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(125, 17);
             this.checkBox1.TabIndex = 4;
@@ -382,7 +386,7 @@
             // chkWarpFile
             // 
             this.chkWarpFile.AutoSize = true;
-            this.chkWarpFile.Location = new System.Drawing.Point(43, 38);
+            this.chkWarpFile.Location = new System.Drawing.Point(48, 38);
             this.chkWarpFile.Name = "chkWarpFile";
             this.chkWarpFile.Size = new System.Drawing.Size(106, 17);
             this.chkWarpFile.TabIndex = 3;
@@ -392,7 +396,7 @@
             // chkRandomizeBowser
             // 
             this.chkRandomizeBowser.AutoSize = true;
-            this.chkRandomizeBowser.Location = new System.Drawing.Point(43, 15);
+            this.chkRandomizeBowser.Location = new System.Drawing.Point(48, 15);
             this.chkRandomizeBowser.Name = "chkRandomizeBowser";
             this.chkRandomizeBowser.Size = new System.Drawing.Size(146, 17);
             this.chkRandomizeBowser.TabIndex = 2;
@@ -402,7 +406,7 @@
             // lblBowserWarpId
             // 
             this.lblBowserWarpId.AutoSize = true;
-            this.lblBowserWarpId.Location = new System.Drawing.Point(40, 63);
+            this.lblBowserWarpId.Location = new System.Drawing.Point(45, 63);
             this.lblBowserWarpId.Name = "lblBowserWarpId";
             this.lblBowserWarpId.Size = new System.Drawing.Size(83, 13);
             this.lblBowserWarpId.TabIndex = 1;
@@ -433,7 +437,7 @@
             this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtNewBehaviour.Location = new System.Drawing.Point(98, 16);
             this.txtNewBehaviour.Name = "txtNewBehaviour";
-            this.txtNewBehaviour.Size = new System.Drawing.Size(86, 24);
+            this.txtNewBehaviour.Size = new System.Drawing.Size(94, 24);
             this.txtNewBehaviour.TabIndex = 8;
             // 
             // btnLoadBehaviours
@@ -441,9 +445,9 @@
             this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
             this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadBehaviours.Location = new System.Drawing.Point(259, 18);
+            this.btnLoadBehaviours.Location = new System.Drawing.Point(276, 16);
             this.btnLoadBehaviours.Name = "btnLoadBehaviours";
-            this.btnLoadBehaviours.Size = new System.Drawing.Size(48, 23);
+            this.btnLoadBehaviours.Size = new System.Drawing.Size(40, 25);
             this.btnLoadBehaviours.TabIndex = 7;
             this.btnLoadBehaviours.Text = "Load Behaviours";
             this.btnLoadBehaviours.UseVisualStyleBackColor = false;
@@ -454,9 +458,9 @@
             this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
             this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBehaviours.Location = new System.Drawing.Point(216, 17);
+            this.btnSaveBehaviours.Location = new System.Drawing.Point(230, 16);
             this.btnSaveBehaviours.Name = "btnSaveBehaviours";
-            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 23);
+            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 25);
             this.btnSaveBehaviours.TabIndex = 6;
             this.btnSaveBehaviours.Text = "Save Behaviours";
             this.btnSaveBehaviours.UseVisualStyleBackColor = false;
@@ -470,9 +474,9 @@
             this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
             this.btnRestoreBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreBehaviours.Location = new System.Drawing.Point(189, 16);
+            this.btnRestoreBehaviours.Location = new System.Drawing.Point(198, 16);
             this.btnRestoreBehaviours.Name = "btnRestoreBehaviours";
-            this.btnRestoreBehaviours.Size = new System.Drawing.Size(24, 24);
+            this.btnRestoreBehaviours.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreBehaviours.TabIndex = 4;
             this.btnRestoreBehaviours.UseVisualStyleBackColor = false;
             this.btnRestoreBehaviours.Click += new System.EventHandler(this.btnRestoreBehaviours_Click);
@@ -485,7 +489,7 @@
             this.btnAddBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAddBehaviour.Location = new System.Drawing.Point(25, 16);
             this.btnAddBehaviour.Name = "btnAddBehaviour";
-            this.btnAddBehaviour.Size = new System.Drawing.Size(30, 23);
+            this.btnAddBehaviour.Size = new System.Drawing.Size(30, 25);
             this.btnAddBehaviour.TabIndex = 3;
             this.btnAddBehaviour.Text = "+";
             this.btnAddBehaviour.UseVisualStyleBackColor = false;
@@ -499,7 +503,7 @@
             this.btnRemoveBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRemoveBehaviour.Location = new System.Drawing.Point(61, 16);
             this.btnRemoveBehaviour.Name = "btnRemoveBehaviour";
-            this.btnRemoveBehaviour.Size = new System.Drawing.Size(31, 23);
+            this.btnRemoveBehaviour.Size = new System.Drawing.Size(30, 25);
             this.btnRemoveBehaviour.TabIndex = 2;
             this.btnRemoveBehaviour.Text = "-";
             this.btnRemoveBehaviour.UseVisualStyleBackColor = false;
@@ -511,18 +515,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.lBehaviours.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBehaviours.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBehaviours.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.lBehaviours.FormattingEnabled = true;
-            this.lBehaviours.ItemHeight = 18;
+            this.lBehaviours.ItemHeight = 16;
             this.lBehaviours.Location = new System.Drawing.Point(25, 48);
             this.lBehaviours.Name = "lBehaviours";
-            this.lBehaviours.Size = new System.Drawing.Size(282, 238);
+            this.lBehaviours.Size = new System.Drawing.Size(291, 260);
             this.lBehaviours.TabIndex = 0;
             // 
             // tabClothes
             // 
             this.tabClothes.BackColor = System.Drawing.Color.Black;
+            this.tabClothes.Controls.Add(this.chkRandomizeHair);
+            this.tabClothes.Controls.Add(this.chkRandomizeSkin);
             this.tabClothes.Controls.Add(this.pColorHair);
             this.tabClothes.Controls.Add(this.pColorFace);
             this.tabClothes.Controls.Add(this.pColorShoes);
@@ -543,11 +549,31 @@
             this.tabClothes.TabIndex = 3;
             this.tabClothes.Text = "Mario\'s Clothes";
             // 
+            // chkRandomizeHair
+            // 
+            this.chkRandomizeHair.AutoSize = true;
+            this.chkRandomizeHair.Location = new System.Drawing.Point(62, 35);
+            this.chkRandomizeHair.Name = "chkRandomizeHair";
+            this.chkRandomizeHair.Size = new System.Drawing.Size(101, 17);
+            this.chkRandomizeHair.TabIndex = 16;
+            this.chkRandomizeHair.Text = "Randomize Hair";
+            this.chkRandomizeHair.UseVisualStyleBackColor = true;
+            // 
+            // chkRandomizeSkin
+            // 
+            this.chkRandomizeSkin.AutoSize = true;
+            this.chkRandomizeSkin.Location = new System.Drawing.Point(62, 15);
+            this.chkRandomizeSkin.Name = "chkRandomizeSkin";
+            this.chkRandomizeSkin.Size = new System.Drawing.Size(103, 17);
+            this.chkRandomizeSkin.TabIndex = 15;
+            this.chkRandomizeSkin.Text = "Randomize Skin";
+            this.chkRandomizeSkin.UseVisualStyleBackColor = true;
+            // 
             // pColorHair
             // 
             this.pColorHair.BackColor = System.Drawing.Color.White;
             this.pColorHair.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorHair.Location = new System.Drawing.Point(172, 110);
+            this.pColorHair.Location = new System.Drawing.Point(167, 139);
             this.pColorHair.Name = "pColorHair";
             this.pColorHair.Size = new System.Drawing.Size(109, 23);
             this.pColorHair.TabIndex = 14;
@@ -557,7 +583,7 @@
             // 
             this.pColorFace.BackColor = System.Drawing.Color.White;
             this.pColorFace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorFace.Location = new System.Drawing.Point(172, 70);
+            this.pColorFace.Location = new System.Drawing.Point(167, 99);
             this.pColorFace.Name = "pColorFace";
             this.pColorFace.Size = new System.Drawing.Size(109, 23);
             this.pColorFace.TabIndex = 14;
@@ -567,7 +593,7 @@
             // 
             this.pColorShoes.BackColor = System.Drawing.Color.White;
             this.pColorShoes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorShoes.Location = new System.Drawing.Point(172, 231);
+            this.pColorShoes.Location = new System.Drawing.Point(167, 260);
             this.pColorShoes.Name = "pColorShoes";
             this.pColorShoes.Size = new System.Drawing.Size(109, 23);
             this.pColorShoes.TabIndex = 14;
@@ -577,7 +603,7 @@
             // 
             this.pColorGloves.BackColor = System.Drawing.Color.White;
             this.pColorGloves.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorGloves.Location = new System.Drawing.Point(172, 188);
+            this.pColorGloves.Location = new System.Drawing.Point(167, 217);
             this.pColorGloves.Name = "pColorGloves";
             this.pColorGloves.Size = new System.Drawing.Size(109, 23);
             this.pColorGloves.TabIndex = 14;
@@ -587,7 +613,7 @@
             // 
             this.pColorCap.BackColor = System.Drawing.Color.White;
             this.pColorCap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorCap.Location = new System.Drawing.Point(172, 29);
+            this.pColorCap.Location = new System.Drawing.Point(167, 58);
             this.pColorCap.Name = "pColorCap";
             this.pColorCap.Size = new System.Drawing.Size(109, 23);
             this.pColorCap.TabIndex = 14;
@@ -597,7 +623,7 @@
             // 
             this.pColorOveralls.BackColor = System.Drawing.Color.White;
             this.pColorOveralls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pColorOveralls.Location = new System.Drawing.Point(172, 150);
+            this.pColorOveralls.Location = new System.Drawing.Point(167, 179);
             this.pColorOveralls.Name = "pColorOveralls";
             this.pColorOveralls.Size = new System.Drawing.Size(109, 23);
             this.pColorOveralls.TabIndex = 13;
@@ -609,7 +635,7 @@
             this.btnColorHair.FlatAppearance.BorderSize = 0;
             this.btnColorHair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorHair.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorHair.Location = new System.Drawing.Point(67, 110);
+            this.btnColorHair.Location = new System.Drawing.Point(62, 139);
             this.btnColorHair.Name = "btnColorHair";
             this.btnColorHair.Size = new System.Drawing.Size(75, 23);
             this.btnColorHair.TabIndex = 6;
@@ -623,7 +649,7 @@
             this.btnColorFace.FlatAppearance.BorderSize = 0;
             this.btnColorFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorFace.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorFace.Location = new System.Drawing.Point(67, 70);
+            this.btnColorFace.Location = new System.Drawing.Point(62, 99);
             this.btnColorFace.Name = "btnColorFace";
             this.btnColorFace.Size = new System.Drawing.Size(75, 23);
             this.btnColorFace.TabIndex = 5;
@@ -637,7 +663,7 @@
             this.btnColorShoes.FlatAppearance.BorderSize = 0;
             this.btnColorShoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorShoes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorShoes.Location = new System.Drawing.Point(67, 231);
+            this.btnColorShoes.Location = new System.Drawing.Point(62, 260);
             this.btnColorShoes.Name = "btnColorShoes";
             this.btnColorShoes.Size = new System.Drawing.Size(75, 23);
             this.btnColorShoes.TabIndex = 4;
@@ -651,7 +677,7 @@
             this.btnColorGloves.FlatAppearance.BorderSize = 0;
             this.btnColorGloves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorGloves.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorGloves.Location = new System.Drawing.Point(67, 188);
+            this.btnColorGloves.Location = new System.Drawing.Point(62, 217);
             this.btnColorGloves.Name = "btnColorGloves";
             this.btnColorGloves.Size = new System.Drawing.Size(75, 23);
             this.btnColorGloves.TabIndex = 3;
@@ -665,7 +691,7 @@
             this.btnColorCapArms.FlatAppearance.BorderSize = 0;
             this.btnColorCapArms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorCapArms.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorCapArms.Location = new System.Drawing.Point(67, 29);
+            this.btnColorCapArms.Location = new System.Drawing.Point(62, 58);
             this.btnColorCapArms.Name = "btnColorCapArms";
             this.btnColorCapArms.Size = new System.Drawing.Size(75, 23);
             this.btnColorCapArms.TabIndex = 2;
@@ -679,7 +705,7 @@
             this.btnColorOveralls.FlatAppearance.BorderSize = 0;
             this.btnColorOveralls.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnColorOveralls.Location = new System.Drawing.Point(67, 150);
+            this.btnColorOveralls.Location = new System.Drawing.Point(62, 179);
             this.btnColorOveralls.Name = "btnColorOveralls";
             this.btnColorOveralls.Size = new System.Drawing.Size(75, 23);
             this.btnColorOveralls.TabIndex = 1;
@@ -694,7 +720,7 @@
             this.btnColorRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnColorRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorRestore.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnColorRestore.Location = new System.Drawing.Point(19, 28);
+            this.btnColorRestore.Location = new System.Drawing.Point(171, 15);
             this.btnColorRestore.Name = "btnColorRestore";
             this.btnColorRestore.Size = new System.Drawing.Size(24, 24);
             this.btnColorRestore.TabIndex = 0;
@@ -727,8 +753,8 @@
             // 
             // btnRefreshList
             // 
-            this.btnRefreshList.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnRefreshList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefreshList.BackgroundImage")));
+            this.btnRefreshList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btnRefreshList.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
             this.btnRefreshList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefreshList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefreshList.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -744,7 +770,7 @@
             this.chkRandomizeText.AutoSize = true;
             this.chkRandomizeText.Enabled = false;
             this.chkRandomizeText.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeText.Location = new System.Drawing.Point(267, 88);
+            this.chkRandomizeText.Location = new System.Drawing.Point(274, 95);
             this.chkRandomizeText.Name = "chkRandomizeText";
             this.chkRandomizeText.Size = new System.Drawing.Size(47, 17);
             this.chkRandomizeText.TabIndex = 0;
@@ -758,11 +784,12 @@
             this.btnSaveRom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSaveRom.FlatAppearance.BorderSize = 0;
             this.btnSaveRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveRom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveRom.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSaveRom.Location = new System.Drawing.Point(267, 36);
+            this.btnSaveRom.Location = new System.Drawing.Point(274, 42);
             this.btnSaveRom.Name = "btnSaveRom";
             this.btnSaveRom.Size = new System.Drawing.Size(100, 25);
-            this.btnSaveRom.TabIndex = 36;
+            this.btnSaveRom.TabIndex = 5;
             this.btnSaveRom.Text = "Save Rom";
             this.btnSaveRom.UseVisualStyleBackColor = false;
             this.btnSaveRom.Click += new System.EventHandler(this.btnSaveRom_Click);
@@ -773,11 +800,12 @@
             this.btnRandomize.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnRandomize.FlatAppearance.BorderSize = 0;
             this.btnRandomize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRandomize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRandomize.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRandomize.Location = new System.Drawing.Point(145, 36);
+            this.btnRandomize.Location = new System.Drawing.Point(152, 42);
             this.btnRandomize.Name = "btnRandomize";
             this.btnRandomize.Size = new System.Drawing.Size(100, 25);
-            this.btnRandomize.TabIndex = 35;
+            this.btnRandomize.TabIndex = 4;
             this.btnRandomize.Text = "Randomize";
             this.btnRandomize.UseVisualStyleBackColor = false;
             this.btnRandomize.Click += new System.EventHandler(this.btnRandomize_Click);
@@ -788,11 +816,12 @@
             this.btnOpenRom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnOpenRom.FlatAppearance.BorderSize = 0;
             this.btnOpenRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenRom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenRom.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOpenRom.Location = new System.Drawing.Point(23, 36);
+            this.btnOpenRom.Location = new System.Drawing.Point(30, 42);
             this.btnOpenRom.Name = "btnOpenRom";
             this.btnOpenRom.Size = new System.Drawing.Size(100, 25);
-            this.btnOpenRom.TabIndex = 34;
+            this.btnOpenRom.TabIndex = 3;
             this.btnOpenRom.Text = "Open Rom";
             this.btnOpenRom.UseVisualStyleBackColor = false;
             this.btnOpenRom.Click += new System.EventHandler(this.btnOpenRom_Click);
@@ -803,7 +832,7 @@
             this.chkRandomizeEnemies.Checked = true;
             this.chkRandomizeEnemies.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeEnemies.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeEnemies.Location = new System.Drawing.Point(145, 65);
+            this.chkRandomizeEnemies.Location = new System.Drawing.Point(152, 71);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
             this.chkRandomizeEnemies.Size = new System.Drawing.Size(66, 17);
             this.chkRandomizeEnemies.TabIndex = 40;
@@ -816,7 +845,7 @@
             this.chkRandomizeMarioClothes.Checked = true;
             this.chkRandomizeMarioClothes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeMarioClothes.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(145, 88);
+            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(152, 95);
             this.chkRandomizeMarioClothes.Name = "chkRandomizeMarioClothes";
             this.chkRandomizeMarioClothes.Size = new System.Drawing.Size(97, 17);
             this.chkRandomizeMarioClothes.TabIndex = 39;
@@ -829,7 +858,7 @@
             this.chkRandomizeMusic.Checked = true;
             this.chkRandomizeMusic.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeMusic.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeMusic.Location = new System.Drawing.Point(23, 89);
+            this.chkRandomizeMusic.Location = new System.Drawing.Point(30, 95);
             this.chkRandomizeMusic.Name = "chkRandomizeMusic";
             this.chkRandomizeMusic.Size = new System.Drawing.Size(54, 17);
             this.chkRandomizeMusic.TabIndex = 38;
@@ -842,7 +871,7 @@
             this.chkRandomizeWarps.Checked = true;
             this.chkRandomizeWarps.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeWarps.Location = new System.Drawing.Point(23, 65);
+            this.chkRandomizeWarps.Location = new System.Drawing.Point(30, 71);
             this.chkRandomizeWarps.Name = "chkRandomizeWarps";
             this.chkRandomizeWarps.Size = new System.Drawing.Size(57, 17);
             this.chkRandomizeWarps.TabIndex = 37;
@@ -854,7 +883,7 @@
             this.chkRandomizeTextures.AutoSize = true;
             this.chkRandomizeTextures.Enabled = false;
             this.chkRandomizeTextures.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeTextures.Location = new System.Drawing.Point(267, 70);
+            this.chkRandomizeTextures.Location = new System.Drawing.Point(274, 71);
             this.chkRandomizeTextures.Name = "chkRandomizeTextures";
             this.chkRandomizeTextures.Size = new System.Drawing.Size(67, 17);
             this.chkRandomizeTextures.TabIndex = 41;
@@ -864,13 +893,22 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(312, 71);
+            this.btnHelp.BackColor = System.Drawing.Color.Transparent;
+            this.btnHelp.BackgroundImage = global::Mario64Randomizer.Properties.Resources.help;
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.ForeColor = System.Drawing.Color.Transparent;
+            this.btnHelp.Location = new System.Drawing.Point(339, 77);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(55, 35);
-            this.btnHelp.TabIndex = 6;
-            this.btnHelp.Text = "Help";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Visible = false;
+            this.btnHelp.Size = new System.Drawing.Size(35, 35);
+            this.btnHelp.TabIndex = 26;
+            this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
+            this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
             // 
             // Main
             // 
@@ -908,6 +946,7 @@
             this.tabEnemies.ResumeLayout(false);
             this.tabEnemies.PerformLayout();
             this.tabClothes.ResumeLayout(false);
+            this.tabClothes.PerformLayout();
             this.tabSequence.ResumeLayout(false);
             this.tabSequence.PerformLayout();
             this.ResumeLayout(false);
@@ -975,6 +1014,8 @@
         private System.Windows.Forms.Button btnLoadBehaviours;
         private System.Windows.Forms.Button btnSaveBehaviours;
         private System.Windows.Forms.TextBox txtNewBehaviour;
+        private System.Windows.Forms.CheckBox chkRandomizeHair;
+        private System.Windows.Forms.CheckBox chkRandomizeSkin;
     }
 }
 
