@@ -79,17 +79,12 @@ namespace Mario64Randomizer
         }
 
         private void Main_Load(object sender, System.EventArgs e)
-        {
-            
+        {            
             this.btnNewSeed.PerformClick();
-            
-            groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-            
-            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-            warpingBehaviours = File.ReadAllLines("resources/warpBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-
-            behavioursWithNames = File.ReadAllLines("resources/notGrounded.txt").ToList();
-
+            behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            groundedBehaviours = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
+            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
             lBehaviours.DataSource = behavioursWithNames;            
         }
 
@@ -642,8 +637,9 @@ namespace Mario64Randomizer
 
         private void btnRestoreBehaviours_Click(object sender, EventArgs e)
         {
-            nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-            lBehaviours.DataSource = File.ReadAllLines("resources/notGrounded.txt");
+            behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            lBehaviours.DataSource = behavioursWithNames;
         }
 
         private void btnRemoveBehaviour_Click(object sender, EventArgs e)
@@ -712,21 +708,6 @@ namespace Mario64Randomizer
                     return;
                 }
             }
-        }
-
-        /*private List<int> readFile(string resourceName)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            List<int> listFile = new List<int>();
-
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                listFile.AddRange(reader.ReadToEnd().ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList());
-            }
-            return listFile;
-        }*/
-
-
+        }        
     }
 }

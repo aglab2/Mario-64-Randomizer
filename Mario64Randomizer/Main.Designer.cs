@@ -53,6 +53,9 @@
             this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
             this.lblBowserWarpId = new System.Windows.Forms.Label();
             this.tabEnemies = new System.Windows.Forms.TabPage();
+            this.txtNewBehaviour = new System.Windows.Forms.TextBox();
+            this.btnLoadBehaviours = new System.Windows.Forms.Button();
+            this.btnSaveBehaviours = new System.Windows.Forms.Button();
             this.btnRestoreBehaviours = new System.Windows.Forms.Button();
             this.btnAddBehaviour = new System.Windows.Forms.Button();
             this.btnRemoveBehaviour = new System.Windows.Forms.Button();
@@ -84,9 +87,6 @@
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.btnSaveBehaviours = new System.Windows.Forms.Button();
-            this.btnLoadBehaviours = new System.Windows.Forms.Button();
-            this.txtNewBehaviour = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -253,7 +253,7 @@
             this.lvStars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvStars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.lvStars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
             this.lvStars.ForeColor = System.Drawing.SystemColors.Info;
             this.lvStars.LabelWrap = false;
             this.lvStars.Location = new System.Drawing.Point(6, 104);
@@ -424,6 +424,43 @@
             this.tabEnemies.Size = new System.Drawing.Size(336, 322);
             this.tabEnemies.TabIndex = 6;
             this.tabEnemies.Text = "Enemies";
+            // 
+            // txtNewBehaviour
+            // 
+            this.txtNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.txtNewBehaviour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
+            this.txtNewBehaviour.Location = new System.Drawing.Point(98, 16);
+            this.txtNewBehaviour.Name = "txtNewBehaviour";
+            this.txtNewBehaviour.Size = new System.Drawing.Size(86, 24);
+            this.txtNewBehaviour.TabIndex = 8;
+            // 
+            // btnLoadBehaviours
+            // 
+            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadBehaviours.Location = new System.Drawing.Point(259, 18);
+            this.btnLoadBehaviours.Name = "btnLoadBehaviours";
+            this.btnLoadBehaviours.Size = new System.Drawing.Size(48, 23);
+            this.btnLoadBehaviours.TabIndex = 7;
+            this.btnLoadBehaviours.Text = "Load Behaviours";
+            this.btnLoadBehaviours.UseVisualStyleBackColor = false;
+            this.btnLoadBehaviours.Click += new System.EventHandler(this.btnLoadBehaviours_Click);
+            // 
+            // btnSaveBehaviours
+            // 
+            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveBehaviours.Location = new System.Drawing.Point(216, 17);
+            this.btnSaveBehaviours.Name = "btnSaveBehaviours";
+            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 23);
+            this.btnSaveBehaviours.TabIndex = 6;
+            this.btnSaveBehaviours.Text = "Save Behaviours";
+            this.btnSaveBehaviours.UseVisualStyleBackColor = false;
+            this.btnSaveBehaviours.Click += new System.EventHandler(this.btnSaveBehaviours_Click);
             // 
             // btnRestoreBehaviours
             // 
@@ -834,42 +871,6 @@
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Visible = false;
-            // 
-            // btnSaveBehaviours
-            // 
-            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-            this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBehaviours.Location = new System.Drawing.Point(216, 17);
-            this.btnSaveBehaviours.Name = "btnSaveBehaviours";
-            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 23);
-            this.btnSaveBehaviours.TabIndex = 6;
-            this.btnSaveBehaviours.Text = "Save Behaviours";
-            this.btnSaveBehaviours.UseVisualStyleBackColor = false;
-            this.btnSaveBehaviours.Click += new System.EventHandler(this.btnSaveBehaviours_Click);
-            // 
-            // btnLoadBehaviours
-            // 
-            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-            this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadBehaviours.Location = new System.Drawing.Point(259, 18);
-            this.btnLoadBehaviours.Name = "btnLoadBehaviours";
-            this.btnLoadBehaviours.Size = new System.Drawing.Size(48, 23);
-            this.btnLoadBehaviours.TabIndex = 7;
-            this.btnLoadBehaviours.Text = "Load Behaviours";
-            this.btnLoadBehaviours.UseVisualStyleBackColor = false;
-            this.btnLoadBehaviours.Click += new System.EventHandler(this.btnLoadBehaviours_Click);
-            // 
-            // txtNewBehaviour
-            // 
-            this.txtNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.txtNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
-            this.txtNewBehaviour.Location = new System.Drawing.Point(98, 16);
-            this.txtNewBehaviour.Name = "txtNewBehaviour";
-            this.txtNewBehaviour.Size = new System.Drawing.Size(86, 24);
-            this.txtNewBehaviour.TabIndex = 8;
             // 
             // Main
             // 

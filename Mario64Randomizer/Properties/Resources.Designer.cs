@@ -84,12 +84,10 @@ namespace Mario64Randomizer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13000054 : Mr I. Behavior
-        ///130000AC : Eye ball bullet
+        ///   Looks up a localized string similar to 130000AC : Eye ball bullet
         ///13000494 : Aquarium Fish Group
         ///13000528 : Chuckya Behavior
         ///13000600 : Bullet Bill Cannon Behav
-        ///13000708 : Koopa Shell PowerUp
         ///130007F8 : Star
         ///1300080C : Star (100cc?)
         ///13000830 : Blue Coin (big goomba)
@@ -101,7 +99,9 @@ namespace Mario64Randomizer.Properties {
         ///130009A4 : Yellow coin
         ///13000B58 : Grindel Behavior
         ///13000B8C : Thwomp Behavior 2
-        ///13000BC8 : Thwomp Behavior [rest of string was truncated]&quot;;.
+        ///13000BC8 : Thwomp Behavior
+        ///13001108 : Flame Thrower Behavior
+        ///130012B4 : SpinDrift B [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string notGrounded {
             get {
@@ -126,6 +126,22 @@ namespace Mario64Randomizer.Properties {
             get {
                 object obj = ResourceManager.GetObject("star", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1300075C : 
+        ///13000780 : 
+        ///130007A0 : 
+        ///13000AFC : 
+        ///13000B14 : it might not be warping door
+        ///13001C34 :
+        ///1300248C :
+        ///13002710 : boo.
+        /// </summary>
+        internal static string warpBehaviours {
+            get {
+                return ResourceManager.GetString("warpBehaviours", resourceCulture);
             }
         }
     }
