@@ -12,6 +12,7 @@ using System.Diagnostics;
 using Mario64Randomizer.SM64;
 using Mario64Randomizer.Parsers;
 using System.IO;
+using System.Reflection;
 
 namespace Mario64Randomizer
 {
@@ -82,6 +83,7 @@ namespace Mario64Randomizer
             this.btnNewSeed.PerformClick();
             
             groundedBehaviours = File.ReadAllLines("resources/groundedBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            
             nonGroundedBehaviours = File.ReadAllLines("resources/notGrounded.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             warpingBehaviours = File.ReadAllLines("resources/warpBehaviours.txt").Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
 
@@ -93,7 +95,7 @@ namespace Mario64Randomizer
             combineLists();
             if (nudStarAmount.Value <= randomList.Count)
             {
-                seed = s.Next(0, 160000);
+                seed = s.Next(0, 1000000000);
                 nudSeed.Value = seed;
 
                 Shuffle(randomList, seed);
@@ -651,5 +653,20 @@ namespace Mario64Randomizer
             lBehaviours.Items.Add(nudNewBehaviour.Value);
             //nonGroundedBehaviours.Add(nudNewBehaviour.Value);
         }
+
+        /*private List<int> readFile(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            List<int> listFile = new List<int>();
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                listFile.AddRange(reader.ReadToEnd().ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList());
+            }
+            return listFile;
+        }*/
+
+        
     }
 }

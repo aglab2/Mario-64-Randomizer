@@ -83,6 +83,8 @@
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.lbWarpWhitelist = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -96,25 +98,27 @@
             // 
             // btnNewSeed
             // 
-            this.btnNewSeed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnNewSeed.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnNewSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnNewSeed.FlatAppearance.BorderSize = 0;
+            this.btnNewSeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewSeed.ForeColor = System.Drawing.SystemColors.Control;
             this.btnNewSeed.Location = new System.Drawing.Point(23, 10);
             this.btnNewSeed.Name = "btnNewSeed";
-            this.btnNewSeed.Size = new System.Drawing.Size(75, 20);
+            this.btnNewSeed.Size = new System.Drawing.Size(100, 25);
             this.btnNewSeed.TabIndex = 0;
             this.btnNewSeed.Text = "New Seed";
-            this.btnNewSeed.UseVisualStyleBackColor = true;
+            this.btnNewSeed.UseVisualStyleBackColor = false;
             this.btnNewSeed.Click += new System.EventHandler(this.btnNewSeed_Click);
             // 
             // btnEnterSeed
             // 
-            this.btnEnterSeed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnEnterSeed.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnEnterSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnEnterSeed.FlatAppearance.BorderSize = 0;
+            this.btnEnterSeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnterSeed.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEnterSeed.Location = new System.Drawing.Point(181, 10);
+            this.btnEnterSeed.Location = new System.Drawing.Point(267, 8);
             this.btnEnterSeed.Name = "btnEnterSeed";
-            this.btnEnterSeed.Size = new System.Drawing.Size(92, 20);
+            this.btnEnterSeed.Size = new System.Drawing.Size(100, 25);
             this.btnEnterSeed.TabIndex = 1;
             this.btnEnterSeed.Text = "Enter Seed";
             this.btnEnterSeed.UseVisualStyleBackColor = false;
@@ -211,21 +215,22 @@
             // 
             // nudSeed
             // 
-            this.nudSeed.BackColor = System.Drawing.SystemColors.ControlText;
-            this.nudSeed.ForeColor = System.Drawing.SystemColors.Info;
-            this.nudSeed.Location = new System.Drawing.Point(103, 10);
+            this.nudSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.nudSeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSeed.ForeColor = System.Drawing.SystemColors.Menu;
+            this.nudSeed.Location = new System.Drawing.Point(145, 10);
             this.nudSeed.Maximum = new decimal(new int[] {
-            160000,
+            1000000000,
             0,
             0,
             0});
             this.nudSeed.Name = "nudSeed";
-            this.nudSeed.Size = new System.Drawing.Size(71, 20);
+            this.nudSeed.Size = new System.Drawing.Size(100, 24);
             this.nudSeed.TabIndex = 24;
             // 
             // nudStarAmount
             // 
-            this.nudStarAmount.BackColor = System.Drawing.SystemColors.InfoText;
+            this.nudStarAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.nudStarAmount.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.nudStarAmount.Location = new System.Drawing.Point(165, 12);
             this.nudStarAmount.Maximum = new decimal(new int[] {
@@ -247,7 +252,7 @@
             this.lvStars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvStars.BackColor = System.Drawing.SystemColors.InfoText;
+            this.lvStars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.lvStars.ForeColor = System.Drawing.SystemColors.Info;
             this.lvStars.LabelWrap = false;
             this.lvStars.Location = new System.Drawing.Point(6, 104);
@@ -302,9 +307,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabWarps);
-            this.tabControl1.Controls.Add(this.tabSequence);
             this.tabControl1.Controls.Add(this.tabEnemies);
             this.tabControl1.Controls.Add(this.tabClothes);
+            this.tabControl1.Controls.Add(this.tabSequence);
             this.tabControl1.Location = new System.Drawing.Point(23, 112);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -314,6 +319,7 @@
             // tabWarps
             // 
             this.tabWarps.BackColor = System.Drawing.Color.Black;
+            this.tabWarps.Controls.Add(this.lbWarpWhitelist);
             this.tabWarps.Controls.Add(this.nudBowserWarpId);
             this.tabWarps.Controls.Add(this.checkBox1);
             this.tabWarps.Controls.Add(this.chkWarpFile);
@@ -329,14 +335,17 @@
             // 
             // nudBowserWarpId
             // 
-            this.nudBowserWarpId.Location = new System.Drawing.Point(162, 121);
+            this.nudBowserWarpId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.nudBowserWarpId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudBowserWarpId.ForeColor = System.Drawing.SystemColors.Menu;
+            this.nudBowserWarpId.Location = new System.Drawing.Point(195, 56);
             this.nudBowserWarpId.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.nudBowserWarpId.Name = "nudBowserWarpId";
-            this.nudBowserWarpId.Size = new System.Drawing.Size(71, 20);
+            this.nudBowserWarpId.Size = new System.Drawing.Size(87, 26);
             this.nudBowserWarpId.TabIndex = 5;
             // 
             // checkBox1
@@ -345,7 +354,7 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(36, 84);
+            this.checkBox1.Location = new System.Drawing.Point(195, 15);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(125, 17);
             this.checkBox1.TabIndex = 4;
@@ -357,7 +366,7 @@
             // chkWarpFile
             // 
             this.chkWarpFile.AutoSize = true;
-            this.chkWarpFile.Location = new System.Drawing.Point(36, 61);
+            this.chkWarpFile.Location = new System.Drawing.Point(43, 38);
             this.chkWarpFile.Name = "chkWarpFile";
             this.chkWarpFile.Size = new System.Drawing.Size(106, 17);
             this.chkWarpFile.TabIndex = 3;
@@ -367,7 +376,7 @@
             // chkRandomizeBowser
             // 
             this.chkRandomizeBowser.AutoSize = true;
-            this.chkRandomizeBowser.Location = new System.Drawing.Point(36, 38);
+            this.chkRandomizeBowser.Location = new System.Drawing.Point(43, 15);
             this.chkRandomizeBowser.Name = "chkRandomizeBowser";
             this.chkRandomizeBowser.Size = new System.Drawing.Size(146, 17);
             this.chkRandomizeBowser.TabIndex = 2;
@@ -377,7 +386,7 @@
             // lblBowserWarpId
             // 
             this.lblBowserWarpId.AutoSize = true;
-            this.lblBowserWarpId.Location = new System.Drawing.Point(33, 123);
+            this.lblBowserWarpId.Location = new System.Drawing.Point(40, 63);
             this.lblBowserWarpId.Name = "lblBowserWarpId";
             this.lblBowserWarpId.Size = new System.Drawing.Size(83, 13);
             this.lblBowserWarpId.TabIndex = 1;
@@ -438,49 +447,61 @@
             // 
             // nudNewBehaviour
             // 
+            this.nudNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.nudNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudNewBehaviour.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.nudNewBehaviour.Hexadecimal = true;
-            this.nudNewBehaviour.Location = new System.Drawing.Point(103, 16);
+            this.nudNewBehaviour.Location = new System.Drawing.Point(98, 16);
             this.nudNewBehaviour.Maximum = new decimal(new int[] {
             88888888,
             0,
             0,
             0});
             this.nudNewBehaviour.Name = "nudNewBehaviour";
-            this.nudNewBehaviour.Size = new System.Drawing.Size(145, 20);
+            this.nudNewBehaviour.Size = new System.Drawing.Size(164, 24);
             this.nudNewBehaviour.TabIndex = 5;
             // 
             // btnRestoreBehaviours
             // 
+            this.btnRestoreBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.btnRestoreBehaviours.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
             this.btnRestoreBehaviours.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRestoreBehaviours.Location = new System.Drawing.Point(254, 15);
+            this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnRestoreBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRestoreBehaviours.Location = new System.Drawing.Point(283, 15);
             this.btnRestoreBehaviours.Name = "btnRestoreBehaviours";
             this.btnRestoreBehaviours.Size = new System.Drawing.Size(24, 24);
             this.btnRestoreBehaviours.TabIndex = 4;
-            this.btnRestoreBehaviours.UseVisualStyleBackColor = true;
+            this.btnRestoreBehaviours.UseVisualStyleBackColor = false;
             this.btnRestoreBehaviours.Click += new System.EventHandler(this.btnRestoreBehaviours_Click);
             // 
             // btnAddBehaviour
             // 
-            this.btnAddBehaviour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddBehaviour.Location = new System.Drawing.Point(24, 13);
+            this.btnAddBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnAddBehaviour.FlatAppearance.BorderSize = 0;
+            this.btnAddBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAddBehaviour.Location = new System.Drawing.Point(25, 16);
             this.btnAddBehaviour.Name = "btnAddBehaviour";
             this.btnAddBehaviour.Size = new System.Drawing.Size(30, 23);
             this.btnAddBehaviour.TabIndex = 3;
             this.btnAddBehaviour.Text = "+";
-            this.btnAddBehaviour.UseVisualStyleBackColor = true;
+            this.btnAddBehaviour.UseVisualStyleBackColor = false;
             this.btnAddBehaviour.Click += new System.EventHandler(this.btnAddBehaviour_Click);
             // 
             // btnRemoveBehaviour
             // 
-            this.btnRemoveBehaviour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemoveBehaviour.Location = new System.Drawing.Point(60, 13);
+            this.btnRemoveBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnRemoveBehaviour.FlatAppearance.BorderSize = 0;
+            this.btnRemoveBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRemoveBehaviour.Location = new System.Drawing.Point(61, 16);
             this.btnRemoveBehaviour.Name = "btnRemoveBehaviour";
             this.btnRemoveBehaviour.Size = new System.Drawing.Size(31, 23);
             this.btnRemoveBehaviour.TabIndex = 2;
             this.btnRemoveBehaviour.Text = "-";
-            this.btnRemoveBehaviour.UseVisualStyleBackColor = true;
+            this.btnRemoveBehaviour.UseVisualStyleBackColor = false;
             this.btnRemoveBehaviour.Click += new System.EventHandler(this.btnRemoveBehaviour_Click);
             // 
             // lBehaviours
@@ -488,10 +509,14 @@
             this.lBehaviours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.lBehaviours.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBehaviours.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.lBehaviours.FormattingEnabled = true;
-            this.lBehaviours.Location = new System.Drawing.Point(24, 45);
+            this.lBehaviours.ItemHeight = 18;
+            this.lBehaviours.Location = new System.Drawing.Point(25, 48);
             this.lBehaviours.Name = "lBehaviours";
-            this.lBehaviours.Size = new System.Drawing.Size(284, 186);
+            this.lBehaviours.Size = new System.Drawing.Size(282, 238);
             this.lBehaviours.TabIndex = 0;
             // 
             // tabClothes
@@ -579,68 +604,86 @@
             // 
             // btnColorHair
             // 
-            this.btnColorHair.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorHair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorHair.FlatAppearance.BorderSize = 0;
+            this.btnColorHair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorHair.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorHair.Location = new System.Drawing.Point(49, 110);
             this.btnColorHair.Name = "btnColorHair";
             this.btnColorHair.Size = new System.Drawing.Size(75, 23);
             this.btnColorHair.TabIndex = 6;
             this.btnColorHair.Text = "Hair";
-            this.btnColorHair.UseVisualStyleBackColor = true;
+            this.btnColorHair.UseVisualStyleBackColor = false;
             this.btnColorHair.Click += new System.EventHandler(this.btnColorHair_Click);
             // 
             // btnColorFace
             // 
-            this.btnColorFace.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorFace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorFace.FlatAppearance.BorderSize = 0;
+            this.btnColorFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorFace.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorFace.Location = new System.Drawing.Point(49, 70);
             this.btnColorFace.Name = "btnColorFace";
             this.btnColorFace.Size = new System.Drawing.Size(75, 23);
             this.btnColorFace.TabIndex = 5;
             this.btnColorFace.Text = "Face";
-            this.btnColorFace.UseVisualStyleBackColor = true;
+            this.btnColorFace.UseVisualStyleBackColor = false;
             this.btnColorFace.Click += new System.EventHandler(this.btnColorFace_Click);
             // 
             // btnColorShoes
             // 
-            this.btnColorShoes.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorShoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorShoes.FlatAppearance.BorderSize = 0;
+            this.btnColorShoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorShoes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorShoes.Location = new System.Drawing.Point(49, 231);
             this.btnColorShoes.Name = "btnColorShoes";
             this.btnColorShoes.Size = new System.Drawing.Size(75, 23);
             this.btnColorShoes.TabIndex = 4;
             this.btnColorShoes.Text = "Shoes";
-            this.btnColorShoes.UseVisualStyleBackColor = true;
+            this.btnColorShoes.UseVisualStyleBackColor = false;
             this.btnColorShoes.Click += new System.EventHandler(this.btnColorShoes_Click);
             // 
             // btnColorGloves
             // 
-            this.btnColorGloves.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorGloves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorGloves.FlatAppearance.BorderSize = 0;
+            this.btnColorGloves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorGloves.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorGloves.Location = new System.Drawing.Point(49, 188);
             this.btnColorGloves.Name = "btnColorGloves";
             this.btnColorGloves.Size = new System.Drawing.Size(75, 23);
             this.btnColorGloves.TabIndex = 3;
             this.btnColorGloves.Text = "Gloves";
-            this.btnColorGloves.UseVisualStyleBackColor = true;
+            this.btnColorGloves.UseVisualStyleBackColor = false;
             this.btnColorGloves.Click += new System.EventHandler(this.btnColorGloves_Click);
             // 
             // btnColorCapArms
             // 
-            this.btnColorCapArms.ForeColor = System.Drawing.Color.Black;
+            this.btnColorCapArms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorCapArms.FlatAppearance.BorderSize = 0;
+            this.btnColorCapArms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorCapArms.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorCapArms.Location = new System.Drawing.Point(49, 29);
             this.btnColorCapArms.Name = "btnColorCapArms";
             this.btnColorCapArms.Size = new System.Drawing.Size(75, 23);
             this.btnColorCapArms.TabIndex = 2;
             this.btnColorCapArms.Text = "Cap";
-            this.btnColorCapArms.UseVisualStyleBackColor = true;
+            this.btnColorCapArms.UseVisualStyleBackColor = false;
             this.btnColorCapArms.Click += new System.EventHandler(this.btnColorCapArms_Click);
             // 
             // btnColorOveralls
             // 
-            this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnColorOveralls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorOveralls.FlatAppearance.BorderSize = 0;
+            this.btnColorOveralls.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnColorOveralls.Location = new System.Drawing.Point(49, 150);
             this.btnColorOveralls.Name = "btnColorOveralls";
             this.btnColorOveralls.Size = new System.Drawing.Size(75, 23);
             this.btnColorOveralls.TabIndex = 1;
             this.btnColorOveralls.Text = "Overalls";
-            this.btnColorOveralls.UseVisualStyleBackColor = true;
+            this.btnColorOveralls.UseVisualStyleBackColor = false;
             this.btnColorOveralls.Click += new System.EventHandler(this.btnColorOveralls_Click);
             // 
             // btnColorRestore
@@ -660,7 +703,7 @@
             this.chkRandomizeText.AutoSize = true;
             this.chkRandomizeText.Enabled = false;
             this.chkRandomizeText.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeText.Location = new System.Drawing.Point(206, 89);
+            this.chkRandomizeText.Location = new System.Drawing.Point(267, 88);
             this.chkRandomizeText.Name = "chkRandomizeText";
             this.chkRandomizeText.Size = new System.Drawing.Size(47, 17);
             this.chkRandomizeText.TabIndex = 0;
@@ -670,32 +713,47 @@
             // 
             // btnSaveRom
             // 
-            this.btnSaveRom.Location = new System.Drawing.Point(181, 36);
+            this.btnSaveRom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnSaveRom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSaveRom.FlatAppearance.BorderSize = 0;
+            this.btnSaveRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveRom.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSaveRom.Location = new System.Drawing.Point(267, 36);
             this.btnSaveRom.Name = "btnSaveRom";
-            this.btnSaveRom.Size = new System.Drawing.Size(92, 23);
+            this.btnSaveRom.Size = new System.Drawing.Size(100, 25);
             this.btnSaveRom.TabIndex = 36;
             this.btnSaveRom.Text = "Save Rom";
-            this.btnSaveRom.UseVisualStyleBackColor = true;
+            this.btnSaveRom.UseVisualStyleBackColor = false;
             this.btnSaveRom.Click += new System.EventHandler(this.btnSaveRom_Click);
             // 
             // btnRandomize
             // 
-            this.btnRandomize.Location = new System.Drawing.Point(104, 36);
+            this.btnRandomize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnRandomize.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnRandomize.FlatAppearance.BorderSize = 0;
+            this.btnRandomize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRandomize.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRandomize.Location = new System.Drawing.Point(145, 36);
             this.btnRandomize.Name = "btnRandomize";
-            this.btnRandomize.Size = new System.Drawing.Size(70, 23);
+            this.btnRandomize.Size = new System.Drawing.Size(100, 25);
             this.btnRandomize.TabIndex = 35;
             this.btnRandomize.Text = "Randomize";
-            this.btnRandomize.UseVisualStyleBackColor = true;
+            this.btnRandomize.UseVisualStyleBackColor = false;
             this.btnRandomize.Click += new System.EventHandler(this.btnRandomize_Click);
             // 
             // btnOpenRom
             // 
+            this.btnOpenRom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnOpenRom.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnOpenRom.FlatAppearance.BorderSize = 0;
+            this.btnOpenRom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenRom.ForeColor = System.Drawing.SystemColors.Control;
             this.btnOpenRom.Location = new System.Drawing.Point(23, 36);
             this.btnOpenRom.Name = "btnOpenRom";
-            this.btnOpenRom.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenRom.Size = new System.Drawing.Size(100, 25);
             this.btnOpenRom.TabIndex = 34;
             this.btnOpenRom.Text = "Open Rom";
-            this.btnOpenRom.UseVisualStyleBackColor = true;
+            this.btnOpenRom.UseVisualStyleBackColor = false;
             this.btnOpenRom.Click += new System.EventHandler(this.btnOpenRom_Click);
             // 
             // chkRandomizeEnemies
@@ -704,7 +762,7 @@
             this.chkRandomizeEnemies.Checked = true;
             this.chkRandomizeEnemies.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeEnemies.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeEnemies.Location = new System.Drawing.Point(104, 66);
+            this.chkRandomizeEnemies.Location = new System.Drawing.Point(145, 65);
             this.chkRandomizeEnemies.Name = "chkRandomizeEnemies";
             this.chkRandomizeEnemies.Size = new System.Drawing.Size(66, 17);
             this.chkRandomizeEnemies.TabIndex = 40;
@@ -717,7 +775,7 @@
             this.chkRandomizeMarioClothes.Checked = true;
             this.chkRandomizeMarioClothes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRandomizeMarioClothes.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(104, 89);
+            this.chkRandomizeMarioClothes.Location = new System.Drawing.Point(145, 88);
             this.chkRandomizeMarioClothes.Name = "chkRandomizeMarioClothes";
             this.chkRandomizeMarioClothes.Size = new System.Drawing.Size(97, 17);
             this.chkRandomizeMarioClothes.TabIndex = 39;
@@ -755,7 +813,7 @@
             this.chkRandomizeTextures.AutoSize = true;
             this.chkRandomizeTextures.Enabled = false;
             this.chkRandomizeTextures.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeTextures.Location = new System.Drawing.Point(206, 66);
+            this.chkRandomizeTextures.Location = new System.Drawing.Point(267, 70);
             this.chkRandomizeTextures.Name = "chkRandomizeTextures";
             this.chkRandomizeTextures.Size = new System.Drawing.Size(67, 17);
             this.chkRandomizeTextures.TabIndex = 41;
@@ -763,12 +821,38 @@
             this.chkRandomizeTextures.UseVisualStyleBackColor = true;
             this.chkRandomizeTextures.Visible = false;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(312, 71);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(55, 35);
+            this.btnHelp.TabIndex = 6;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Visible = false;
+            // 
+            // lbWarpWhitelist
+            // 
+            this.lbWarpWhitelist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbWarpWhitelist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.lbWarpWhitelist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWarpWhitelist.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.lbWarpWhitelist.FormattingEnabled = true;
+            this.lbWarpWhitelist.ItemHeight = 20;
+            this.lbWarpWhitelist.Location = new System.Drawing.Point(43, 89);
+            this.lbWarpWhitelist.Name = "lbWarpWhitelist";
+            this.lbWarpWhitelist.Size = new System.Drawing.Size(239, 224);
+            this.lbWarpWhitelist.TabIndex = 6;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(404, 481);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.chkRandomizeText);
             this.Controls.Add(this.chkRandomizeTextures);
             this.Controls.Add(this.chkRandomizeEnemies);
@@ -787,7 +871,7 @@
             this.MaximumSize = new System.Drawing.Size(420, 1080);
             this.MinimumSize = new System.Drawing.Size(420, 350);
             this.Name = "Main";
-            this.Text = "Super Mario 64 Randomizer v0.75";
+            this.Text = "Super Mario 64 Randomizer v1.0";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).EndInit();
@@ -861,6 +945,8 @@
         private System.Windows.Forms.Button btnRemoveBehaviour;
         private System.Windows.Forms.ListBox lBehaviours;
         private System.Windows.Forms.NumericUpDown nudNewBehaviour;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.ListBox lbWarpWhitelist;
     }
 }
 
