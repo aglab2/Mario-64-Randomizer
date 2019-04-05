@@ -301,29 +301,32 @@ namespace Mario64Randomizer
                 {
                     List<Warp> allWarps = new List<Warp>();
 
-#warning there are still warps to not existance places
                     foreach (LevelOffsetsDescription lod in LevelInfo.Description)
                     {
-                        int addr = lod.LevelScriptEntryPoint;
-
-                        List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr, lod.Level);
-                        IEnumerable<Warp> whiteListedWarps = levelWarps.Where(x => x.area == 0xFF);
-                        allWarps.AddRange(whiteListedWarps);
-
-                        List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
-                        List<SM64.Object> warpingObjects = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
-
-                        // Check if warp object exists
-                        for (int area = 0; area < 7; area++)
+                        try
                         {
-                            List<Warp> areaWarps = levelWarps.Where(x => x.area == area).ToList();
-                            if (areaWarps.Count == 0)
-                                continue;
+                            int addr = lod.LevelScriptEntryPoint;
 
-                            List<SM64.Object> areaObjects = warpingObjects.Where(x => x.area == area).ToList();
-                            List<Warp> presentedWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
-                            allWarps.AddRange(presentedWarps);
+                            List<Warp> levelWarps = FindWarpsParser.FindWarps(rm, addr, lod.Level);
+                            IEnumerable<Warp> whiteListedWarps = levelWarps.Where(x => x.area == 0xFF);
+                            allWarps.AddRange(whiteListedWarps);
+
+                            List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
+                            List<SM64.Object> warpingObjects = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
+
+                            // Check if warp object exists
+                            for (int area = 0; area < 7; area++)
+                            {
+                                List<Warp> areaWarps = levelWarps.Where(x => x.area == area).ToList();
+                                if (areaWarps.Count == 0)
+                                    continue;
+
+                                List<SM64.Object> areaObjects = warpingObjects.Where(x => x.area == area).ToList();
+                                List<Warp> presentedWarps = areaWarps.Where(a => areaObjects.Find(w => w.BParam2 == a.from.id) != null).ToList();
+                                allWarps.AddRange(presentedWarps);
+                            }
                         }
+                        catch (Exception) { }
                     }
 
                     /*if (!chkRandomizeBowser.Checked)
