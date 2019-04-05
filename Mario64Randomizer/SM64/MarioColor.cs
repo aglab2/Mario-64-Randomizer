@@ -32,7 +32,9 @@ namespace Mario64Randomizer.SM64
 
         public MarioColor(ROM rom, int ramAddr, Color color)
         {
+            rom.PushOffset(0);
             int bank4ROMStart = rom.Read32(bank4ROMStartPtr);
+            rom.PopOffset();
             this.addr = ramAddr - bank4RAMStart + bank4ROMStart;
             rom.PushOffset(addr);
             this.color = Color.FromArgb(0, color.R, color.B, color.G); ;
