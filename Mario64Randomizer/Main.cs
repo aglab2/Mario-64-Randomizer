@@ -84,6 +84,10 @@ namespace Mario64Randomizer
             warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             lBehaviours.DataSource = behavioursWithNames;
+            for (int i = 0; i < chklbWarpList.Items.Count; i++)
+            {
+                chklbWarpList.SetItemChecked(i, true);
+            }
         }
 
         private void btnNewSeed_Click(object sender, EventArgs e)
@@ -302,6 +306,9 @@ namespace Mario64Randomizer
 
                     foreach (LevelOffsetsDescription lod in LevelInfo.Description)
                     {
+                        if (chklbWarpList.GetItemCheckState(lod.NaturalIndex) == CheckState.Unchecked)
+                            continue;
+
                         try
                         {
                             int addr = lod.LevelScriptEntryPoint;
@@ -758,6 +765,68 @@ namespace Mario64Randomizer
         private void btnHelp_MouseDown(object sender, MouseEventArgs e)
         {
             btnHelp.BackColor = Color.Black;
+        }
+
+        private void btnSaveWarpList_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    
+                    System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(saveFileDialog.FileName);
+                    foreach (var item in chklbWarpList.Items)
+                    {
+                        SaveFile.WriteLine(item.ToString());
+                    }
+                    SaveFile.Close();
+
+                    MessageBox.Show("Warps saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void btnLoadWarpList_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {                    
+                    if (System.IO.File.Exists(openFileDialog.FileName))
+                    chklbWarpList.Items.AddRange(System.IO.File.ReadAllLines(openFileDialog.FileName));
+                    MessageBox.Show("Warps loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void btnRestoreWarps_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < chklbWarpList.Items.Count; i++)
+            {
+                chklbWarpList.SetItemChecked(i, true);
+            }
         }
     }
 }

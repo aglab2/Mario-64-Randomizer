@@ -46,7 +46,10 @@
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabWarps = new System.Windows.Forms.TabPage();
-            this.lbWarpWhitelist = new System.Windows.Forms.ListBox();
+            this.btnLoadWarpList = new System.Windows.Forms.Button();
+            this.btnSaveWarpList = new System.Windows.Forms.Button();
+            this.btnRestoreWarps = new System.Windows.Forms.Button();
+            this.chklbWarpList = new System.Windows.Forms.CheckedListBox();
             this.nudBowserWarpId = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
@@ -324,7 +327,10 @@
             // tabWarps
             // 
             this.tabWarps.BackColor = System.Drawing.Color.Black;
-            this.tabWarps.Controls.Add(this.lbWarpWhitelist);
+            this.tabWarps.Controls.Add(this.btnLoadWarpList);
+            this.tabWarps.Controls.Add(this.btnSaveWarpList);
+            this.tabWarps.Controls.Add(this.btnRestoreWarps);
+            this.tabWarps.Controls.Add(this.chklbWarpList);
             this.tabWarps.Controls.Add(this.nudBowserWarpId);
             this.tabWarps.Controls.Add(this.checkBox1);
             this.tabWarps.Controls.Add(this.chkWarpFile);
@@ -338,20 +344,85 @@
             this.tabWarps.TabIndex = 5;
             this.tabWarps.Text = "Warps";
             // 
-            // lbWarpWhitelist
+            // btnLoadWarpList
             // 
-            this.lbWarpWhitelist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnLoadWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btnLoadWarpList.FlatAppearance.BorderSize = 0;
+            this.btnLoadWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 88);
+            this.btnLoadWarpList.Name = "btnLoadWarpList";
+            this.btnLoadWarpList.Size = new System.Drawing.Size(40, 25);
+            this.btnLoadWarpList.TabIndex = 10;
+            this.btnLoadWarpList.Text = "Load Behaviours";
+            this.btnLoadWarpList.UseVisualStyleBackColor = false;
+            this.btnLoadWarpList.Click += new System.EventHandler(this.btnLoadWarpList_Click);
+            // 
+            // btnSaveWarpList
+            // 
+            this.btnSaveWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btnSaveWarpList.FlatAppearance.BorderSize = 0;
+            this.btnSaveWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 88);
+            this.btnSaveWarpList.Name = "btnSaveWarpList";
+            this.btnSaveWarpList.Size = new System.Drawing.Size(40, 25);
+            this.btnSaveWarpList.TabIndex = 9;
+            this.btnSaveWarpList.Text = "Save Behaviours";
+            this.btnSaveWarpList.UseVisualStyleBackColor = false;
+            this.btnSaveWarpList.Click += new System.EventHandler(this.btnSaveWarpList_Click);
+            // 
+            // btnRestoreWarps
+            // 
+            this.btnRestoreWarps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btnRestoreWarps.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
+            this.btnRestoreWarps.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRestoreWarps.FlatAppearance.BorderSize = 0;
+            this.btnRestoreWarps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestoreWarps.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 88);
+            this.btnRestoreWarps.Name = "btnRestoreWarps";
+            this.btnRestoreWarps.Size = new System.Drawing.Size(25, 25);
+            this.btnRestoreWarps.TabIndex = 8;
+            this.btnRestoreWarps.UseVisualStyleBackColor = false;
+            this.btnRestoreWarps.Click += new System.EventHandler(this.btnRestoreWarps_Click);
+            // 
+            // chklbWarpList
+            // 
+            this.chklbWarpList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbWarpWhitelist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.lbWarpWhitelist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbWarpWhitelist.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.lbWarpWhitelist.FormattingEnabled = true;
-            this.lbWarpWhitelist.ItemHeight = 20;
-            this.lbWarpWhitelist.Location = new System.Drawing.Point(48, 109);
-            this.lbWarpWhitelist.Name = "lbWarpWhitelist";
-            this.lbWarpWhitelist.Size = new System.Drawing.Size(239, 204);
-            this.lbWarpWhitelist.TabIndex = 6;
+            this.chklbWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.chklbWarpList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chklbWarpList.ForeColor = System.Drawing.SystemColors.Window;
+            this.chklbWarpList.FormattingEnabled = true;
+            this.chklbWarpList.Items.AddRange(new object[] {
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9",
+            "C10",
+            "C11",
+            "C12",
+            "C13",
+            "C14",
+            "C15",
+            "SA",
+            "WC",
+            "Slide",
+            "MC",
+            "VC",
+            "Clouds",
+            "B1",
+            "B2",
+            "B3"});
+            this.chklbWarpList.Location = new System.Drawing.Point(48, 119);
+            this.chklbWarpList.Name = "chklbWarpList";
+            this.chklbWarpList.Size = new System.Drawing.Size(239, 191);
+            this.chklbWarpList.TabIndex = 7;
             // 
             // nudBowserWarpId
             // 
@@ -1010,12 +1081,15 @@
         private System.Windows.Forms.Button btnRemoveBehaviour;
         private System.Windows.Forms.ListBox lBehaviours;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.ListBox lbWarpWhitelist;
         private System.Windows.Forms.Button btnLoadBehaviours;
         private System.Windows.Forms.Button btnSaveBehaviours;
         private System.Windows.Forms.TextBox txtNewBehaviour;
         private System.Windows.Forms.CheckBox chkRandomizeHair;
         private System.Windows.Forms.CheckBox chkRandomizeSkin;
+        private System.Windows.Forms.Button btnLoadWarpList;
+        private System.Windows.Forms.Button btnSaveWarpList;
+        private System.Windows.Forms.Button btnRestoreWarps;
+        private System.Windows.Forms.CheckedListBox chklbWarpList;
     }
 }
 
