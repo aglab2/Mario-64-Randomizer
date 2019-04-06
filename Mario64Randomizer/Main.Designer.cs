@@ -50,11 +50,9 @@
             this.btnSaveWarpList = new System.Windows.Forms.Button();
             this.btnRestoreWarps = new System.Windows.Forms.Button();
             this.chklbWarpList = new System.Windows.Forms.CheckedListBox();
-            this.nudBowserWarpId = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
             this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
-            this.lblBowserWarpId = new System.Windows.Forms.Label();
             this.tabEnemies = new System.Windows.Forms.TabPage();
             this.txtNewBehaviour = new System.Windows.Forms.TextBox();
             this.btnLoadBehaviours = new System.Windows.Forms.Button();
@@ -96,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabWarps.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBowserWarpId)).BeginInit();
             this.tabEnemies.SuspendLayout();
             this.tabClothes.SuspendLayout();
             this.tabSequence.SuspendLayout();
@@ -331,11 +328,9 @@
             this.tabWarps.Controls.Add(this.btnSaveWarpList);
             this.tabWarps.Controls.Add(this.btnRestoreWarps);
             this.tabWarps.Controls.Add(this.chklbWarpList);
-            this.tabWarps.Controls.Add(this.nudBowserWarpId);
             this.tabWarps.Controls.Add(this.checkBox1);
             this.tabWarps.Controls.Add(this.chkWarpFile);
             this.tabWarps.Controls.Add(this.chkRandomizeBowser);
-            this.tabWarps.Controls.Add(this.lblBowserWarpId);
             this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
             this.tabWarps.Location = new System.Drawing.Point(4, 22);
             this.tabWarps.Name = "tabWarps";
@@ -349,7 +344,7 @@
             this.btnLoadWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnLoadWarpList.FlatAppearance.BorderSize = 0;
             this.btnLoadWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 88);
+            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 62);
             this.btnLoadWarpList.Name = "btnLoadWarpList";
             this.btnLoadWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnLoadWarpList.TabIndex = 10;
@@ -362,7 +357,7 @@
             this.btnSaveWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnSaveWarpList.FlatAppearance.BorderSize = 0;
             this.btnSaveWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 88);
+            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 62);
             this.btnSaveWarpList.Name = "btnSaveWarpList";
             this.btnSaveWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnSaveWarpList.TabIndex = 9;
@@ -378,7 +373,7 @@
             this.btnRestoreWarps.FlatAppearance.BorderSize = 0;
             this.btnRestoreWarps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 88);
+            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 62);
             this.btnRestoreWarps.Name = "btnRestoreWarps";
             this.btnRestoreWarps.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreWarps.TabIndex = 8;
@@ -419,25 +414,10 @@
             "B1",
             "B2",
             "B3"});
-            this.chklbWarpList.Location = new System.Drawing.Point(48, 119);
+            this.chklbWarpList.Location = new System.Drawing.Point(48, 93);
             this.chklbWarpList.Name = "chklbWarpList";
             this.chklbWarpList.Size = new System.Drawing.Size(239, 191);
             this.chklbWarpList.TabIndex = 7;
-            // 
-            // nudBowserWarpId
-            // 
-            this.nudBowserWarpId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.nudBowserWarpId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBowserWarpId.ForeColor = System.Drawing.SystemColors.Menu;
-            this.nudBowserWarpId.Location = new System.Drawing.Point(200, 56);
-            this.nudBowserWarpId.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nudBowserWarpId.Name = "nudBowserWarpId";
-            this.nudBowserWarpId.Size = new System.Drawing.Size(87, 26);
-            this.nudBowserWarpId.TabIndex = 5;
             // 
             // checkBox1
             // 
@@ -473,15 +453,6 @@
             this.chkRandomizeBowser.TabIndex = 2;
             this.chkRandomizeBowser.Text = "Randomize Bowser Warp";
             this.chkRandomizeBowser.UseVisualStyleBackColor = true;
-            // 
-            // lblBowserWarpId
-            // 
-            this.lblBowserWarpId.AutoSize = true;
-            this.lblBowserWarpId.Location = new System.Drawing.Point(45, 63);
-            this.lblBowserWarpId.Name = "lblBowserWarpId";
-            this.lblBowserWarpId.Size = new System.Drawing.Size(83, 13);
-            this.lblBowserWarpId.TabIndex = 1;
-            this.lblBowserWarpId.Text = "Bowser Warp Id";
             // 
             // tabEnemies
             // 
@@ -1013,7 +984,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabWarps.ResumeLayout(false);
             this.tabWarps.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBowserWarpId)).EndInit();
             this.tabEnemies.ResumeLayout(false);
             this.tabEnemies.PerformLayout();
             this.tabClothes.ResumeLayout(false);
@@ -1072,10 +1042,8 @@
         private System.Windows.Forms.Button btnRefreshList;
         private System.Windows.Forms.CheckBox chkWarpFile;
         private System.Windows.Forms.CheckBox chkRandomizeBowser;
-        private System.Windows.Forms.Label lblBowserWarpId;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabEnemies;
-        private System.Windows.Forms.NumericUpDown nudBowserWarpId;
         private System.Windows.Forms.Button btnRestoreBehaviours;
         private System.Windows.Forms.Button btnAddBehaviour;
         private System.Windows.Forms.Button btnRemoveBehaviour;

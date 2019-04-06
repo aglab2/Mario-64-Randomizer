@@ -698,6 +698,10 @@ namespace Mario64Randomizer
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
+            if (rm != null)
+            {
+                saveFileDialog.FileName = romName + " - Behaviours";
+            }            
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -774,17 +778,21 @@ namespace Mario64Randomizer
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
+            if(rm != null)
+            {
+                saveFileDialog.FileName = romName + " - Warps";
+            }            
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
-                {
-                    
+                {                    
                     System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(saveFileDialog.FileName);
-                    foreach (var item in chklbWarpList.Items)
+
+                    for (int i = 0; i < chklbWarpList.Items.Count; i++)
                     {
-                        SaveFile.WriteLine(item.ToString());
-                    }
+                         SaveFile.WriteLine(chklbWarpList.Items[i].ToString() + " : " + (int)chklbWarpList.GetItemCheckState(i));                                   
+                    }                    
                     SaveFile.Close();
 
                     MessageBox.Show("Warps saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -808,9 +816,16 @@ namespace Mario64Randomizer
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
-                {                    
+                {
                     if (System.IO.File.Exists(openFileDialog.FileName))
-                    chklbWarpList.Items.AddRange(System.IO.File.ReadAllLines(openFileDialog.FileName));
+                    {
+                        List<int> checks = File.ReadAllLines(openFileDialog.FileName).Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[1].Trim(), 16)).ToList();
+
+                        for (int i = 0; i < chklbWarpList.Items.Count; i++)
+                        {                            
+                            chklbWarpList.SetItemCheckState(i, (CheckState)checks[i]);
+                        }
+                    }
                     MessageBox.Show("Warps loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
