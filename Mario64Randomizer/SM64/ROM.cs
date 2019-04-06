@@ -162,9 +162,14 @@ namespace Mario64Randomizer.SM64
             offset = offsetStack.Pop();
         }
 
-        public void ReadData(int offset, int length, byte[] source)
+        public void ReadData(int offset, byte[] source)
         {
-            Array.Copy(rom, offset, source, 0, length);
+            Array.Copy(rom, offset, source, 0, source.Length);
+        }
+
+        public void WriteData(int offset, byte[] source)
+        {
+            Array.Copy(source, 0, rom, offset, source.Length);
         }
 
         public SegmentDescriptor GetSegmentDescriptor(int segment)
