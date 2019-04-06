@@ -13,6 +13,7 @@ using Mario64Randomizer.SM64;
 using Mario64Randomizer.Parsers;
 using System.IO;
 using System.Reflection;
+using Mario64Randomizer.patches;
 
 namespace Mario64Randomizer
 {
@@ -256,6 +257,11 @@ namespace Mario64Randomizer
                 {
                     rm = new ROM(File.ReadAllBytes(openFileDialog.FileName));
                     romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+
+#warning make it with checkbox
+                    Patch p = new Patch(AppDomain.CurrentDomain.BaseDirectory + "patches\\warpfadefix");
+                    p.Apply(rm);
+
                     MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
@@ -538,6 +544,7 @@ namespace Mario64Randomizer
                     try
                     {
                         File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
+                        Patch.FixChksum(saveFileDialog.FileName);
                         MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                     catch (IOException)
