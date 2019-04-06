@@ -85,7 +85,7 @@
             this.pictureAbout.ErrorImage = global::Mario64Randomizer.Properties.Resources.star;
             this.pictureAbout.Image = global::Mario64Randomizer.Properties.Resources.star;
             this.pictureAbout.InitialImage = global::Mario64Randomizer.Properties.Resources.star;
-            this.pictureAbout.Location = new System.Drawing.Point(12, 53);
+            this.pictureAbout.Location = new System.Drawing.Point(12, 27);
             this.pictureAbout.Name = "pictureAbout";
             this.pictureAbout.Size = new System.Drawing.Size(100, 98);
             this.pictureAbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -102,6 +102,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(420, 220);
