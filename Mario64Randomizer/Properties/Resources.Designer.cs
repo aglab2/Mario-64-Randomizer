@@ -71,11 +71,11 @@ namespace Mario64Randomizer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 130008EC : Coin Formation
-        ///13003174 : Bob-Omb Behavior
+        ///   Looks up a localized string similar to 13003174 : Bob-Omb Behavior
         ///130031DC : Pink Bob-omb with message
         ///13003228 : Pink Bob-omb Opening Cannon Behav
-        ///13004770 : Three Goombas.
+        ///13004770 : Three Goombas
+        ///130032E0 : Wooden Signpost.
         /// </summary>
         internal static string groundedBehaviours {
             get {
@@ -151,6 +151,7 @@ namespace Mario64Randomizer.Properties {
         ///13002F60 :
         ///13002F64 :
         ///13002F68 :
+        ///13002F6C :
         ///13002F70 :
         ///13002F74 :
         ///13002F78 :

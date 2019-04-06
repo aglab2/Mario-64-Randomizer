@@ -372,7 +372,7 @@ namespace Mario64Randomizer
 
                     if (chkWarpFile.Checked)
                     {
-                        string path = System.AppContext.BaseDirectory + romName + " - " + seed.ToString() + ".txt";
+                        string path = AppDomain.CurrentDomain.BaseDirectory + romName + " - " + seed.ToString() + ".txt";
 
                         using (StreamWriter sw = File.CreateText(path))
                         {
