@@ -257,8 +257,6 @@ namespace Mario64Randomizer
                 {
                     rm = new ROM(File.ReadAllBytes(openFileDialog.FileName));
                     romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-
-#warning make it with checkbox
                     Patch p = new Patch(AppDomain.CurrentDomain.BaseDirectory + "patches\\warpfadefix");
                     p.Apply(rm);
 
@@ -544,7 +542,10 @@ namespace Mario64Randomizer
                     try
                     {
                         File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
-                        Patch.FixChksum(saveFileDialog.FileName);
+                        if(chkWarpPatch.Checked)
+                        {
+                            Patch.FixChksum(saveFileDialog.FileName);
+                        }                        
                         MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                     catch (IOException)

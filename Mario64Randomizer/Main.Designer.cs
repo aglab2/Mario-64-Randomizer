@@ -86,8 +86,9 @@
             this.chkRandomizeMusic = new System.Windows.Forms.CheckBox();
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
-            this.chkRandomizeTextures = new System.Windows.Forms.CheckBox();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.tabMisc = new System.Windows.Forms.TabPage();
+            this.chkWarpPatch = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -95,6 +96,7 @@
             this.tabEnemies.SuspendLayout();
             this.tabClothes.SuspendLayout();
             this.tabSequence.SuspendLayout();
+            this.tabMisc.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNewSeed
@@ -313,6 +315,7 @@
             this.tabControl1.Controls.Add(this.tabEnemies);
             this.tabControl1.Controls.Add(this.tabClothes);
             this.tabControl1.Controls.Add(this.tabSequence);
+            this.tabControl1.Controls.Add(this.tabMisc);
             this.tabControl1.Location = new System.Drawing.Point(30, 118);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -791,7 +794,7 @@
             this.chkRandomizeText.AutoSize = true;
             this.chkRandomizeText.Enabled = false;
             this.chkRandomizeText.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeText.Location = new System.Drawing.Point(274, 95);
+            this.chkRandomizeText.Location = new System.Drawing.Point(18, 49);
             this.chkRandomizeText.Name = "chkRandomizeText";
             this.chkRandomizeText.Size = new System.Drawing.Size(47, 17);
             this.chkRandomizeText.TabIndex = 0;
@@ -899,19 +902,6 @@
             this.chkRandomizeWarps.Text = "Warps";
             this.chkRandomizeWarps.UseVisualStyleBackColor = true;
             // 
-            // chkRandomizeTextures
-            // 
-            this.chkRandomizeTextures.AutoSize = true;
-            this.chkRandomizeTextures.Enabled = false;
-            this.chkRandomizeTextures.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkRandomizeTextures.Location = new System.Drawing.Point(274, 71);
-            this.chkRandomizeTextures.Name = "chkRandomizeTextures";
-            this.chkRandomizeTextures.Size = new System.Drawing.Size(67, 17);
-            this.chkRandomizeTextures.TabIndex = 41;
-            this.chkRandomizeTextures.Text = "Textures";
-            this.chkRandomizeTextures.UseVisualStyleBackColor = true;
-            this.chkRandomizeTextures.Visible = false;
-            // 
             // btnHelp
             // 
             this.btnHelp.BackColor = System.Drawing.Color.Transparent;
@@ -931,6 +921,31 @@
             this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
             this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
             // 
+            // tabMisc
+            // 
+            this.tabMisc.BackColor = System.Drawing.Color.Black;
+            this.tabMisc.Controls.Add(this.chkWarpPatch);
+            this.tabMisc.Controls.Add(this.chkRandomizeText);
+            this.tabMisc.Location = new System.Drawing.Point(4, 22);
+            this.tabMisc.Name = "tabMisc";
+            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMisc.Size = new System.Drawing.Size(336, 322);
+            this.tabMisc.TabIndex = 7;
+            this.tabMisc.Text = "Misc";
+            // 
+            // chkWarpPatch
+            // 
+            this.chkWarpPatch.AutoSize = true;
+            this.chkWarpPatch.Checked = true;
+            this.chkWarpPatch.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWarpPatch.ForeColor = System.Drawing.Color.White;
+            this.chkWarpPatch.Location = new System.Drawing.Point(18, 26);
+            this.chkWarpPatch.Name = "chkWarpPatch";
+            this.chkWarpPatch.Size = new System.Drawing.Size(123, 17);
+            this.chkWarpPatch.TabIndex = 42;
+            this.chkWarpPatch.Text = "Patch Fading Warps";
+            this.chkWarpPatch.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -938,8 +953,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(404, 481);
             this.Controls.Add(this.btnHelp);
-            this.Controls.Add(this.chkRandomizeText);
-            this.Controls.Add(this.chkRandomizeTextures);
             this.Controls.Add(this.chkRandomizeEnemies);
             this.Controls.Add(this.chkRandomizeMarioClothes);
             this.Controls.Add(this.chkRandomizeMusic);
@@ -969,6 +982,8 @@
             this.tabClothes.PerformLayout();
             this.tabSequence.ResumeLayout(false);
             this.tabSequence.PerformLayout();
+            this.tabMisc.ResumeLayout(false);
+            this.tabMisc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,7 +1018,6 @@
         private System.Windows.Forms.TabPage tabClothes;
         private System.Windows.Forms.ColorDialog cdClothes;
         private System.Windows.Forms.Button btnColorRestore;
-        private System.Windows.Forms.CheckBox chkRandomizeTextures;
         private System.Windows.Forms.Button btnColorHair;
         private System.Windows.Forms.Button btnColorFace;
         private System.Windows.Forms.Button btnColorShoes;
@@ -1035,6 +1049,8 @@
         private System.Windows.Forms.Button btnSaveWarpList;
         private System.Windows.Forms.Button btnRestoreWarps;
         private System.Windows.Forms.CheckedListBox chklbWarpList;
+        private System.Windows.Forms.TabPage tabMisc;
+        private System.Windows.Forms.CheckBox chkWarpPatch;
     }
 }
 
