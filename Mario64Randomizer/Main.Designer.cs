@@ -442,7 +442,7 @@
             // 
             // btnLoadBehaviours
             // 
-            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
             this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadBehaviours.Location = new System.Drawing.Point(276, 16);
@@ -455,7 +455,7 @@
             // 
             // btnSaveBehaviours
             // 
-            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
             this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveBehaviours.Location = new System.Drawing.Point(230, 16);
@@ -468,7 +468,7 @@
             // 
             // btnRestoreBehaviours
             // 
-            this.btnRestoreBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnRestoreBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnRestoreBehaviours.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
             this.btnRestoreBehaviours.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
@@ -631,7 +631,7 @@
             // 
             // btnColorHair
             // 
-            this.btnColorHair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorHair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorHair.FlatAppearance.BorderSize = 0;
             this.btnColorHair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorHair.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -645,7 +645,7 @@
             // 
             // btnColorFace
             // 
-            this.btnColorFace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorFace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorFace.FlatAppearance.BorderSize = 0;
             this.btnColorFace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorFace.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -659,7 +659,7 @@
             // 
             // btnColorShoes
             // 
-            this.btnColorShoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorShoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorShoes.FlatAppearance.BorderSize = 0;
             this.btnColorShoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorShoes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -673,7 +673,7 @@
             // 
             // btnColorGloves
             // 
-            this.btnColorGloves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorGloves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorGloves.FlatAppearance.BorderSize = 0;
             this.btnColorGloves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorGloves.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -687,7 +687,7 @@
             // 
             // btnColorCapArms
             // 
-            this.btnColorCapArms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorCapArms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorCapArms.FlatAppearance.BorderSize = 0;
             this.btnColorCapArms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorCapArms.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -701,7 +701,7 @@
             // 
             // btnColorOveralls
             // 
-            this.btnColorOveralls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.btnColorOveralls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnColorOveralls.FlatAppearance.BorderSize = 0;
             this.btnColorOveralls.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorOveralls.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -720,7 +720,7 @@
             this.btnColorRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnColorRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnColorRestore.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnColorRestore.Location = new System.Drawing.Point(171, 15);
+            this.btnColorRestore.Location = new System.Drawing.Point(252, 15);
             this.btnColorRestore.Name = "btnColorRestore";
             this.btnColorRestore.Size = new System.Drawing.Size(24, 24);
             this.btnColorRestore.TabIndex = 0;
@@ -758,9 +758,9 @@
             this.btnRefreshList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefreshList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefreshList.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRefreshList.Location = new System.Drawing.Point(258, 47);
+            this.btnRefreshList.Location = new System.Drawing.Point(300, 12);
             this.btnRefreshList.Name = "btnRefreshList";
-            this.btnRefreshList.Size = new System.Drawing.Size(36, 36);
+            this.btnRefreshList.Size = new System.Drawing.Size(24, 24);
             this.btnRefreshList.TabIndex = 42;
             this.btnRefreshList.UseVisualStyleBackColor = false;
             this.btnRefreshList.Click += new System.EventHandler(this.btnRefreshList_Click);
