@@ -147,6 +147,35 @@ namespace Mario64Randomizer.Properties {
         ///13000B14 : it might not be warping door
         ///13001C34 :
         ///1300248C :
+        ///13002710 : boo
+        ///13002F60 :
+        ///13002F64 :
+        ///13002F68 :
+        ///13002F70 :
+        ///13002F74 :
+        ///13002F78 :
+        ///13002F7C :
+        ///13002F80 :
+        ///13002F84 :
+        ///13002F88 :
+        ///13002F8C :
+        ///13002F90 :
+        ///13002F94 :.
+        /// </summary>
+        internal static string targetWarps {
+            get {
+                return ResourceManager.GetString("targetWarps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1300075C : 
+        ///13000780 : 
+        ///130007A0 : 
+        ///13000AFC : 
+        ///13000B14 : it might not be warping door
+        ///13001C34 :
+        ///1300248C :
         ///13002710 : boo.
         /// </summary>
         internal static string warpBehaviours {
