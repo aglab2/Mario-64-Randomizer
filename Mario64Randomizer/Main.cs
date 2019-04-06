@@ -842,6 +842,6 @@ namespace Mario64Randomizer
             {
                 chklbWarpList.SetItemChecked(i, true);
             }
-        }
+        }        
     }
 }

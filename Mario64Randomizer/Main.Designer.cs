@@ -50,7 +50,6 @@
             this.btnSaveWarpList = new System.Windows.Forms.Button();
             this.btnRestoreWarps = new System.Windows.Forms.Button();
             this.chklbWarpList = new System.Windows.Forms.CheckedListBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
             this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
             this.tabEnemies = new System.Windows.Forms.TabPage();
@@ -328,7 +327,6 @@
             this.tabWarps.Controls.Add(this.btnSaveWarpList);
             this.tabWarps.Controls.Add(this.btnRestoreWarps);
             this.tabWarps.Controls.Add(this.chklbWarpList);
-            this.tabWarps.Controls.Add(this.checkBox1);
             this.tabWarps.Controls.Add(this.chkWarpFile);
             this.tabWarps.Controls.Add(this.chkRandomizeBowser);
             this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
@@ -386,53 +384,46 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chklbWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.chklbWarpList.CheckOnClick = true;
             this.chklbWarpList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chklbWarpList.ForeColor = System.Drawing.SystemColors.Window;
             this.chklbWarpList.FormattingEnabled = true;
             this.chklbWarpList.Items.AddRange(new object[] {
-            "C1",
-            "C2",
-            "C3",
-            "C4",
-            "C5",
-            "C6",
-            "C7",
-            "C8",
-            "C9",
-            "C10",
-            "C11",
-            "C12",
-            "C13",
-            "C14",
-            "C15",
-            "SA",
-            "WC",
-            "Slide",
-            "MC",
-            "VC",
-            "Clouds",
-            "B1",
-            "B2",
-            "B3"});
+            "Course 1",
+            "Course 2",
+            "Course 3",
+            "Course 4",
+            "Course 5",
+            "Course 6",
+            "Course 7",
+            "Course 8",
+            "Course 9",
+            "Course 10",
+            "Course 11",
+            "Course 12",
+            "Course 13",
+            "Course 14",
+            "Course 15",
+            "Bowser 1",
+            "Bowser Battle 1",
+            "Bowser Course 2",
+            "Bowser Battle 2",
+            "Bowser Course 3",
+            "Bowser Battle 3",
+            "Peach Slide",
+            "Metal Cap",
+            "Wing Cap",
+            "Vanish Cap",
+            "Rainbow",
+            "Aquarium",
+            "\"The End\"",
+            "Castle Grounds",
+            "Inside Castle",
+            "Castle Courtyard"});
             this.chklbWarpList.Location = new System.Drawing.Point(48, 93);
             this.chklbWarpList.Name = "chklbWarpList";
-            this.chklbWarpList.Size = new System.Drawing.Size(239, 191);
+            this.chklbWarpList.Size = new System.Drawing.Size(239, 208);
             this.chklbWarpList.TabIndex = 7;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(200, 15);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(125, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Randomize Paintings";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
             // 
             // chkWarpFile
             // 
@@ -1042,7 +1033,6 @@
         private System.Windows.Forms.Button btnRefreshList;
         private System.Windows.Forms.CheckBox chkWarpFile;
         private System.Windows.Forms.CheckBox chkRandomizeBowser;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabEnemies;
         private System.Windows.Forms.Button btnRestoreBehaviours;
         private System.Windows.Forms.Button btnAddBehaviour;
