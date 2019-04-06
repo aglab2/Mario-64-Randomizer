@@ -297,7 +297,7 @@ namespace Mario64Randomizer
                         song.Write(rm);
                     }
 
-                    MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    //MessageBox.Show("Music Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 if (chkRandomizeWarps.Checked)
                 {
@@ -342,23 +342,7 @@ namespace Mario64Randomizer
                             }
                         }
                         catch (Exception) { }
-                    }
-
-                    /*if (!chkRandomizeBowser.Checked)
-                    {
-                        int bowserWarpId;
-
-                        if (nudBowserWarpId.Value != 0)
-                        {
-                            bowserWarpId = Convert.ToByte(nudBowserWarpId.Value);
-                            warps = warps.Where(x => x.to.course != bowserWarpId);
-                        }
-                        else
-                        {
-                            bowserWarpId = 0x22;
-                            warps = warps.Where(x => x.to.course != bowserWarpId);
-                        }                        
-                    }*/
+                    }                   
 
                     IEnumerable<Warp> warps = null;
                     {
@@ -380,7 +364,7 @@ namespace Mario64Randomizer
                         warp.Write(rm);
                     
 
-                    MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    //MessageBox.Show("Warps Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                     if (chkWarpFile.Checked)
                     {
@@ -431,7 +415,7 @@ namespace Mario64Randomizer
                         catch (Exception) { }
                     }
 
-                    MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    //MessageBox.Show("Enemies Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 if (chkRandomizeMarioClothes.Checked)
                 {
@@ -528,8 +512,9 @@ namespace Mario64Randomizer
                         hairObject.Write(rm);
                     }
                                         
-                    MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    //MessageBox.Show("Mario's Clothes Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
+                MessageBox.Show("Rom Randomized", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {

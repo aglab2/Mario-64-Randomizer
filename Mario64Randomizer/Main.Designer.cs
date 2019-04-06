@@ -51,7 +51,6 @@
             this.btnRestoreWarps = new System.Windows.Forms.Button();
             this.chklbWarpList = new System.Windows.Forms.CheckedListBox();
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
-            this.chkRandomizeBowser = new System.Windows.Forms.CheckBox();
             this.tabEnemies = new System.Windows.Forms.TabPage();
             this.txtNewBehaviour = new System.Windows.Forms.TextBox();
             this.btnLoadBehaviours = new System.Windows.Forms.Button();
@@ -328,7 +327,6 @@
             this.tabWarps.Controls.Add(this.btnRestoreWarps);
             this.tabWarps.Controls.Add(this.chklbWarpList);
             this.tabWarps.Controls.Add(this.chkWarpFile);
-            this.tabWarps.Controls.Add(this.chkRandomizeBowser);
             this.tabWarps.ForeColor = System.Drawing.SystemColors.Control;
             this.tabWarps.Location = new System.Drawing.Point(4, 22);
             this.tabWarps.Name = "tabWarps";
@@ -342,7 +340,7 @@
             this.btnLoadWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnLoadWarpList.FlatAppearance.BorderSize = 0;
             this.btnLoadWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 62);
+            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 41);
             this.btnLoadWarpList.Name = "btnLoadWarpList";
             this.btnLoadWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnLoadWarpList.TabIndex = 10;
@@ -355,7 +353,7 @@
             this.btnSaveWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnSaveWarpList.FlatAppearance.BorderSize = 0;
             this.btnSaveWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 62);
+            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 41);
             this.btnSaveWarpList.Name = "btnSaveWarpList";
             this.btnSaveWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnSaveWarpList.TabIndex = 9;
@@ -371,7 +369,7 @@
             this.btnRestoreWarps.FlatAppearance.BorderSize = 0;
             this.btnRestoreWarps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 62);
+            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 41);
             this.btnRestoreWarps.Name = "btnRestoreWarps";
             this.btnRestoreWarps.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreWarps.TabIndex = 8;
@@ -420,30 +418,20 @@
             "Castle Grounds",
             "Inside Castle",
             "Castle Courtyard"});
-            this.chklbWarpList.Location = new System.Drawing.Point(48, 93);
+            this.chklbWarpList.Location = new System.Drawing.Point(48, 76);
             this.chklbWarpList.Name = "chklbWarpList";
-            this.chklbWarpList.Size = new System.Drawing.Size(239, 208);
+            this.chklbWarpList.Size = new System.Drawing.Size(239, 225);
             this.chklbWarpList.TabIndex = 7;
             // 
             // chkWarpFile
             // 
             this.chkWarpFile.AutoSize = true;
-            this.chkWarpFile.Location = new System.Drawing.Point(48, 38);
+            this.chkWarpFile.Location = new System.Drawing.Point(48, 19);
             this.chkWarpFile.Name = "chkWarpFile";
             this.chkWarpFile.Size = new System.Drawing.Size(106, 17);
             this.chkWarpFile.TabIndex = 3;
             this.chkWarpFile.Text = "Output Warp File";
             this.chkWarpFile.UseVisualStyleBackColor = true;
-            // 
-            // chkRandomizeBowser
-            // 
-            this.chkRandomizeBowser.AutoSize = true;
-            this.chkRandomizeBowser.Location = new System.Drawing.Point(48, 15);
-            this.chkRandomizeBowser.Name = "chkRandomizeBowser";
-            this.chkRandomizeBowser.Size = new System.Drawing.Size(146, 17);
-            this.chkRandomizeBowser.TabIndex = 2;
-            this.chkRandomizeBowser.Text = "Randomize Bowser Warp";
-            this.chkRandomizeBowser.UseVisualStyleBackColor = true;
             // 
             // tabEnemies
             // 
@@ -1032,7 +1020,6 @@
         private System.Windows.Forms.TabPage tabWarps;
         private System.Windows.Forms.Button btnRefreshList;
         private System.Windows.Forms.CheckBox chkWarpFile;
-        private System.Windows.Forms.CheckBox chkRandomizeBowser;
         private System.Windows.Forms.TabPage tabEnemies;
         private System.Windows.Forms.Button btnRestoreBehaviours;
         private System.Windows.Forms.Button btnAddBehaviour;
