@@ -50,7 +50,12 @@ namespace Mario64Randomizer.SM64
         }
     }
 
-
+    public enum ObjectStatus
+    {
+        Unknown,
+        Grounded,
+        NonGrounded
+    }
 
     public class Object
     {
@@ -64,8 +69,43 @@ namespace Mario64Randomizer.SM64
         public readonly int addr;
         public readonly int level;
 
-        public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
+        static List<int> groundedBehaviours = Properties.Resources.groundedBehaviours
+            .Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+
+        static List<int> nonGroundedBehaviours = Properties.Resources.notGrounded
+            .Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+
+        public static void SetNonGroundedBehaviours(List<string> behaviours)
+        {
+            nonGroundedBehaviours = behaviours.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+        }
+
+public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
         public byte BParam2 { get { return (byte)((bparams & 0x00FF0000) >> 16); } }
+
+        public ObjectStatus status
+        {
+            get
+            {
+                if (groundedBehaviours.Contains(behaviour))
+                    return ObjectStatus.Grounded;
+
+                if (nonGroundedBehaviours.Contains(behaviour))
+                    return ObjectStatus.NonGrounded;
+
+                if (behaviour == 0x130008EC)
+                {
+                    if (BParam2 >= 16) // flying coins behaviour
+                        return ObjectStatus.NonGrounded;
+                    else // other coins behaviours that are put to ground
+                        return ObjectStatus.Grounded;
+                }
+
+                return ObjectStatus.Unknown;
+            }
+        }
 
         public Object(byte area, int level, ROM rom, int addr)
         {

@@ -31,9 +31,7 @@ namespace Mario64Randomizer
         private Color colorMarioFace;
         private Color colorMarioHair;
         //
-        
-        public List<int> groundedBehaviours;
-        public List<int> nonGroundedBehaviours;
+
         public List<int> warpingBehaviours;
         public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
@@ -83,8 +81,6 @@ namespace Mario64Randomizer
         {            
             this.btnNewSeed.PerformClick();
             behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            groundedBehaviours = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();            
-            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             lBehaviours.DataSource = behavioursWithNames;
@@ -405,10 +401,10 @@ namespace Mario64Randomizer
                                 if (areaObjects.Count == 0)
                                     continue;
 
-                                IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => groundedBehaviours.Contains(x.behaviour));
+                                IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => x.status == ObjectStatus.Grounded);
                                 IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
 
-                                IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => nonGroundedBehaviours.Contains(x.behaviour));
+                                IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => x.status == ObjectStatus.NonGrounded);
                                 IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
 
                                 Shuffle(groundedList, seed);
@@ -665,7 +661,7 @@ namespace Mario64Randomizer
         private void btnRestoreBehaviours_Click(object sender, EventArgs e)
         {
             behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
             lBehaviours.DataSource = behavioursWithNames;
         }
 
@@ -685,7 +681,7 @@ namespace Mario64Randomizer
             behavioursWithNames.Add(txtNewBehaviour.Text);
             lBehaviours.DataSource = null;
             lBehaviours.DataSource = behavioursWithNames;
-            nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
         }
 
         private void btnSaveBehaviours_Click(object sender, EventArgs e)
@@ -726,7 +722,7 @@ namespace Mario64Randomizer
                     behavioursWithNames = File.ReadAllLines(openFileDialog.FileName).ToList();
                     lBehaviours.DataSource = null;
                     lBehaviours.DataSource = behavioursWithNames;
-                    nonGroundedBehaviours = behavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+                    SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
                     MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)

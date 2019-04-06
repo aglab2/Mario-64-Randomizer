@@ -25,7 +25,6 @@ namespace Mario64Randomizer.SM64
             this.addr = ramAddr - bank4RAMStart + bank4ROMStart;
 
             rom.PushOffset(addr);
-#warning why is it scrambled like this?
             color = Color.FromArgb(0x00, rom.Read8(0), rom.Read8(2), rom.Read8(1));
             rom.PopOffset();
         }
