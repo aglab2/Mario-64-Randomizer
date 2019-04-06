@@ -43,7 +43,6 @@
 130030A4 : Blue Coin (Moving)
 130030D4 : Blue Coin (Sliding)
 13003104 : Blue Coin (Tossed in Air)
-130032E0 : Wooden Signpost
 13003354 : Amp 2 Behavior
 13003388 : Amp Behavior
 130033BC : Butterfly Behav
