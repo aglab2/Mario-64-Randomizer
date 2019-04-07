@@ -493,16 +493,30 @@ namespace Mario64Randomizer
                 warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);                
             }
 
-            
+            // Pick warps between stages and inside stages
+            IEnumerable<Warp> outsideWarps = warps.Where(w => w.course != w.to.course);
+            IEnumerable<Warp> insideWarps  = warps.Where(w => w.course == w.to.course);
 
-            // Drop all warps that have 
+            randomizePreparedWarps(outsideWarps);
+            // n00b mode
+            foreach (LevelOffsetsDescription lod in LevelInfo.Description)
+            {
+                IEnumerable<Warp> levelWarps = insideWarps.Where(w => w.course == lod.Level);
+                randomizePreparedWarps(levelWarps);
+            }
+            // gamer mode
+            //randomizePreparedWarps(insideWarps);
+        }
+
+        public void randomizePreparedWarps(IEnumerable<Warp> warps)
+        {
             IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
             Shuffle(warpsTo, seed);
 
             IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.area, warp.course, warp.from, to, warp.addr));
 
             foreach (Warp warp in shuffledWarps)
-                warp.Write(rm);            
+                warp.Write(rm);
 
             if (chkWarpFile.Checked)
             {
