@@ -493,34 +493,71 @@ namespace Mario64Randomizer
                 warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);                
             }
 
-            // Pick warps between stages and inside stages
-            IEnumerable<Warp> outsideWarps = warps.Where(w => w.course != w.to.course);
-            IEnumerable<Warp> insideWarps  = warps.Where(w => w.course == w.to.course);
+            // Pick warps between(outside) stages and inside stages
 
-            randomizePreparedWarps(outsideWarps);
-            // n00b mode
-            foreach (LevelOffsetsDescription lod in LevelInfo.Description)
+            // Outside warps logics
             {
-                IEnumerable<Warp> levelWarps = insideWarps.Where(w => w.course == lod.Level);
-                randomizePreparedWarps(levelWarps);
+                IEnumerable<Warp> outsideWarps = warps.Where(w => w.course != w.to.course);
+
+                List<Warp> levelWarps = randomizePreparedWarps(outsideWarps).ToList();
+
+                // Warps between levels should never warp on themselves or bad things will happen
+                // For example if loop like c1->c2->c3 will become c1->c1 c2->c1 c3->c3 game might crash
+                // This is greedy attempt to fix this
+                while (true)
+                {
+                    List<Warp> brokenOutsideWarps = levelWarps.Where(w => w.course == w.to.course).ToList();
+                    if (brokenOutsideWarps.Count == 0)
+                        break;
+
+                    // Try find replacement warp that is not broken
+                    Warp brokenWarp = brokenOutsideWarps.First();
+                    int brokenWarpId      = levelWarps.FindIndex(w => w == brokenWarp);
+                    int replacementWarpId = levelWarps.FindIndex(w => w.to.course != brokenWarp.course);
+                    if (replacementWarpId == -1)
+                        break;
+
+                    Warp replacementWarp = levelWarps[replacementWarpId];
+
+                    // Swap "to" in warps and be happy :)
+                    Warp notBrokenWarp      = new Warp(brokenWarp.area,      brokenWarp.course,      brokenWarp.from,      replacementWarp.to, brokenWarp.addr);
+                    Warp notReplacementWarp = new Warp(replacementWarp.area, replacementWarp.course, replacementWarp.from, brokenWarp.to,      replacementWarp.addr);
+                    levelWarps[replacementWarpId] = notReplacementWarp;
+                    levelWarps[brokenWarpId]      = notBrokenWarp;
+                }
+                applyWarps(randomizePreparedWarps(levelWarps), "out");
             }
-            // gamer mode
-            //randomizePreparedWarps(insideWarps);
+
+            // Inside warps logics
+            {
+                IEnumerable<Warp> insideWarps = warps.Where(w => w.course == w.to.course);
+                // n00b mode
+                foreach (LevelOffsetsDescription lod in LevelInfo.Description)
+                {
+                    IEnumerable<Warp> levelWarps = insideWarps.Where(w => w.course == lod.Level);
+                    applyWarps(randomizePreparedWarps(levelWarps), "in");
+                }
+                // gamer mode
+                //applyWarps(randomizePreparedWarps(insideWarps), "in");
+            }
         }
 
-        public void randomizePreparedWarps(IEnumerable<Warp> warps)
+        public IEnumerable<Warp> randomizePreparedWarps(IEnumerable<Warp> warps)
         {
             IList<WarpTo> warpsTo = warps.Select(x => x.to).ToList();
             Shuffle(warpsTo, seed);
 
-            IEnumerable<Warp> shuffledWarps = warps.Zip(warpsTo, (warp, to) => new Warp(warp.area, warp.course, warp.from, to, warp.addr));
+            return warps.Zip(warpsTo, (warp, to) => new Warp(warp.area, warp.course, warp.from, to, warp.addr));
+        }
 
+        public void applyWarps(IEnumerable<Warp> shuffledWarps, string debugName)
+        {
             foreach (Warp warp in shuffledWarps)
                 warp.Write(rm);
 
             if (chkWarpFile.Checked)
             {
-                string path = AppDomain.CurrentDomain.BaseDirectory + romName + " - " + seed.ToString() + ".txt";
+                string path = AppDomain.CurrentDomain.BaseDirectory + romName + " - " + debugName + " - " + seed.ToString() + ".txt";
 
                 using (StreamWriter sw = File.CreateText(path))
                 {
