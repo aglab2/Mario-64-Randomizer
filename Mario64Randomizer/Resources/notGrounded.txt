@@ -16,8 +16,6 @@
 13000BC8 : Thwomp Behavior
 13001108 : Flame Thrower Behavior
 130012B4 : SpinDrift Behavior
-130014E0 : Breakable Box
-13001518 : Pushable
 13001548 : Heave-Ho Behavior
 13001650 : Jumping Box
 1300179C : Bullet Bill Behav
@@ -29,7 +27,6 @@
 1300215C : Fish Group Behavior
 130021E4 : Chirp Chirp
 1300220C : Bub
-13002250 : [!] Box Behavior
 13002338 : Sushi
 13002710 : Boo's Behavior
 13002768 : Patrolling Boo Buddy
@@ -84,7 +81,6 @@
 13004F90 : Dorrie
 13005024 : Mad Piano Behavior
 1300506C : Flying Bookend
-13005120 : Piranha Plant Behavior
 1300518C : Fire Spewer Behavior
 130051E0 : Snufit Behavior
 1300521C : Snifit Bullet

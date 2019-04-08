@@ -95,12 +95,40 @@ public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
                 if (nonGroundedBehaviours.Contains(behaviour))
                     return ObjectStatus.NonGrounded;
 
+                // Coin Formation
                 if (behaviour == 0x130008EC)
                 {
                     if (BParam2 >= 16) // flying coins behaviour
                         return ObjectStatus.NonGrounded;
                     else // other coins behaviours that are put to ground
                         return ObjectStatus.Grounded;
+                }
+
+                // [!] box
+                if (behaviour == 0x13002250)
+                {
+                    if (BParam2 <= 3) // caps + shell
+                        return ObjectStatus.Unknown;
+                    else
+                        return ObjectStatus.NonGrounded;
+                }
+
+                // Piranha flower
+                if (behaviour == 0x13005120)
+                {
+                    if (BParam2 == 1)
+                        return ObjectStatus.Unknown;
+                    else
+                        return ObjectStatus.NonGrounded;
+                }
+
+                // Eyeball
+                if (behaviour == 0x13000054)
+                {
+                    if (BParam2 == 1)
+                        return ObjectStatus.Unknown;
+                    else
+                        return ObjectStatus.NonGrounded;
                 }
 
                 return ObjectStatus.Unknown;
