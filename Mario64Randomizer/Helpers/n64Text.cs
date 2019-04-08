@@ -7,8 +7,9 @@ namespace Mario64Randomizer.Helpers
 {
     public class n64Text
     {
-        public string GetString(byte[] bytes)
+        static public List<string> GetStrings(byte[] bytes)
         {
+            List<string> strings = new List<string>();
             string text = "";
             checked
             {
@@ -359,7 +360,9 @@ namespace Mario64Randomizer.Helpers
                                         text += "\r\n";
                                         break;
                                     case 255:
-                                        return text;
+                                        strings.Add(text);
+                                        text = "";
+                                        break;
                                 }
                                 break;
                         }
@@ -369,7 +372,7 @@ namespace Mario64Randomizer.Helpers
                         text += "-";
                     }
                 }
-                return text;
+                return strings;
             }
         }
     }

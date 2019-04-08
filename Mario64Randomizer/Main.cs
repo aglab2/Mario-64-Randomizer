@@ -14,6 +14,7 @@ using Mario64Randomizer.Parsers;
 using System.IO;
 using System.Reflection;
 using Mario64Randomizer.patches;
+using Mario64Randomizer.Helpers;
 
 namespace Mario64Randomizer
 {
@@ -926,26 +927,10 @@ namespace Mario64Randomizer
 
         private List<string> getCourseNames()
         {
-            List <string> courseNames = new List<string>();
             const int levelNameTableStart = 0x813E6A;
-            int levelNameTableLength = 0x813E6A + (LevelInfo.Description.Length * 562);
-
-            rm.PushOffset(levelNameTableStart);                       
-
-            for (int i = levelNameTableStart;  i < levelNameTableLength; i += 562)
-            {
-                Mario64Randomizer.Helpers.n64Text n = new Helpers.n64Text();
-                byte[] data = new byte[562];
-                rm.ReadData(i, data);
-                string course = n.GetString(data);
-                Console.WriteLine(course);
-                courseNames.Add(course);
-            }
-
-            rm.PopOffset();
-            return courseNames;
+            byte[] data = new byte[562];
+            rm.ReadData(levelNameTableStart, data);
+            return n64Text.GetStrings(data);
         }
-
-
     }
 }
