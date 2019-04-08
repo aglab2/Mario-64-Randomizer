@@ -493,8 +493,12 @@ namespace Mario64Randomizer
                 warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);                
             }
 
-            // Pick warps between(outside) stages and inside stages
+            if(!chkRandomizeHubs.Checked) // If Checked, randomize Warps that lead to Hubs
+            {
+                warps = warps.Where(x => (x.to.course != 0x06) & (x.to.course != 0x10) & (x.to.course != 0x1A));
+            }
 
+            // Pick warps between(outside) stages and inside stages
             // Outside warps logics
             {
                 IEnumerable<Warp> outsideWarps = warps.Where(w => w.course != w.to.course);
@@ -531,14 +535,24 @@ namespace Mario64Randomizer
             // Inside warps logics
             {
                 IEnumerable<Warp> insideWarps = warps.Where(w => w.course == w.to.course);
-                // n00b mode
-                foreach (LevelOffsetsDescription lod in LevelInfo.Description)
+                
+                if (chkBoxMixWarps.CheckState == CheckState.Unchecked)
                 {
-                    IEnumerable<Warp> levelWarps = insideWarps.Where(w => w.course == lod.Level);
-                    applyWarps(randomizePreparedWarps(levelWarps), "in");
+                    if (chkRandomizeInsideWarps.Checked)
+                    {
+                        // n00b mode
+                        foreach (LevelOffsetsDescription lod in LevelInfo.Description)
+                        {
+                            IEnumerable<Warp> levelWarps = insideWarps.Where(w => w.course == lod.Level);
+                            applyWarps(randomizePreparedWarps(levelWarps), "in");
+                        }
+                    }
                 }
-                // gamer mode
-                //applyWarps(randomizePreparedWarps(insideWarps), "in");
+                else
+                {
+                    // gamer mode
+                    applyWarps(randomizePreparedWarps(insideWarps), "in");
+                }
             }
         }
 
@@ -744,6 +758,7 @@ namespace Mario64Randomizer
                 lBehaviours.DataSource = null;
                 lBehaviours.DataSource = behavioursWithNames;
                 lBehaviours.SelectedIndex = 0;
+                SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
             }            
         }
 

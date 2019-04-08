@@ -46,7 +46,7 @@
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabWarps = new System.Windows.Forms.TabPage();
-            this.chkSameLevelWarps = new System.Windows.Forms.CheckBox();
+            this.chkRandomizeInsideWarps = new System.Windows.Forms.CheckBox();
             this.btnLoadWarpList = new System.Windows.Forms.Button();
             this.btnSaveWarpList = new System.Windows.Forms.Button();
             this.btnRestoreWarps = new System.Windows.Forms.Button();
@@ -90,6 +90,8 @@
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.chkBoxMixWarps = new System.Windows.Forms.CheckBox();
+            this.chkRandomizeHubs = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -326,7 +328,9 @@
             // tabWarps
             // 
             this.tabWarps.BackColor = System.Drawing.Color.Black;
-            this.tabWarps.Controls.Add(this.chkSameLevelWarps);
+            this.tabWarps.Controls.Add(this.chkRandomizeHubs);
+            this.tabWarps.Controls.Add(this.chkBoxMixWarps);
+            this.tabWarps.Controls.Add(this.chkRandomizeInsideWarps);
             this.tabWarps.Controls.Add(this.btnLoadWarpList);
             this.tabWarps.Controls.Add(this.btnSaveWarpList);
             this.tabWarps.Controls.Add(this.btnRestoreWarps);
@@ -340,24 +344,22 @@
             this.tabWarps.TabIndex = 5;
             this.tabWarps.Text = "Warps";
             // 
-            // chkSameLevelWarps
+            // chkRandomizeInsideWarps
             // 
-            this.chkSameLevelWarps.AutoSize = true;
-            this.chkSameLevelWarps.Checked = true;
-            this.chkSameLevelWarps.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSameLevelWarps.Location = new System.Drawing.Point(171, 19);
-            this.chkSameLevelWarps.Name = "chkSameLevelWarps";
-            this.chkSameLevelWarps.Size = new System.Drawing.Size(116, 17);
-            this.chkSameLevelWarps.TabIndex = 11;
-            this.chkSameLevelWarps.Text = "Same Level Warps";
-            this.chkSameLevelWarps.UseVisualStyleBackColor = true;
+            this.chkRandomizeInsideWarps.AutoSize = true;
+            this.chkRandomizeInsideWarps.Location = new System.Drawing.Point(161, 19);
+            this.chkRandomizeInsideWarps.Name = "chkRandomizeInsideWarps";
+            this.chkRandomizeInsideWarps.Size = new System.Drawing.Size(88, 17);
+            this.chkRandomizeInsideWarps.TabIndex = 11;
+            this.chkRandomizeInsideWarps.Text = "Inside Warps";
+            this.chkRandomizeInsideWarps.UseVisualStyleBackColor = true;
             // 
             // btnLoadWarpList
             // 
             this.btnLoadWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnLoadWarpList.FlatAppearance.BorderSize = 0;
             this.btnLoadWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 41);
+            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 65);
             this.btnLoadWarpList.Name = "btnLoadWarpList";
             this.btnLoadWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnLoadWarpList.TabIndex = 10;
@@ -370,7 +372,7 @@
             this.btnSaveWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnSaveWarpList.FlatAppearance.BorderSize = 0;
             this.btnSaveWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 41);
+            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 65);
             this.btnSaveWarpList.Name = "btnSaveWarpList";
             this.btnSaveWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnSaveWarpList.TabIndex = 9;
@@ -386,7 +388,7 @@
             this.btnRestoreWarps.FlatAppearance.BorderSize = 0;
             this.btnRestoreWarps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 41);
+            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 65);
             this.btnRestoreWarps.Name = "btnRestoreWarps";
             this.btnRestoreWarps.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreWarps.TabIndex = 8;
@@ -435,9 +437,9 @@
             "Castle Grounds",
             "Inside Castle",
             "Castle Courtyard"});
-            this.chklbWarpList.Location = new System.Drawing.Point(48, 76);
+            this.chklbWarpList.Location = new System.Drawing.Point(48, 93);
             this.chklbWarpList.Name = "chklbWarpList";
-            this.chklbWarpList.Size = new System.Drawing.Size(239, 225);
+            this.chklbWarpList.Size = new System.Drawing.Size(239, 208);
             this.chklbWarpList.TabIndex = 7;
             // 
             // chkWarpFile
@@ -960,6 +962,26 @@
             this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
             this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
             // 
+            // chkBoxMixWarps
+            // 
+            this.chkBoxMixWarps.AutoSize = true;
+            this.chkBoxMixWarps.Location = new System.Drawing.Point(161, 42);
+            this.chkBoxMixWarps.Name = "chkBoxMixWarps";
+            this.chkBoxMixWarps.Size = new System.Drawing.Size(136, 17);
+            this.chkBoxMixWarps.TabIndex = 12;
+            this.chkBoxMixWarps.Text = "Inside + Outside Warps";
+            this.chkBoxMixWarps.UseVisualStyleBackColor = true;
+            // 
+            // chkRandomizeHubs
+            // 
+            this.chkRandomizeHubs.AutoSize = true;
+            this.chkRandomizeHubs.Location = new System.Drawing.Point(48, 42);
+            this.chkRandomizeHubs.Name = "chkRandomizeHubs";
+            this.chkRandomizeHubs.Size = new System.Drawing.Size(107, 17);
+            this.chkRandomizeHubs.TabIndex = 13;
+            this.chkRandomizeHubs.Text = "Randomize Hubs";
+            this.chkRandomizeHubs.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -983,7 +1005,7 @@
             this.MaximumSize = new System.Drawing.Size(420, 1080);
             this.MinimumSize = new System.Drawing.Size(420, 350);
             this.Name = "Main";
-            this.Text = "Super Mario 64 Randomizer v1.0";
+            this.Text = "Super Mario 64 Randomizer v1.1";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).EndInit();
@@ -1065,7 +1087,9 @@
         private System.Windows.Forms.CheckedListBox chklbWarpList;
         private System.Windows.Forms.TabPage tabMisc;
         private System.Windows.Forms.CheckBox chkWarpPatch;
-        private System.Windows.Forms.CheckBox chkSameLevelWarps;
+        private System.Windows.Forms.CheckBox chkRandomizeInsideWarps;
+        private System.Windows.Forms.CheckBox chkBoxMixWarps;
+        private System.Windows.Forms.CheckBox chkRandomizeHubs;
     }
 }
 
