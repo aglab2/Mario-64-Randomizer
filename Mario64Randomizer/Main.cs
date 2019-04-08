@@ -33,7 +33,7 @@ namespace Mario64Randomizer
         private Color colorMarioFace;
         private Color colorMarioHair;
         //
-
+        public List<string> courseNames;
         public List<int> warpingBehaviours;
         public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
@@ -69,7 +69,7 @@ namespace Mario64Randomizer
         private List<string> bowserStars = new List<string>() { "Bowser in the Dark World", "Bowser in the Fire Sea", "Bowser in the Sky" };
         private List<string> secretStars = new List<string>() { "The Secret Aquarium", "Princess's Secret Slide: ! Box", "Princess's Secret Slide: Timed Race", "Wing Cap", "Vanish Cap", "Metal Cap", "Over the Rainbows" };
 
-        private List<string> toads = new List<string>() { "Downstairs Toad", "Upstairs Toad", "Top Toad"};
+        private List<string> toads = new List<string>() { "Downstairs Toad", "Upstairs Toad", "Top Toad" };
         private List<string> mips = new List<string>() { "Mips", "Mips" };
 
         private List<string> randomList = new List<string>();
@@ -80,7 +80,7 @@ namespace Mario64Randomizer
         }
 
         private void Main_Load(object sender, System.EventArgs e)
-        {            
+        {
             this.btnNewSeed.PerformClick();
 
             behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -127,7 +127,7 @@ namespace Mario64Randomizer
         }
 
         public void refreshCheckList()
-        {            
+        {
             lvStars.Items.Clear();
             ImageList list = new ImageList();
             list.ImageSize = new Size(24, 24);
@@ -141,7 +141,7 @@ namespace Mario64Randomizer
                 ListViewItem l = new ListViewItem();
                 l.Text = randomList[i].ToString();
                 l.ImageIndex = 0;
-                lvStars.Items.Add(l);                
+                lvStars.Items.Add(l);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Mario64Randomizer
                 {
                     randomList.AddRange(downstairs.Except(downstairs.Where((t, i) => ((i + 1) % 7) == 0).ToList()));
                 }
-                
+
             }
             if (chkUpstairs.Checked)
             {
@@ -191,7 +191,7 @@ namespace Mario64Randomizer
                 else
                 {
                     randomList.AddRange(top.Except(top.Where((t, i) => ((i + 1) % 7) == 0).ToList()));
-                }                
+                }
             }
             if (chkBowserStars.Checked)
             {
@@ -227,7 +227,7 @@ namespace Mario64Randomizer
                 MessageBox.Show("Error: The Number of Stars amount is higher than the Selected Star Set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        
+
         private void lvStars_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (e.Item.Selected)
@@ -252,7 +252,7 @@ namespace Mario64Randomizer
             openFileDialog.Filter = "ROM Files (*.z64)|*.z64";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
-            
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -262,7 +262,8 @@ namespace Mario64Randomizer
 
                     rm = new ROM(originalData);
                     romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-                    
+                    courseNames = getCourseNames();
+
                     MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
@@ -275,7 +276,7 @@ namespace Mario64Randomizer
 
         private void btnRandomize_Click(object sender, EventArgs e)
         {
-            if(rm != null)
+            if (rm != null)
             {
                 rm = new ROM(originalData);
 
@@ -458,7 +459,7 @@ namespace Mario64Randomizer
 
                     List<SM64.Object> levelObjects = FindObjectsParser.FindObjects(rm, addr, lod.Level);
                     List<SM64.Object> warpingObjects = levelObjects.Where(x => warpingBehaviours.Contains(x.behaviour)).ToList();
-                    List<SM64.Object> targetWarpObjects = levelObjects.Where(x => targetWarpBehaviours.Contains(x.behaviour)).ToList();                    
+                    List<SM64.Object> targetWarpObjects = levelObjects.Where(x => targetWarpBehaviours.Contains(x.behaviour)).ToList();
 
                     // Check if warp object exists
                     for (int area = 0; area < 7; area++)
@@ -490,10 +491,10 @@ namespace Mario64Randomizer
                 List<Warp> validTargets = targetWarps.Where(x => x.from.id != 0xF0).ToList();
 
                 // Drop warps that does not have target
-                warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);                
+                warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
             }
 
-            if(!chkRandomizeHubs.Checked) // If Checked, randomize Warps that lead to Hubs
+            if (!chkRandomizeHubs.Checked) // If Checked, randomize Warps that lead to Hubs
             {
                 warps = warps.Where(x => (x.to.course != 0x06) & (x.to.course != 0x10) & (x.to.course != 0x1A));
             }
@@ -516,7 +517,7 @@ namespace Mario64Randomizer
 
                     // Try find replacement warp that is not broken
                     Warp brokenWarp = brokenOutsideWarps.First();
-                    int brokenWarpId      = levelWarps.FindIndex(w => w == brokenWarp);
+                    int brokenWarpId = levelWarps.FindIndex(w => w == brokenWarp);
                     int replacementWarpId = levelWarps.FindIndex(w => w.to.course != brokenWarp.course);
                     if (replacementWarpId == -1)
                         break;
@@ -524,10 +525,10 @@ namespace Mario64Randomizer
                     Warp replacementWarp = levelWarps[replacementWarpId];
 
                     // Swap "to" in warps and be happy :)
-                    Warp notBrokenWarp      = new Warp(brokenWarp.area,      brokenWarp.course,      brokenWarp.from,      replacementWarp.to, brokenWarp.addr);
-                    Warp notReplacementWarp = new Warp(replacementWarp.area, replacementWarp.course, replacementWarp.from, brokenWarp.to,      replacementWarp.addr);
+                    Warp notBrokenWarp = new Warp(brokenWarp.area, brokenWarp.course, brokenWarp.from, replacementWarp.to, brokenWarp.addr);
+                    Warp notReplacementWarp = new Warp(replacementWarp.area, replacementWarp.course, replacementWarp.from, brokenWarp.to, replacementWarp.addr);
                     levelWarps[replacementWarpId] = notReplacementWarp;
-                    levelWarps[brokenWarpId]      = notBrokenWarp;
+                    levelWarps[brokenWarpId] = notBrokenWarp;
                 }
                 applyWarps(randomizePreparedWarps(levelWarps), "out");
             }
@@ -535,7 +536,7 @@ namespace Mario64Randomizer
             // Inside warps logics
             {
                 IEnumerable<Warp> insideWarps = warps.Where(w => w.course == w.to.course);
-                
+
                 if (chkBoxMixWarps.CheckState == CheckState.Unchecked)
                 {
                     if (chkRandomizeInsideWarps.Checked)
@@ -611,7 +612,7 @@ namespace Mario64Randomizer
 
         private void btnSaveRom_Click(object sender, EventArgs e)
         {
-            if(rm != null)
+            if (rm != null)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -625,12 +626,12 @@ namespace Mario64Randomizer
                     try
                     {
                         File.WriteAllBytes(saveFileDialog.FileName, rm.rom);
-                        if(chkWarpPatch.Checked)
+                        if (chkWarpPatch.Checked)
                         {
                             Patch p = new Patch(AppDomain.CurrentDomain.BaseDirectory + "patches\\warpfadefix");
                             p.Apply(rm);
                             Patch.FixChksum(saveFileDialog.FileName);
-                        }                        
+                        }
                         MessageBox.Show("Your ROM was saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                     catch (IOException)
@@ -644,7 +645,7 @@ namespace Mario64Randomizer
             {
                 MessageBox.Show("Open a ROM File First!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-    
+
         }
 
         private void btnColorOveralls_Click(object sender, EventArgs e)
@@ -751,19 +752,19 @@ namespace Mario64Randomizer
         }
 
         private void btnRemoveBehaviour_Click(object sender, EventArgs e)
-        {  
-            if(lBehaviours.Items.Count > 0)
+        {
+            if (lBehaviours.Items.Count > 0)
             {
                 behavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
                 lBehaviours.DataSource = null;
                 lBehaviours.DataSource = behavioursWithNames;
                 lBehaviours.SelectedIndex = 0;
                 SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-            }            
+            }
         }
 
         private void btnAddBehaviour_Click(object sender, EventArgs e)
-        {            
+        {
             behavioursWithNames.Add(txtNewBehaviour.Text);
             lBehaviours.DataSource = null;
             lBehaviours.DataSource = behavioursWithNames;
@@ -780,7 +781,7 @@ namespace Mario64Randomizer
             if (rm != null)
             {
                 saveFileDialog.FileName = romName + " - Behaviours";
-            }            
+            }
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -794,7 +795,7 @@ namespace Mario64Randomizer
                     MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-            }          
+            }
         }
 
         private void btnLoadBehaviours_Click(object sender, EventArgs e)
@@ -857,21 +858,21 @@ namespace Mario64Randomizer
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            if(rm != null)
+            if (rm != null)
             {
                 saveFileDialog.FileName = romName + " - Warps";
-            }            
+            }
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
-                {                    
+                {
                     System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(saveFileDialog.FileName);
 
                     for (int i = 0; i < chklbWarpList.Items.Count; i++)
                     {
-                         SaveFile.WriteLine(chklbWarpList.Items[i].ToString() + " : " + (int)chklbWarpList.GetItemCheckState(i));                                   
-                    }                    
+                        SaveFile.WriteLine(chklbWarpList.Items[i].ToString() + " : " + (int)chklbWarpList.GetItemCheckState(i));
+                    }
                     SaveFile.Close();
 
                     MessageBox.Show("Warps saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -901,7 +902,7 @@ namespace Mario64Randomizer
                         List<int> checks = File.ReadAllLines(openFileDialog.FileName).Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[1].Trim(), 16)).ToList();
 
                         for (int i = 0; i < chklbWarpList.Items.Count; i++)
-                        {                            
+                        {
                             chklbWarpList.SetItemCheckState(i, (CheckState)checks[i]);
                         }
                     }
@@ -921,6 +922,30 @@ namespace Mario64Randomizer
             {
                 chklbWarpList.SetItemChecked(i, true);
             }
-        }        
+        }
+
+        private List<string> getCourseNames()
+        {
+            List <string> courseNames = new List<string>();
+            const int levelNameTableStart = 0x813E6A;
+            int levelNameTableLength = 0x813E6A + (LevelInfo.Description.Length * 562);
+
+            rm.PushOffset(levelNameTableStart);                       
+
+            for (int i = levelNameTableStart;  i < levelNameTableLength; i += 562)
+            {
+                Mario64Randomizer.Helpers.n64Text n = new Helpers.n64Text();
+                byte[] data = new byte[562];
+                rm.ReadData(i, data);
+                string course = n.GetString(data);
+                Console.WriteLine(course);
+                courseNames.Add(course);
+            }
+
+            rm.PopOffset();
+            return courseNames;
+        }
+
+
     }
 }

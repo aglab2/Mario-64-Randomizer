@@ -71,6 +71,7 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\n64Text.cs" />
     <Compile Include="Helpers\SegmentedAddressHelper.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
