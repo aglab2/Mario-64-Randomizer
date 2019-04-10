@@ -15,6 +15,7 @@ using System.IO;
 using System.Reflection;
 using Mario64Randomizer.patches;
 using Mario64Randomizer.Helpers;
+using System.Globalization;
 
 namespace Mario64Randomizer
 {
@@ -90,7 +91,7 @@ namespace Mario64Randomizer
             lBehaviours.DataSource = behavioursWithNames;
 
             for (int i = 0; i < chklbWarpList.Items.Count; i++)
-            {
+            {                
                 chklbWarpList.SetItemChecked(i, true);
             }
         }
@@ -264,6 +265,7 @@ namespace Mario64Randomizer
                     rm = new ROM(originalData);
                     romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                     courseNames = getCourseNames();
+                    updateWarpList();
 
                     MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
@@ -577,8 +579,16 @@ namespace Mario64Randomizer
 
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    foreach (Warp warp in shuffledWarps)
-                        sw.WriteLine("*Warp Address: " + warp.addr.ToString() + "*  [ From Id: " + warp.from.id.ToString() + " -> To Id: " + warp.to.id.ToString() + " - Course: " + warp.to.course.ToString() + ", Area: " + warp.to.area.ToString() + " ]");
+                    courseNames = new List<string>();
+
+                    for(int i = 0; i < chklbWarpList.Items.Count; i++) // Update the Course Name List
+                    {
+                        courseNames.Add(chklbWarpList.Items[i].ToString());
+                    }                        
+
+                    foreach (Warp warp in shuffledWarps)               
+                        sw.WriteLine("*Warp Address: " + warp.addr.ToString() + "*  [ From Id: " + warp.from.id.ToString() + " -> To Id: " + warp.to.id.ToString() + " - Course: " + courseNames[LevelInfo.FindByLevel(warp.to.course).NaturalIndex] + ", Area: " + warp.to.area.ToString() + " ]");
+                    
                 }
             }
         }
@@ -919,18 +929,44 @@ namespace Mario64Randomizer
 
         private void btnRestoreWarps_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < chklbWarpList.Items.Count; i++)
-            {
-                chklbWarpList.SetItemChecked(i, true);
-            }
+            for (int item = 0; item < chklbWarpList.Items.Count; item++)
+            { 
+                chklbWarpList.SetItemChecked(item, true);
+            }                 
         }
 
         private List<string> getCourseNames()
         {
             const int levelNameTableStart = 0x813E6A;
-            byte[] data = new byte[562];
+            byte[] data = new byte[538];
             rm.ReadData(levelNameTableStart, data);
-            return n64Text.GetStrings(data);
+            CultureInfo currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            return n64Text.GetStrings(data).Select(r => currentCulture.TextInfo.ToTitleCase(r.ToLower()).TrimStart()).ToList();
+        }
+
+        private void updateWarpList()
+        {
+            int skipped = 0;
+            for (int item = 0; item < courseNames.Count; item++)
+            {
+                Console.WriteLine(courseNames[item]);
+                if (item < 15)
+                {
+                    chklbWarpList.Items[item] = (courseNames[item].Replace(':', ' '));
+                    chklbWarpList.SetItemChecked(item, true);
+                }
+                else if(skipped < 3)
+                {
+                    chklbWarpList.Items[item + skipped] = (courseNames[item].Replace(':', ' '));
+                    chklbWarpList.SetItemChecked(item + skipped, true);                
+                    skipped++;
+                }
+                else if(item >= 18 & item < 24)
+                {
+                    chklbWarpList.Items[item + skipped] = (courseNames[item].Replace(':', ' '));
+                    chklbWarpList.SetItemChecked(item + skipped, true);
+                }
+            }
         }
     }
 }

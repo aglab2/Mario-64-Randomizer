@@ -105,7 +105,7 @@ public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
                         else
                             return ObjectStatus.NonGrounded;
                     }
-                    else if(behaviour == 0x130008EC)
+                    else if (behaviour == 0x130008EC)
                     {
                         if (BParam2 >= 16) // flying coins behaviour
                         {

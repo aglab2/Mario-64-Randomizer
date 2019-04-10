@@ -46,6 +46,8 @@
             this.lblNumberOfStars = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabWarps = new System.Windows.Forms.TabPage();
+            this.chkRandomizeHubs = new System.Windows.Forms.CheckBox();
+            this.chkBoxMixWarps = new System.Windows.Forms.CheckBox();
             this.chkRandomizeInsideWarps = new System.Windows.Forms.CheckBox();
             this.btnLoadWarpList = new System.Windows.Forms.Button();
             this.btnSaveWarpList = new System.Windows.Forms.Button();
@@ -90,8 +92,6 @@
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.chkBoxMixWarps = new System.Windows.Forms.CheckBox();
-            this.chkRandomizeHubs = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -344,10 +344,30 @@
             this.tabWarps.TabIndex = 5;
             this.tabWarps.Text = "Warps";
             // 
+            // chkRandomizeHubs
+            // 
+            this.chkRandomizeHubs.AutoSize = true;
+            this.chkRandomizeHubs.Location = new System.Drawing.Point(6, 42);
+            this.chkRandomizeHubs.Name = "chkRandomizeHubs";
+            this.chkRandomizeHubs.Size = new System.Drawing.Size(107, 17);
+            this.chkRandomizeHubs.TabIndex = 13;
+            this.chkRandomizeHubs.Text = "Randomize Hubs";
+            this.chkRandomizeHubs.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxMixWarps
+            // 
+            this.chkBoxMixWarps.AutoSize = true;
+            this.chkBoxMixWarps.Location = new System.Drawing.Point(119, 42);
+            this.chkBoxMixWarps.Name = "chkBoxMixWarps";
+            this.chkBoxMixWarps.Size = new System.Drawing.Size(136, 17);
+            this.chkBoxMixWarps.TabIndex = 12;
+            this.chkBoxMixWarps.Text = "Inside + Outside Warps";
+            this.chkBoxMixWarps.UseVisualStyleBackColor = true;
+            // 
             // chkRandomizeInsideWarps
             // 
             this.chkRandomizeInsideWarps.AutoSize = true;
-            this.chkRandomizeInsideWarps.Location = new System.Drawing.Point(161, 19);
+            this.chkRandomizeInsideWarps.Location = new System.Drawing.Point(119, 19);
             this.chkRandomizeInsideWarps.Name = "chkRandomizeInsideWarps";
             this.chkRandomizeInsideWarps.Size = new System.Drawing.Size(88, 17);
             this.chkRandomizeInsideWarps.TabIndex = 11;
@@ -359,7 +379,7 @@
             this.btnLoadWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnLoadWarpList.FlatAppearance.BorderSize = 0;
             this.btnLoadWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadWarpList.Location = new System.Drawing.Point(94, 65);
+            this.btnLoadWarpList.Location = new System.Drawing.Point(52, 65);
             this.btnLoadWarpList.Name = "btnLoadWarpList";
             this.btnLoadWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnLoadWarpList.TabIndex = 10;
@@ -372,7 +392,7 @@
             this.btnSaveWarpList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.btnSaveWarpList.FlatAppearance.BorderSize = 0;
             this.btnSaveWarpList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveWarpList.Location = new System.Drawing.Point(48, 65);
+            this.btnSaveWarpList.Location = new System.Drawing.Point(6, 65);
             this.btnSaveWarpList.Name = "btnSaveWarpList";
             this.btnSaveWarpList.Size = new System.Drawing.Size(40, 25);
             this.btnSaveWarpList.TabIndex = 9;
@@ -388,7 +408,7 @@
             this.btnRestoreWarps.FlatAppearance.BorderSize = 0;
             this.btnRestoreWarps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreWarps.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreWarps.Location = new System.Drawing.Point(262, 65);
+            this.btnRestoreWarps.Location = new System.Drawing.Point(305, 62);
             this.btnRestoreWarps.Name = "btnRestoreWarps";
             this.btnRestoreWarps.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreWarps.TabIndex = 8;
@@ -437,15 +457,15 @@
             "Castle Grounds",
             "Inside Castle",
             "Castle Courtyard"});
-            this.chklbWarpList.Location = new System.Drawing.Point(48, 93);
+            this.chklbWarpList.Location = new System.Drawing.Point(6, 93);
             this.chklbWarpList.Name = "chklbWarpList";
-            this.chklbWarpList.Size = new System.Drawing.Size(239, 208);
+            this.chklbWarpList.Size = new System.Drawing.Size(324, 208);
             this.chklbWarpList.TabIndex = 7;
             // 
             // chkWarpFile
             // 
             this.chkWarpFile.AutoSize = true;
-            this.chkWarpFile.Location = new System.Drawing.Point(48, 19);
+            this.chkWarpFile.Location = new System.Drawing.Point(6, 19);
             this.chkWarpFile.Name = "chkWarpFile";
             this.chkWarpFile.Size = new System.Drawing.Size(106, 17);
             this.chkWarpFile.TabIndex = 3;
@@ -961,26 +981,6 @@
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
             this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
-            // 
-            // chkBoxMixWarps
-            // 
-            this.chkBoxMixWarps.AutoSize = true;
-            this.chkBoxMixWarps.Location = new System.Drawing.Point(161, 42);
-            this.chkBoxMixWarps.Name = "chkBoxMixWarps";
-            this.chkBoxMixWarps.Size = new System.Drawing.Size(136, 17);
-            this.chkBoxMixWarps.TabIndex = 12;
-            this.chkBoxMixWarps.Text = "Inside + Outside Warps";
-            this.chkBoxMixWarps.UseVisualStyleBackColor = true;
-            // 
-            // chkRandomizeHubs
-            // 
-            this.chkRandomizeHubs.AutoSize = true;
-            this.chkRandomizeHubs.Location = new System.Drawing.Point(48, 42);
-            this.chkRandomizeHubs.Name = "chkRandomizeHubs";
-            this.chkRandomizeHubs.Size = new System.Drawing.Size(107, 17);
-            this.chkRandomizeHubs.TabIndex = 13;
-            this.chkRandomizeHubs.Text = "Randomize Hubs";
-            this.chkRandomizeHubs.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
