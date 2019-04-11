@@ -70,6 +70,12 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="BehaviourForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BehaviourForm.Designer.cs">
+      <DependentUpon>BehaviourForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\n64Text.cs" />
     <Compile Include="Helpers\SegmentedAddressHelper.cs" />
     <Compile Include="Main.cs">
@@ -100,6 +106,9 @@
     <Compile Include="SM64\Warp.cs" />
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BehaviourForm.resx">
+      <DependentUpon>BehaviourForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

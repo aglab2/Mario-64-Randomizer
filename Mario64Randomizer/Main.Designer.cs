@@ -55,13 +55,10 @@
             this.chklbWarpList = new System.Windows.Forms.CheckedListBox();
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
             this.tabObjects = new System.Windows.Forms.TabPage();
-            this.txtNewBehaviour = new System.Windows.Forms.TextBox();
-            this.btnLoadBehaviours = new System.Windows.Forms.Button();
-            this.btnSaveBehaviours = new System.Windows.Forms.Button();
-            this.btnRestoreBehaviours = new System.Windows.Forms.Button();
-            this.btnAddBehaviour = new System.Windows.Forms.Button();
-            this.btnRemoveBehaviour = new System.Windows.Forms.Button();
-            this.lBehaviours = new System.Windows.Forms.ListBox();
+            this.btnRemoveObjectAddress = new System.Windows.Forms.Button();
+            this.btnEditWarpObjects = new System.Windows.Forms.Button();
+            this.btnEditGroundedObjects = new System.Windows.Forms.Button();
+            this.btnEditNonGrounded = new System.Windows.Forms.Button();
             this.tabClothes = new System.Windows.Forms.TabPage();
             this.chkRandomizeHair = new System.Windows.Forms.CheckBox();
             this.chkRandomizeSkin = new System.Windows.Forms.CheckBox();
@@ -475,13 +472,10 @@
             // tabObjects
             // 
             this.tabObjects.BackColor = System.Drawing.Color.Black;
-            this.tabObjects.Controls.Add(this.txtNewBehaviour);
-            this.tabObjects.Controls.Add(this.btnLoadBehaviours);
-            this.tabObjects.Controls.Add(this.btnSaveBehaviours);
-            this.tabObjects.Controls.Add(this.btnRestoreBehaviours);
-            this.tabObjects.Controls.Add(this.btnAddBehaviour);
-            this.tabObjects.Controls.Add(this.btnRemoveBehaviour);
-            this.tabObjects.Controls.Add(this.lBehaviours);
+            this.tabObjects.Controls.Add(this.btnRemoveObjectAddress);
+            this.tabObjects.Controls.Add(this.btnEditWarpObjects);
+            this.tabObjects.Controls.Add(this.btnEditGroundedObjects);
+            this.tabObjects.Controls.Add(this.btnEditNonGrounded);
             this.tabObjects.ForeColor = System.Drawing.SystemColors.Control;
             this.tabObjects.Location = new System.Drawing.Point(4, 22);
             this.tabObjects.Name = "tabObjects";
@@ -489,100 +483,61 @@
             this.tabObjects.TabIndex = 6;
             this.tabObjects.Text = "Objects";
             // 
-            // txtNewBehaviour
+            // btnRemoveObjectAddress
             // 
-            this.txtNewBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.txtNewBehaviour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNewBehaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
-            this.txtNewBehaviour.Location = new System.Drawing.Point(98, 16);
-            this.txtNewBehaviour.Name = "txtNewBehaviour";
-            this.txtNewBehaviour.Size = new System.Drawing.Size(94, 24);
-            this.txtNewBehaviour.TabIndex = 8;
+            this.btnRemoveObjectAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnRemoveObjectAddress.FlatAppearance.BorderSize = 0;
+            this.btnRemoveObjectAddress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveObjectAddress.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRemoveObjectAddress.Location = new System.Drawing.Point(25, 138);
+            this.btnRemoveObjectAddress.Name = "btnRemoveObjectAddress";
+            this.btnRemoveObjectAddress.Size = new System.Drawing.Size(282, 25);
+            this.btnRemoveObjectAddress.TabIndex = 12;
+            this.btnRemoveObjectAddress.Text = "Remove Object Address";
+            this.btnRemoveObjectAddress.UseVisualStyleBackColor = false;
+            this.btnRemoveObjectAddress.Click += new System.EventHandler(this.btnRemoveObjectAddress_Click);
             // 
-            // btnLoadBehaviours
+            // btnEditWarpObjects
             // 
-            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadBehaviours.Location = new System.Drawing.Point(276, 16);
-            this.btnLoadBehaviours.Name = "btnLoadBehaviours";
-            this.btnLoadBehaviours.Size = new System.Drawing.Size(40, 25);
-            this.btnLoadBehaviours.TabIndex = 7;
-            this.btnLoadBehaviours.Text = "Load Behaviours";
-            this.btnLoadBehaviours.UseVisualStyleBackColor = false;
-            this.btnLoadBehaviours.Click += new System.EventHandler(this.btnLoadBehaviours_Click);
+            this.btnEditWarpObjects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnEditWarpObjects.FlatAppearance.BorderSize = 0;
+            this.btnEditWarpObjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditWarpObjects.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditWarpObjects.Location = new System.Drawing.Point(25, 107);
+            this.btnEditWarpObjects.Name = "btnEditWarpObjects";
+            this.btnEditWarpObjects.Size = new System.Drawing.Size(282, 25);
+            this.btnEditWarpObjects.TabIndex = 11;
+            this.btnEditWarpObjects.Text = "Edit Warp Objects";
+            this.btnEditWarpObjects.UseVisualStyleBackColor = false;
+            this.btnEditWarpObjects.Click += new System.EventHandler(this.btnEditWarpObjects_Click);
             // 
-            // btnSaveBehaviours
+            // btnEditGroundedObjects
             // 
-            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBehaviours.Location = new System.Drawing.Point(230, 16);
-            this.btnSaveBehaviours.Name = "btnSaveBehaviours";
-            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 25);
-            this.btnSaveBehaviours.TabIndex = 6;
-            this.btnSaveBehaviours.Text = "Save Behaviours";
-            this.btnSaveBehaviours.UseVisualStyleBackColor = false;
-            this.btnSaveBehaviours.Click += new System.EventHandler(this.btnSaveBehaviours_Click);
+            this.btnEditGroundedObjects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnEditGroundedObjects.FlatAppearance.BorderSize = 0;
+            this.btnEditGroundedObjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditGroundedObjects.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditGroundedObjects.Location = new System.Drawing.Point(25, 76);
+            this.btnEditGroundedObjects.Name = "btnEditGroundedObjects";
+            this.btnEditGroundedObjects.Size = new System.Drawing.Size(282, 25);
+            this.btnEditGroundedObjects.TabIndex = 10;
+            this.btnEditGroundedObjects.Text = "Edit Grounded Objects";
+            this.btnEditGroundedObjects.UseVisualStyleBackColor = false;
+            this.btnEditGroundedObjects.Click += new System.EventHandler(this.btnEditGroundedObjects_Click);
             // 
-            // btnRestoreBehaviours
+            // btnEditNonGrounded
             // 
-            this.btnRestoreBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.btnRestoreBehaviours.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
-            this.btnRestoreBehaviours.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnRestoreBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreBehaviours.Location = new System.Drawing.Point(198, 16);
-            this.btnRestoreBehaviours.Name = "btnRestoreBehaviours";
-            this.btnRestoreBehaviours.Size = new System.Drawing.Size(25, 25);
-            this.btnRestoreBehaviours.TabIndex = 4;
-            this.btnRestoreBehaviours.UseVisualStyleBackColor = false;
-            this.btnRestoreBehaviours.Click += new System.EventHandler(this.btnRestoreBehaviours_Click);
-            // 
-            // btnAddBehaviour
-            // 
-            this.btnAddBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btnAddBehaviour.FlatAppearance.BorderSize = 0;
-            this.btnAddBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAddBehaviour.Location = new System.Drawing.Point(25, 16);
-            this.btnAddBehaviour.Name = "btnAddBehaviour";
-            this.btnAddBehaviour.Size = new System.Drawing.Size(30, 25);
-            this.btnAddBehaviour.TabIndex = 3;
-            this.btnAddBehaviour.Text = "+";
-            this.btnAddBehaviour.UseVisualStyleBackColor = false;
-            this.btnAddBehaviour.Click += new System.EventHandler(this.btnAddBehaviour_Click);
-            // 
-            // btnRemoveBehaviour
-            // 
-            this.btnRemoveBehaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btnRemoveBehaviour.FlatAppearance.BorderSize = 0;
-            this.btnRemoveBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveBehaviour.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRemoveBehaviour.Location = new System.Drawing.Point(61, 16);
-            this.btnRemoveBehaviour.Name = "btnRemoveBehaviour";
-            this.btnRemoveBehaviour.Size = new System.Drawing.Size(30, 25);
-            this.btnRemoveBehaviour.TabIndex = 2;
-            this.btnRemoveBehaviour.Text = "-";
-            this.btnRemoveBehaviour.UseVisualStyleBackColor = false;
-            this.btnRemoveBehaviour.Click += new System.EventHandler(this.btnRemoveBehaviour_Click);
-            // 
-            // lBehaviours
-            // 
-            this.lBehaviours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.lBehaviours.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBehaviours.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.lBehaviours.FormattingEnabled = true;
-            this.lBehaviours.ItemHeight = 16;
-            this.lBehaviours.Location = new System.Drawing.Point(25, 48);
-            this.lBehaviours.Name = "lBehaviours";
-            this.lBehaviours.Size = new System.Drawing.Size(291, 260);
-            this.lBehaviours.TabIndex = 0;
+            this.btnEditNonGrounded.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnEditNonGrounded.FlatAppearance.BorderSize = 0;
+            this.btnEditNonGrounded.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditNonGrounded.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditNonGrounded.Location = new System.Drawing.Point(25, 45);
+            this.btnEditNonGrounded.Name = "btnEditNonGrounded";
+            this.btnEditNonGrounded.Size = new System.Drawing.Size(282, 25);
+            this.btnEditNonGrounded.TabIndex = 9;
+            this.btnEditNonGrounded.Text = "Edit Non Grounded Objects";
+            this.btnEditNonGrounded.UseVisualStyleBackColor = false;
+            this.btnEditNonGrounded.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabClothes
             // 
@@ -1013,7 +968,6 @@
             this.tabWarps.ResumeLayout(false);
             this.tabWarps.PerformLayout();
             this.tabObjects.ResumeLayout(false);
-            this.tabObjects.PerformLayout();
             this.tabClothes.ResumeLayout(false);
             this.tabClothes.PerformLayout();
             this.tabSequence.ResumeLayout(false);
@@ -1071,14 +1025,7 @@
         private System.Windows.Forms.Button btnRefreshList;
         private System.Windows.Forms.CheckBox chkWarpFile;
         private System.Windows.Forms.TabPage tabObjects;
-        private System.Windows.Forms.Button btnRestoreBehaviours;
-        private System.Windows.Forms.Button btnAddBehaviour;
-        private System.Windows.Forms.Button btnRemoveBehaviour;
-        private System.Windows.Forms.ListBox lBehaviours;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button btnLoadBehaviours;
-        private System.Windows.Forms.Button btnSaveBehaviours;
-        private System.Windows.Forms.TextBox txtNewBehaviour;
         private System.Windows.Forms.CheckBox chkRandomizeHair;
         private System.Windows.Forms.CheckBox chkRandomizeSkin;
         private System.Windows.Forms.Button btnLoadWarpList;
@@ -1090,6 +1037,10 @@
         private System.Windows.Forms.CheckBox chkRandomizeInsideWarps;
         private System.Windows.Forms.CheckBox chkBoxMixWarps;
         private System.Windows.Forms.CheckBox chkRandomizeHubs;
+        private System.Windows.Forms.Button btnRemoveObjectAddress;
+        private System.Windows.Forms.Button btnEditWarpObjects;
+        private System.Windows.Forms.Button btnEditGroundedObjects;
+        private System.Windows.Forms.Button btnEditNonGrounded;
     }
 }
 

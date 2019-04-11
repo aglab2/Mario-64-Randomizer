@@ -82,7 +82,7 @@ namespace Mario64Randomizer.SM64
             nonGroundedBehaviours = behaviours.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
         }
 
-public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
+        public byte BParam1 { get { return (byte)((bparams & 0xFF000000) >> 24); } }
         public byte BParam2 { get { return (byte)((bparams & 0x00FF0000) >> 16); } }
 
         public ObjectStatus status

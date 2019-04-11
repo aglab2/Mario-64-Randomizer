@@ -39,6 +39,9 @@ namespace Mario64Randomizer
         public List<int> warpingBehaviours;
         public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
+        public List<string> groundedWithNames;
+        public List<string> warpingBehavioursWithNames;
+        public List<string> removeAddresses;
 
         private List<string> first = new List<string>()
         {
@@ -86,9 +89,11 @@ namespace Mario64Randomizer
             this.btnNewSeed.PerformClick();
 
             behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            groundedWithNames = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            warpingBehavioursWithNames = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
             warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
-            lBehaviours.DataSource = behavioursWithNames;
+            removeAddresses = new List<string>();
 
             for (int i = 0; i < chklbWarpList.Items.Count; i++)
             {                
@@ -418,11 +423,14 @@ namespace Mario64Randomizer
                         if (areaObjects.Count == 0)
                             continue;
 
+                        
                         IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => x.status == ObjectStatus.Grounded);
+                        groundedObjects = groundedObjects.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
                         IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
 
                         IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => x.status == ObjectStatus.NonGrounded);
-                        IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();
+                        nonGroundedObjects = nonGroundedObjects.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
+                        IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();                        
 
                         Shuffle(groundedList, seed);
                         Shuffle(nonGroundedList, seed);
@@ -495,6 +503,9 @@ namespace Mario64Randomizer
 
                 // Drop warps that does not have target
                 warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
+
+                // Drop warps by address
+                warps = warps.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
             }
 
             if (!chkRandomizeHubs.Checked) // If Checked, randomize Warps that lead to Hubs
@@ -753,87 +764,7 @@ namespace Mario64Randomizer
             {
                 MessageBox.Show("Error: The Number of Stars amount is higher than the Selected Star Set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void btnRestoreBehaviours_Click(object sender, EventArgs e)
-        {
-            behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-            lBehaviours.DataSource = behavioursWithNames;
-        }
-
-        private void btnRemoveBehaviour_Click(object sender, EventArgs e)
-        {
-            if (lBehaviours.Items.Count > 0)
-            {
-                behavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
-                lBehaviours.DataSource = null;
-                lBehaviours.DataSource = behavioursWithNames;
-                lBehaviours.SelectedIndex = 0;
-                SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-            }
-        }
-
-        private void btnAddBehaviour_Click(object sender, EventArgs e)
-        {
-            behavioursWithNames.Add(txtNewBehaviour.Text);
-            lBehaviours.DataSource = null;
-            lBehaviours.DataSource = behavioursWithNames;
-            SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-        }
-
-        private void btnSaveBehaviours_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            saveFileDialog.FilterIndex = 1;
-            saveFileDialog.RestoreDirectory = true;
-            if (rm != null)
-            {
-                saveFileDialog.FileName = romName + " - Behaviours";
-            }
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    File.WriteAllLines(saveFileDialog.FileName, behavioursWithNames);
-                    MessageBox.Show("Behaviours saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-        }
-
-        private void btnLoadBehaviours_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.RestoreDirectory = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    behavioursWithNames = File.ReadAllLines(openFileDialog.FileName).ToList();
-                    lBehaviours.DataSource = null;
-                    lBehaviours.DataSource = behavioursWithNames;
-                    SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-                    MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-        }
+        }               
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
@@ -968,5 +899,38 @@ namespace Mario64Randomizer
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BehaviourForm beh = new BehaviourForm(0, behavioursWithNames);
+            beh.ShowDialog();
+
+            behavioursWithNames = beh.getNonGrounded();
+        }
+
+        private void btnEditGroundedObjects_Click(object sender, EventArgs e)
+        {
+            BehaviourForm beh = new BehaviourForm(1, groundedWithNames);
+            beh.ShowDialog();
+
+            groundedWithNames = beh.getGrounded();
+        }
+
+        private void btnEditWarpObjects_Click(object sender, EventArgs e)
+        {
+            BehaviourForm beh = new BehaviourForm(2, warpingBehavioursWithNames);
+            beh.ShowDialog();
+
+            warpingBehavioursWithNames = beh.getWarps();
+            warpingBehaviours = warpingBehavioursWithNames.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+        }
+
+        private void btnRemoveObjectAddress_Click(object sender, EventArgs e)
+        {
+            BehaviourForm beh = new BehaviourForm(3, removeAddresses);
+            beh.ShowDialog();
+
+            removeAddresses = beh.getRemoved();
+        }       
     }
 }
