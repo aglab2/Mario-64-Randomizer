@@ -76,7 +76,6 @@
     <Compile Include="BehaviourForm.Designer.cs">
       <DependentUpon>BehaviourForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Compression.cs" />
     <Compile Include="Helpers\n64Text.cs" />
     <Compile Include="Helpers\SegmentedAddressHelper.cs" />
     <Compile Include="Main.cs">
