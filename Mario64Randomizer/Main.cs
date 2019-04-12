@@ -931,6 +931,92 @@ namespace Mario64Randomizer
             beh.ShowDialog();
 
             removeAddresses = beh.getRemoved();
-        }       
+        }
+
+        private void btnSaveAllBehav_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            if (rm != null)
+            {
+                saveFileDialog.FileName = romName + " - BehavioursList";
+            }
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<string> allBehaviours = new List<string>();
+                    allBehaviours.AddRange(behavioursWithNames);
+                    allBehaviours.Add("---");
+                    allBehaviours.AddRange(groundedWithNames);
+                    allBehaviours.Add("---");
+                    allBehaviours.AddRange(warpingBehavioursWithNames);
+                    allBehaviours.Add("---");
+                    allBehaviours.AddRange(removeAddresses);
+
+                    File.WriteAllLines(saveFileDialog.FileName, allBehaviours);
+                    MessageBox.Show("Behaviours saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to save!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private List<string> CutData(List<string> behavs, ref int lastIndex)
+        {
+            int last  = behavs.FindIndex(lastIndex, x => x == "---");
+            if (last == -1)
+                last = behavs.Count;
+
+            int first = lastIndex;
+
+            lastIndex = last + 1;
+            return behavs.GetRange(first, last - first);
+        }
+
+        private void btnLoadAllBehav_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<string> behaviours = File.ReadAllLines(openFileDialog.FileName).ToList();
+
+                    int index = 0;
+                    behavioursWithNames = CutData(behaviours, ref index);
+                    groundedWithNames = CutData(behaviours, ref index);
+                    warpingBehavioursWithNames = CutData(behaviours, ref index);
+                    removeAddresses = CutData(behaviours, ref index);
+
+                    warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+
+                    SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
+                    MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void btnResetAllBehav_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
