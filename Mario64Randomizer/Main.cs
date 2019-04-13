@@ -410,6 +410,7 @@ namespace Mario64Randomizer
 
         private void randomizeEnemies()
         {
+            List<int> removal = removeAddresses.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             foreach (LevelOffsetsDescription lod in LevelInfo.Description)
             {
                 int addr = lod.LevelScriptEntryPoint;
@@ -425,11 +426,11 @@ namespace Mario64Randomizer
 
                         
                         IEnumerable<SM64.Object> groundedObjects = areaObjects.Where(x => x.status == ObjectStatus.Grounded);
-                        groundedObjects = groundedObjects.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
+                        groundedObjects = groundedObjects.Where(x => !removal.Any(y => x.addr == y));
                         IList<ObjectPosition> groundedList = groundedObjects.Select(x => x.position).ToList();
 
                         IEnumerable<SM64.Object> nonGroundedObjects = areaObjects.Where(x => x.status == ObjectStatus.NonGrounded);
-                        nonGroundedObjects = nonGroundedObjects.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
+                        nonGroundedObjects = nonGroundedObjects.Where(x => !removal.Any(y => x.addr == y));
                         IList<ObjectPosition> nonGroundedList = nonGroundedObjects.Select(x => x.position).ToList();                        
 
                         Shuffle(groundedList, seed);
@@ -454,6 +455,7 @@ namespace Mario64Randomizer
         {
             List<Warp> allWarps = new List<Warp>();
             List<Warp> targetWarps = new List<Warp>();
+            List<int> removal = removeAddresses.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
 
             foreach (LevelOffsetsDescription lod in LevelInfo.Description)
             {
@@ -505,7 +507,7 @@ namespace Mario64Randomizer
                 warps = noDeathSuccessWarps.Where(x => validTargets.Find(w => x.to.id == w.from.id && x.to.course == w.course) != null);
 
                 // Drop warps by address
-                warps = warps.Where(x => removeAddresses.Any(y => x.addr.ToString() != y));
+                warps = warps.Where(x => !removal.Any(y => x.addr == y));
             }
 
             if (!chkRandomizeHubs.Checked) // If Checked, randomize Warps that lead to Hubs
@@ -916,11 +918,11 @@ namespace Mario64Randomizer
                     allSettings.AddRange(removeAddresses);
 
                     File.WriteAllLines(saveFileDialog.FileName, allSettings);
-                    MessageBox.Show("Config Loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Config Saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("Failed to save!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to Save!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -962,7 +964,7 @@ namespace Mario64Randomizer
                     warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
 
                     SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-                    MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Config Loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
                 {

@@ -850,7 +850,7 @@
             this.btnSaveRom.Name = "btnSaveRom";
             this.btnSaveRom.Size = new System.Drawing.Size(100, 25);
             this.btnSaveRom.TabIndex = 5;
-            this.btnSaveRom.Text = "Save Rom";
+            this.btnSaveRom.Text = "3- Save Rom";
             this.btnSaveRom.UseVisualStyleBackColor = false;
             this.btnSaveRom.Click += new System.EventHandler(this.btnSaveRom_Click);
             // 
@@ -866,7 +866,7 @@
             this.btnRandomize.Name = "btnRandomize";
             this.btnRandomize.Size = new System.Drawing.Size(100, 25);
             this.btnRandomize.TabIndex = 4;
-            this.btnRandomize.Text = "Randomize";
+            this.btnRandomize.Text = "2- Randomize";
             this.btnRandomize.UseVisualStyleBackColor = false;
             this.btnRandomize.Click += new System.EventHandler(this.btnRandomize_Click);
             // 
@@ -882,7 +882,7 @@
             this.btnOpenRom.Name = "btnOpenRom";
             this.btnOpenRom.Size = new System.Drawing.Size(100, 25);
             this.btnOpenRom.TabIndex = 3;
-            this.btnOpenRom.Text = "Open Rom";
+            this.btnOpenRom.Text = "1- Open Rom";
             this.btnOpenRom.UseVisualStyleBackColor = false;
             this.btnOpenRom.Click += new System.EventHandler(this.btnOpenRom_Click);
             // 
