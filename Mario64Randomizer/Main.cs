@@ -413,6 +413,9 @@ namespace Mario64Randomizer
             List<int> removal = removeAddresses.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             foreach (LevelOffsetsDescription lod in LevelInfo.Description)
             {
+                if (chklbWarpList.GetItemCheckState(lod.NaturalIndex) == CheckState.Unchecked)
+                    continue;
+
                 int addr = lod.LevelScriptEntryPoint;
                 try
                 {
@@ -610,8 +613,12 @@ namespace Mario64Randomizer
         {
             List<Song> allSongs = new List<Song>();
 
-            for (int addr = 0x2AC094; addr <= 0x2AC2EC; addr += 20)
+            foreach (LevelOffsetsDescription lod in LevelInfo.Description)
             {
+                if (chklbWarpList.GetItemCheckState(lod.NaturalIndex) == CheckState.Unchecked)
+                    continue;
+
+                int addr = lod.LevelScriptEntryPoint;
                 try
                 {
                     List<Song> levelSongs = FindSongsParser.FindSongs(rm, addr);
