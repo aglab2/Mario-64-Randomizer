@@ -1013,10 +1013,5 @@ namespace Mario64Randomizer
                 }
             }
         }
-
-        private void btnResetAllBehav_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

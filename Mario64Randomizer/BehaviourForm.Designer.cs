@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BehaviourForm));
             this.lBehaviours = new System.Windows.Forms.ListBox();
             this.txtNewBehaviour = new System.Windows.Forms.TextBox();
-            this.btnLoadBehaviours = new System.Windows.Forms.Button();
-            this.btnSaveBehaviours = new System.Windows.Forms.Button();
             this.btnRestoreBehaviours = new System.Windows.Forms.Button();
             this.btnAddBehaviour = new System.Windows.Forms.Button();
             this.btnRemoveBehaviour = new System.Windows.Forms.Button();
@@ -61,34 +59,8 @@
             this.txtNewBehaviour.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtNewBehaviour.Location = new System.Drawing.Point(86, 18);
             this.txtNewBehaviour.Name = "txtNewBehaviour";
-            this.txtNewBehaviour.Size = new System.Drawing.Size(169, 24);
+            this.txtNewBehaviour.Size = new System.Drawing.Size(262, 24);
             this.txtNewBehaviour.TabIndex = 14;
-            // 
-            // btnLoadBehaviours
-            // 
-            this.btnLoadBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.btnLoadBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnLoadBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadBehaviours.Location = new System.Drawing.Point(339, 18);
-            this.btnLoadBehaviours.Name = "btnLoadBehaviours";
-            this.btnLoadBehaviours.Size = new System.Drawing.Size(40, 25);
-            this.btnLoadBehaviours.TabIndex = 13;
-            this.btnLoadBehaviours.Text = "Load Behaviours";
-            this.btnLoadBehaviours.UseVisualStyleBackColor = false;
-            this.btnLoadBehaviours.Click += new System.EventHandler(this.btnLoadBehaviours_Click);
-            // 
-            // btnSaveBehaviours
-            // 
-            this.btnSaveBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.btnSaveBehaviours.FlatAppearance.BorderSize = 0;
-            this.btnSaveBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBehaviours.Location = new System.Drawing.Point(293, 18);
-            this.btnSaveBehaviours.Name = "btnSaveBehaviours";
-            this.btnSaveBehaviours.Size = new System.Drawing.Size(40, 25);
-            this.btnSaveBehaviours.TabIndex = 12;
-            this.btnSaveBehaviours.Text = "Save Behaviours";
-            this.btnSaveBehaviours.UseVisualStyleBackColor = false;
-            this.btnSaveBehaviours.Click += new System.EventHandler(this.btnSaveBehaviours_Click);
             // 
             // btnRestoreBehaviours
             // 
@@ -98,7 +70,7 @@
             this.btnRestoreBehaviours.FlatAppearance.BorderSize = 0;
             this.btnRestoreBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreBehaviours.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreBehaviours.Location = new System.Drawing.Point(261, 18);
+            this.btnRestoreBehaviours.Location = new System.Drawing.Point(354, 18);
             this.btnRestoreBehaviours.Name = "btnRestoreBehaviours";
             this.btnRestoreBehaviours.Size = new System.Drawing.Size(25, 25);
             this.btnRestoreBehaviours.TabIndex = 11;
@@ -140,8 +112,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(391, 448);
             this.Controls.Add(this.txtNewBehaviour);
-            this.Controls.Add(this.btnLoadBehaviours);
-            this.Controls.Add(this.btnSaveBehaviours);
             this.Controls.Add(this.btnRestoreBehaviours);
             this.Controls.Add(this.btnAddBehaviour);
             this.Controls.Add(this.btnRemoveBehaviour);
@@ -160,8 +130,6 @@
 
         private System.Windows.Forms.ListBox lBehaviours;
         private System.Windows.Forms.TextBox txtNewBehaviour;
-        private System.Windows.Forms.Button btnLoadBehaviours;
-        private System.Windows.Forms.Button btnSaveBehaviours;
         private System.Windows.Forms.Button btnRestoreBehaviours;
         private System.Windows.Forms.Button btnAddBehaviour;
         private System.Windows.Forms.Button btnRemoveBehaviour;
