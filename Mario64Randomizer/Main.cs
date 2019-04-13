@@ -793,69 +793,24 @@ namespace Mario64Randomizer
             btnHelp.BackColor = Color.Black;
         }
 
-        private void btnSaveWarpList_Click(object sender, EventArgs e)
+        private List<string> saveWarpList()
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            saveFileDialog.FilterIndex = 1;
-            saveFileDialog.RestoreDirectory = true;
-            if (rm != null)
+            List<string> checksWithNames = new List<string>();
+            for (int i = 0; i < chklbWarpList.Items.Count; i++)
             {
-                saveFileDialog.FileName = romName + " - Warps";
+                checksWithNames.Add(chklbWarpList.Items[i].ToString() + " : " + (int)chklbWarpList.GetItemCheckState(i));
             }
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(saveFileDialog.FileName);
-
-                    for (int i = 0; i < chklbWarpList.Items.Count; i++)
-                    {
-                        SaveFile.WriteLine(chklbWarpList.Items[i].ToString() + " : " + (int)chklbWarpList.GetItemCheckState(i));
-                    }
-                    SaveFile.Close();
-
-                    MessageBox.Show("Warps saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
+            return checksWithNames;
         }
 
-        private void btnLoadWarpList_Click(object sender, EventArgs e)
+        private void loadWarpList(List<string> loadedChecks)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            List<int> courses = loadedChecks.Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[1].Trim(), 16)).ToList();
 
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.RestoreDirectory = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            for (int i = 0; i < chklbWarpList.Items.Count; i++)
             {
-                try
-                {
-                    if (System.IO.File.Exists(openFileDialog.FileName))
-                    {
-                        List<int> checks = File.ReadAllLines(openFileDialog.FileName).Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[1].Trim(), 16)).ToList();
-
-                        for (int i = 0; i < chklbWarpList.Items.Count; i++)
-                        {
-                            chklbWarpList.SetItemCheckState(i, (CheckState)checks[i]);
-                        }
-                    }
-                    MessageBox.Show("Warps loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
+                chklbWarpList.SetItemCheckState(i, (CheckState)courses[i]);
+            }                                
         }
 
         private void btnRestoreWarps_Click(object sender, EventArgs e)
@@ -942,24 +897,26 @@ namespace Mario64Randomizer
             saveFileDialog.RestoreDirectory = true;
             if (rm != null)
             {
-                saveFileDialog.FileName = romName + " - BehavioursList";
+                saveFileDialog.FileName = romName + " - Config";
             }
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    List<string> allBehaviours = new List<string>();
-                    allBehaviours.AddRange(behavioursWithNames);
-                    allBehaviours.Add("---");
-                    allBehaviours.AddRange(groundedWithNames);
-                    allBehaviours.Add("---");
-                    allBehaviours.AddRange(warpingBehavioursWithNames);
-                    allBehaviours.Add("---");
-                    allBehaviours.AddRange(removeAddresses);
+                    List<string> allSettings = new List<string>();
+                    allSettings.AddRange(saveWarpList());
+                    allSettings.Add("---");
+                    allSettings.AddRange(behavioursWithNames);
+                    allSettings.Add("---");
+                    allSettings.AddRange(groundedWithNames);
+                    allSettings.Add("---");
+                    allSettings.AddRange(warpingBehavioursWithNames);
+                    allSettings.Add("---");
+                    allSettings.AddRange(removeAddresses);
 
-                    File.WriteAllLines(saveFileDialog.FileName, allBehaviours);
-                    MessageBox.Show("Behaviours saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    File.WriteAllLines(saveFileDialog.FileName, allSettings);
+                    MessageBox.Show("Config Loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (IOException)
                 {
@@ -993,13 +950,14 @@ namespace Mario64Randomizer
             {
                 try
                 {
-                    List<string> behaviours = File.ReadAllLines(openFileDialog.FileName).ToList();
+                    List<string> settings = File.ReadAllLines(openFileDialog.FileName).ToList();
 
                     int index = 0;
-                    behavioursWithNames = CutData(behaviours, ref index);
-                    groundedWithNames = CutData(behaviours, ref index);
-                    warpingBehavioursWithNames = CutData(behaviours, ref index);
-                    removeAddresses = CutData(behaviours, ref index);
+                    loadWarpList(CutData(settings, ref index));
+                    behavioursWithNames = CutData(settings, ref index);
+                    groundedWithNames = CutData(settings, ref index);
+                    warpingBehavioursWithNames = CutData(settings, ref index);
+                    removeAddresses = CutData(settings, ref index);
 
                     warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
 
