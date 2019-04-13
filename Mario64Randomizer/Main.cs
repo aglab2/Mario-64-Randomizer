@@ -265,14 +265,25 @@ namespace Mario64Randomizer
                 try
                 {
                     originalData = File.ReadAllBytes(openFileDialog.FileName);
-                    byte[] rmData = (byte[])originalData.Clone();
+                    if(originalData.Length > 8400000)
+                    {
+                        byte[] rmData = (byte[])originalData.Clone();
 
-                    rm = new ROM(originalData);
-                    romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-                    courseNames = getCourseNames();
-                    updateWarpList();
+                        rm = new ROM(originalData);
+                        romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+                        courseNames = getCourseNames();
+                        updateWarpList();
 
-                    MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Error: 8mb Vanilla not supported.\nDo you want to download the Patch?", "8mb Rom Detected", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("https://github.com/aGlitch/Mario-64-Randomizer/releases/download/1.0/Super.Mario.64.Random.bps");
+                        }
+                    }                    
                 }
                 catch (IOException)
                 {
