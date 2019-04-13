@@ -1013,5 +1013,15 @@ namespace Mario64Randomizer
                 }
             }
         }
+
+        private void btnRestoreBehaviours_Click(object sender, EventArgs e)
+        {
+            behavioursWithNames = Properties.Resources.notGrounded.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            groundedWithNames = Properties.Resources.groundedBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            warpingBehavioursWithNames = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
+            removeAddresses = new List<string>();
+        }
     }
 }

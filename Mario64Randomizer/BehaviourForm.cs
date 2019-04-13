@@ -15,8 +15,6 @@ namespace Mario64Randomizer
     public partial class BehaviourForm : Form
     {
         private int type = 0;
-        ROM rm;
-        private string romName;
         public List<int> warpingBehaviours;
         public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
@@ -101,7 +99,7 @@ namespace Mario64Randomizer
                         behavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
                         lBehaviours.DataSource = null;
                         lBehaviours.DataSource = behavioursWithNames;
-                        lBehaviours.SelectedIndex = 0;
+                        lBehaviours.SelectedIndex = lBehaviours.Items.Count - 1;
                     }
                 break;
                 case 1:
@@ -110,7 +108,7 @@ namespace Mario64Randomizer
                         groundedBehavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
                         lBehaviours.DataSource = null;
                         lBehaviours.DataSource = groundedBehavioursWithNames;
-                        lBehaviours.SelectedIndex = 0;
+                        lBehaviours.SelectedIndex = lBehaviours.Items.Count - 1;
                     }
                     break;
                 case 2:
@@ -119,7 +117,7 @@ namespace Mario64Randomizer
                         warpBehavioursWithNames.RemoveAt(lBehaviours.SelectedIndex);
                         lBehaviours.DataSource = null;
                         lBehaviours.DataSource = warpBehavioursWithNames;
-                        lBehaviours.SelectedIndex = 0;
+                        lBehaviours.SelectedIndex = lBehaviours.Items.Count - 1;
                     }
                 break;
                 case 3:
@@ -128,7 +126,7 @@ namespace Mario64Randomizer
                         removeAddresses.RemoveAt(lBehaviours.SelectedIndex);
                         lBehaviours.DataSource = null;
                         lBehaviours.DataSource = removeAddresses;
-                        lBehaviours.SelectedIndex = 0;
+                        lBehaviours.SelectedIndex = lBehaviours.Items.Count - 1;
                     }
                break;
             }
@@ -162,59 +160,6 @@ namespace Mario64Randomizer
                     break;
                 }
             }            
-        }
-
-        private void btnSaveBehaviours_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            saveFileDialog.FilterIndex = 1;
-            saveFileDialog.RestoreDirectory = true;
-            if (rm != null)
-            {
-                saveFileDialog.FileName = romName + " - Behaviours";
-            }
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    File.WriteAllLines(saveFileDialog.FileName, behavioursWithNames);
-                    MessageBox.Show("Behaviours saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-        }
-
-        private void btnLoadBehaviours_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.RestoreDirectory = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    behavioursWithNames = File.ReadAllLines(openFileDialog.FileName).ToList();
-                    lBehaviours.DataSource = null;
-                    lBehaviours.DataSource = behavioursWithNames;
-                    SM64.Object.SetNonGroundedBehaviours(behavioursWithNames);
-                    MessageBox.Show("Behaviours loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Failed to load!", "-_-", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
         }
 
         public List<string> getNonGrounded()

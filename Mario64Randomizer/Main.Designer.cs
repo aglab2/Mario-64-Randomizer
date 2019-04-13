@@ -91,6 +91,7 @@
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.btnRestoreAllBehaviours = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -440,7 +441,7 @@
             "Course 13",
             "Course 14",
             "Course 15",
-            "Bowser 1",
+            "Bowser Course 1",
             "Bowser Battle 1",
             "Bowser Course 2",
             "Bowser Battle 2",
@@ -450,15 +451,15 @@
             "Metal Cap",
             "Wing Cap",
             "Vanish Cap",
-            "Rainbow",
-            "Aquarium",
+            "Mario Wings Over the Rainbow",
+            "Secret Aquarium",
             "\"The End\"",
             "Castle Grounds",
             "Inside Castle",
             "Castle Courtyard"});
             this.chklbWarpList.Location = new System.Drawing.Point(6, 93);
             this.chklbWarpList.Name = "chklbWarpList";
-            this.chklbWarpList.Size = new System.Drawing.Size(324, 208);
+            this.chklbWarpList.Size = new System.Drawing.Size(324, 225);
             this.chklbWarpList.TabIndex = 7;
             // 
             // chkWarpFile
@@ -474,6 +475,7 @@
             // tabObjects
             // 
             this.tabObjects.BackColor = System.Drawing.Color.Black;
+            this.tabObjects.Controls.Add(this.btnRestoreAllBehaviours);
             this.tabObjects.Controls.Add(this.btnLoadAllBehav);
             this.tabObjects.Controls.Add(this.btnSaveAllBehav);
             this.tabObjects.Controls.Add(this.btnRemoveObjectAddress);
@@ -493,9 +495,9 @@
             this.btnLoadAllBehav.FlatAppearance.BorderSize = 0;
             this.btnLoadAllBehav.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadAllBehav.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnLoadAllBehav.Location = new System.Drawing.Point(169, 169);
+            this.btnLoadAllBehav.Location = new System.Drawing.Point(153, 169);
             this.btnLoadAllBehav.Name = "btnLoadAllBehav";
-            this.btnLoadAllBehav.Size = new System.Drawing.Size(138, 25);
+            this.btnLoadAllBehav.Size = new System.Drawing.Size(125, 25);
             this.btnLoadAllBehav.TabIndex = 14;
             this.btnLoadAllBehav.Text = "Load All";
             this.btnLoadAllBehav.UseVisualStyleBackColor = false;
@@ -509,7 +511,7 @@
             this.btnSaveAllBehav.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSaveAllBehav.Location = new System.Drawing.Point(25, 169);
             this.btnSaveAllBehav.Name = "btnSaveAllBehav";
-            this.btnSaveAllBehav.Size = new System.Drawing.Size(138, 25);
+            this.btnSaveAllBehav.Size = new System.Drawing.Size(125, 25);
             this.btnSaveAllBehav.TabIndex = 13;
             this.btnSaveAllBehav.Text = "Save All";
             this.btnSaveAllBehav.UseVisualStyleBackColor = false;
@@ -969,6 +971,21 @@
             this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
             this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
             // 
+            // btnRestoreAllBehaviours
+            // 
+            this.btnRestoreAllBehaviours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.btnRestoreAllBehaviours.BackgroundImage = global::Mario64Randomizer.Properties.Resources.refresh;
+            this.btnRestoreAllBehaviours.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRestoreAllBehaviours.FlatAppearance.BorderSize = 0;
+            this.btnRestoreAllBehaviours.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestoreAllBehaviours.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRestoreAllBehaviours.Location = new System.Drawing.Point(282, 169);
+            this.btnRestoreAllBehaviours.Name = "btnRestoreAllBehaviours";
+            this.btnRestoreAllBehaviours.Size = new System.Drawing.Size(25, 25);
+            this.btnRestoreAllBehaviours.TabIndex = 15;
+            this.btnRestoreAllBehaviours.UseVisualStyleBackColor = false;
+            this.btnRestoreAllBehaviours.Click += new System.EventHandler(this.btnRestoreBehaviours_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1075,6 +1092,7 @@
         private System.Windows.Forms.Button btnEditNonGrounded;
         private System.Windows.Forms.Button btnLoadAllBehav;
         private System.Windows.Forms.Button btnSaveAllBehav;
+        private System.Windows.Forms.Button btnRestoreAllBehaviours;
     }
 }
 
