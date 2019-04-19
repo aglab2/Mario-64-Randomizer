@@ -54,8 +54,6 @@
             this.chkWarpFile = new System.Windows.Forms.CheckBox();
             this.tabObjects = new System.Windows.Forms.TabPage();
             this.btnRestoreAllBehaviours = new System.Windows.Forms.Button();
-            this.btnLoadAllBehav = new System.Windows.Forms.Button();
-            this.btnSaveAllBehav = new System.Windows.Forms.Button();
             this.btnRemoveObjectAddress = new System.Windows.Forms.Button();
             this.btnEditWarpObjects = new System.Windows.Forms.Button();
             this.btnEditGroundedObjects = new System.Windows.Forms.Button();
@@ -79,8 +77,11 @@
             this.tabSequence = new System.Windows.Forms.TabPage();
             this.btnRefreshList = new System.Windows.Forms.Button();
             this.tabMisc = new System.Windows.Forms.TabPage();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.chkWarpPatch = new System.Windows.Forms.CheckBox();
             this.chkRandomizeText = new System.Windows.Forms.CheckBox();
+            this.btnLoadAllBehav = new System.Windows.Forms.Button();
+            this.btnSaveAllBehav = new System.Windows.Forms.Button();
             this.btnSaveRom = new System.Windows.Forms.Button();
             this.btnRandomize = new System.Windows.Forms.Button();
             this.btnOpenRom = new System.Windows.Forms.Button();
@@ -89,7 +90,8 @@
             this.chkRandomizeMusic = new System.Windows.Forms.CheckBox();
             this.chkRandomizeWarps = new System.Windows.Forms.CheckBox();
             this.cdClothes = new System.Windows.Forms.ColorDialog();
-            this.btnHelp = new System.Windows.Forms.Button();
+            this.nudActAmount = new System.Windows.Forms.NumericUpDown();
+            this.btnEditSequence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -98,6 +100,7 @@
             this.tabClothes.SuspendLayout();
             this.tabSequence.SuspendLayout();
             this.tabMisc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudActAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNewSeed
@@ -238,7 +241,7 @@
             // 
             this.nudStarAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.nudStarAmount.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.nudStarAmount.Location = new System.Drawing.Point(165, 12);
+            this.nudStarAmount.Location = new System.Drawing.Point(102, 12);
             this.nudStarAmount.Maximum = new decimal(new int[] {
             120,
             0,
@@ -301,7 +304,7 @@
             // 
             this.lblNumberOfStars.AutoSize = true;
             this.lblNumberOfStars.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblNumberOfStars.Location = new System.Drawing.Point(69, 14);
+            this.lblNumberOfStars.Location = new System.Drawing.Point(13, 14);
             this.lblNumberOfStars.Name = "lblNumberOfStars";
             this.lblNumberOfStars.Size = new System.Drawing.Size(83, 13);
             this.lblNumberOfStars.TabIndex = 31;
@@ -471,36 +474,6 @@
             this.btnRestoreAllBehaviours.TabIndex = 15;
             this.btnRestoreAllBehaviours.UseVisualStyleBackColor = false;
             this.btnRestoreAllBehaviours.Click += new System.EventHandler(this.btnRestoreBehaviours_Click);
-            // 
-            // btnLoadAllBehav
-            // 
-            this.btnLoadAllBehav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btnLoadAllBehav.FlatAppearance.BorderSize = 0;
-            this.btnLoadAllBehav.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadAllBehav.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnLoadAllBehav.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnLoadAllBehav.Location = new System.Drawing.Point(274, 98);
-            this.btnLoadAllBehav.Name = "btnLoadAllBehav";
-            this.btnLoadAllBehav.Size = new System.Drawing.Size(100, 25);
-            this.btnLoadAllBehav.TabIndex = 14;
-            this.btnLoadAllBehav.Text = "Load Config";
-            this.btnLoadAllBehav.UseVisualStyleBackColor = false;
-            this.btnLoadAllBehav.Click += new System.EventHandler(this.btnLoadAllBehav_Click);
-            // 
-            // btnSaveAllBehav
-            // 
-            this.btnSaveAllBehav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btnSaveAllBehav.FlatAppearance.BorderSize = 0;
-            this.btnSaveAllBehav.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAllBehav.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnSaveAllBehav.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSaveAllBehav.Location = new System.Drawing.Point(274, 70);
-            this.btnSaveAllBehav.Name = "btnSaveAllBehav";
-            this.btnSaveAllBehav.Size = new System.Drawing.Size(100, 25);
-            this.btnSaveAllBehav.TabIndex = 13;
-            this.btnSaveAllBehav.Text = "Save Config";
-            this.btnSaveAllBehav.UseVisualStyleBackColor = false;
-            this.btnSaveAllBehav.Click += new System.EventHandler(this.btnSaveAllBehav_Click);
             // 
             // btnRemoveObjectAddress
             // 
@@ -764,6 +737,8 @@
             // tabSequence
             // 
             this.tabSequence.BackColor = System.Drawing.Color.Black;
+            this.tabSequence.Controls.Add(this.btnEditSequence);
+            this.tabSequence.Controls.Add(this.nudActAmount);
             this.tabSequence.Controls.Add(this.btnRefreshList);
             this.tabSequence.Controls.Add(this.chkMips);
             this.tabSequence.Controls.Add(this.chkFirst);
@@ -783,7 +758,7 @@
             this.tabSequence.Padding = new System.Windows.Forms.Padding(3);
             this.tabSequence.Size = new System.Drawing.Size(336, 314);
             this.tabSequence.TabIndex = 0;
-            this.tabSequence.Text = "Sequence (Vanilla)";
+            this.tabSequence.Text = "Sequence";
             // 
             // btnRefreshList
             // 
@@ -792,7 +767,7 @@
             this.btnRefreshList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefreshList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefreshList.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRefreshList.Location = new System.Drawing.Point(300, 12);
+            this.btnRefreshList.Location = new System.Drawing.Point(278, 74);
             this.btnRefreshList.Name = "btnRefreshList";
             this.btnRefreshList.Size = new System.Drawing.Size(24, 24);
             this.btnRefreshList.TabIndex = 42;
@@ -811,6 +786,25 @@
             this.tabMisc.Size = new System.Drawing.Size(336, 314);
             this.tabMisc.TabIndex = 7;
             this.tabMisc.Text = "Misc";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.Transparent;
+            this.btnHelp.BackgroundImage = global::Mario64Randomizer.Properties.Resources.help;
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.ForeColor = System.Drawing.Color.Transparent;
+            this.btnHelp.Location = new System.Drawing.Point(265, 26);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(35, 35);
+            this.btnHelp.TabIndex = 26;
+            this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
+            this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
             // 
             // chkWarpPatch
             // 
@@ -837,6 +831,36 @@
             this.chkRandomizeText.Text = "Text";
             this.chkRandomizeText.UseVisualStyleBackColor = true;
             this.chkRandomizeText.Visible = false;
+            // 
+            // btnLoadAllBehav
+            // 
+            this.btnLoadAllBehav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnLoadAllBehav.FlatAppearance.BorderSize = 0;
+            this.btnLoadAllBehav.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadAllBehav.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnLoadAllBehav.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLoadAllBehav.Location = new System.Drawing.Point(274, 98);
+            this.btnLoadAllBehav.Name = "btnLoadAllBehav";
+            this.btnLoadAllBehav.Size = new System.Drawing.Size(100, 25);
+            this.btnLoadAllBehav.TabIndex = 14;
+            this.btnLoadAllBehav.Text = "Load Config";
+            this.btnLoadAllBehav.UseVisualStyleBackColor = false;
+            this.btnLoadAllBehav.Click += new System.EventHandler(this.btnLoadAllBehav_Click);
+            // 
+            // btnSaveAllBehav
+            // 
+            this.btnSaveAllBehav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btnSaveAllBehav.FlatAppearance.BorderSize = 0;
+            this.btnSaveAllBehav.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAllBehav.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnSaveAllBehav.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSaveAllBehav.Location = new System.Drawing.Point(274, 70);
+            this.btnSaveAllBehav.Name = "btnSaveAllBehav";
+            this.btnSaveAllBehav.Size = new System.Drawing.Size(100, 25);
+            this.btnSaveAllBehav.TabIndex = 13;
+            this.btnSaveAllBehav.Text = "Save Config";
+            this.btnSaveAllBehav.UseVisualStyleBackColor = false;
+            this.btnSaveAllBehav.Click += new System.EventHandler(this.btnSaveAllBehav_Click);
             // 
             // btnSaveRom
             // 
@@ -938,24 +962,35 @@
             this.chkRandomizeWarps.Text = "Warps";
             this.chkRandomizeWarps.UseVisualStyleBackColor = true;
             // 
-            // btnHelp
+            // nudActAmount
             // 
-            this.btnHelp.BackColor = System.Drawing.Color.Transparent;
-            this.btnHelp.BackgroundImage = global::Mario64Randomizer.Properties.Resources.help;
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.ForeColor = System.Drawing.Color.Transparent;
-            this.btnHelp.Location = new System.Drawing.Point(265, 26);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(35, 35);
-            this.btnHelp.TabIndex = 26;
-            this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnHelp.UseVisualStyleBackColor = false;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            this.btnHelp.MouseEnter += new System.EventHandler(this.btnHelp_Enter);
-            this.btnHelp.MouseHover += new System.EventHandler(this.btnHelp_Hover);
+            this.nudActAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.nudActAmount.ForeColor = System.Drawing.SystemColors.Window;
+            this.nudActAmount.Location = new System.Drawing.Point(188, 12);
+            this.nudActAmount.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.nudActAmount.Name = "nudActAmount";
+            this.nudActAmount.Size = new System.Drawing.Size(60, 20);
+            this.nudActAmount.TabIndex = 43;
+            this.nudActAmount.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            // 
+            // btnEditSequence
+            // 
+            this.btnEditSequence.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEditSequence.Location = new System.Drawing.Point(258, 14);
+            this.btnEditSequence.Name = "btnEditSequence";
+            this.btnEditSequence.Size = new System.Drawing.Size(59, 44);
+            this.btnEditSequence.TabIndex = 44;
+            this.btnEditSequence.Text = "Edit Sequence";
+            this.btnEditSequence.UseVisualStyleBackColor = true;
+            this.btnEditSequence.Click += new System.EventHandler(this.btnEditSequence_Click);
             // 
             // Main
             // 
@@ -981,7 +1016,7 @@
             this.MaximumSize = new System.Drawing.Size(420, 1080);
             this.MinimumSize = new System.Drawing.Size(420, 350);
             this.Name = "Main";
-            this.Text = "Super Mario 64 Randomizer v1.1";
+            this.Text = "Super Mario 64 Randomizer v1.2";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStarAmount)).EndInit();
@@ -995,6 +1030,7 @@
             this.tabSequence.PerformLayout();
             this.tabMisc.ResumeLayout(false);
             this.tabMisc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudActAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1063,6 +1099,8 @@
         private System.Windows.Forms.Button btnLoadAllBehav;
         private System.Windows.Forms.Button btnSaveAllBehav;
         private System.Windows.Forms.Button btnRestoreAllBehaviours;
+        private System.Windows.Forms.NumericUpDown nudActAmount;
+        private System.Windows.Forms.Button btnEditSequence;
     }
 }
 

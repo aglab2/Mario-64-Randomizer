@@ -76,6 +76,12 @@
     <Compile Include="BehaviourForm.Designer.cs">
       <DependentUpon>BehaviourForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditSequence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditSequence.Designer.cs">
+      <DependentUpon>EditSequence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\n64Text.cs" />
     <Compile Include="Helpers\SegmentedAddressHelper.cs" />
     <Compile Include="Main.cs">
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BehaviourForm.resx">
       <DependentUpon>BehaviourForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditSequence.resx">
+      <DependentUpon>EditSequence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

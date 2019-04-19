@@ -36,6 +36,7 @@ namespace Mario64Randomizer
         private Color colorMarioHair;
         //
         public List<string> courseNames;
+        public List<string> actNames;
         public List<int> warpingBehaviours;
         public List<int> targetWarpBehaviours;
         public List<string> behavioursWithNames;
@@ -149,6 +150,61 @@ namespace Mario64Randomizer
                 l.Text = randomList[i].ToString();
                 l.ImageIndex = 0;
                 lvStars.Items.Add(l);
+            }
+        }
+
+        public void refreshLists()
+        {
+            first.Clear();
+            downstairs.Clear();
+            upstairs.Clear();
+
+            for(int i = 0; i < 16; i++)
+            {
+                string level = string.Concat(courseNames[i].Where(c => c >= 'A' && c <= 'Z'));
+
+                if(i < 6)
+                {
+                    for (int act = 0; i < 7; i++)
+                    {
+                        if (act < 7)
+                        {
+                            first.Add(level + ": " + actNames[(act+1) * i]);
+                        }
+                        else
+                        {
+                            first.Add(level + ": 100 Coin Star");
+                        }
+                    }
+                }
+                if (i > 6 & i < 10)
+                {
+                    for (int act = 0; i < 7; i++)
+                    {
+                        if (act < 7)
+                        {
+                            downstairs.Add(level + ": " + actNames[(act + 1) * i]);
+                        }
+                        else
+                        {
+                            downstairs.Add(level + ": 100 Coin Star");
+                        }
+                    }
+                }
+            }
+            combineLists();
+            if (nudStarAmount.Value <= randomList.Count)
+            {
+                seed = s.Next(0, 1000000000);
+                nudSeed.Value = seed;
+
+                Shuffle(randomList, seed);
+                randomList = randomList.GetRange(0, Convert.ToInt32(nudStarAmount.Value));
+                refreshCheckList();
+            }
+            else
+            {
+                MessageBox.Show("Error: The Star Amount is higher than the Selected Star Set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -273,6 +329,9 @@ namespace Mario64Randomizer
                         romName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                         courseNames = getCourseNames();
                         updateWarpList();
+                        actNames = getActNames();
+                        printActNames();
+                        refreshLists();
 
                         MessageBox.Show("Your ROM was loaded!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
@@ -850,6 +909,23 @@ namespace Mario64Randomizer
             return n64Text.GetStrings(data).Select(r => currentCulture.TextInfo.ToTitleCase(r.ToLower()).TrimStart()).ToList();
         }
 
+        private List<string> getActNames()
+        {
+            const int levelNameTableStart = 0x81412A;
+            byte[] data = new byte[2235];
+            rm.ReadData(levelNameTableStart, data);
+            CultureInfo currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            return n64Text.GetStrings(data).Select(r => currentCulture.TextInfo.ToTitleCase(r.ToLower()).TrimStart()).ToList();
+        }
+
+        private void printActNames()
+        {
+            for(int i = 0; i < actNames.Count; i++)
+            {
+                Console.WriteLine(actNames[i].ToString());
+            }
+        }
+
         private void updateWarpList()
         {
             int skipped = 0;
@@ -1000,6 +1076,14 @@ namespace Mario64Randomizer
             warpingBehaviours = Properties.Resources.warpBehaviours.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             targetWarpBehaviours = Properties.Resources.targetWarps.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList().Select(x => Convert.ToInt32(x.Split(new char[] { ':' })[0].Trim(), 16)).ToList();
             removeAddresses = new List<string>();
+        }
+
+        private void btnEditSequence_Click(object sender, EventArgs e)
+        {
+            EditSequence es = new EditSequence(courseNames);
+            es.ShowDialog();
+
+            
         }
     }
 }
